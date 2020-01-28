@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpHeight;
     public Animator animator;
+    public Transform spawnPoint;
+
 
     private Rigidbody2D rb2d;
 
@@ -20,10 +22,25 @@ public class PlayerController : MonoBehaviour
 
         unitController = new UnitController(10, 0, 0, 0);
         moveController = new MoveController(speed, jumpHeight, animator, rb2d, transform);
+
+        transform.position = spawnPoint.position;
     }
 
     void Update()
     {
-        moveController.updateMove();
+        // is below death point
+        if (transform.position.y < -10) {
+            transform.position = spawnPoint.position;
+
+            animator.SetBool("loaded", false);
+        }
+
+        if (animator.GetBool("loaded")) {
+            moveController.updateMove();
+        }
+    }
+
+    public void EndLoad() {
+        animator.SetBool("loaded", true);
     }
 }

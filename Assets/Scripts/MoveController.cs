@@ -20,6 +20,7 @@ public class MoveController
         rb2d = _rb2d;
         unitPos = _unitPos;
     }
+
     public void updateMove()
     {
         jump();
