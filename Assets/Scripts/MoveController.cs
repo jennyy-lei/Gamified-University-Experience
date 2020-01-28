@@ -56,10 +56,7 @@ public class MoveController
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = unitPos.localScale;
-		theScale.x *= -1;
-		unitPos.localScale = theScale;
+        unitPos.Rotate(0f, 180f, 0f);
 	}
 
     private void jump()
