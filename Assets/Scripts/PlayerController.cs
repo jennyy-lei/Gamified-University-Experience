@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public Animator animator;
     public Transform spawnPoint;
-
+    public Transform firePoint;
+    public GameObject bulletPrefab;
 
     private Rigidbody2D rb2d;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>() ;
+        rb2d = GetComponent<Rigidbody2D>();
 
         unitController = new UnitController(10, 0, 0, 0);
         moveController = new MoveController(speed, jumpHeight, animator, rb2d, transform);
@@ -38,9 +39,17 @@ public class PlayerController : MonoBehaviour
         if (animator.GetBool("loaded")) {
             moveController.updateMove();
         }
+
+        if (Input.GetButtonDown("Fire1")) {
+            Shoot();
+        }
     }
 
     public void EndLoad() {
         animator.SetBool("loaded", true);
+    }
+
+    private void Shoot() {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
