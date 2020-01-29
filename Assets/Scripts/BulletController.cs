@@ -20,7 +20,10 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log("hit!");
+        if (hitInfo.tag == "PlayerAtkIgnore") {
+            return;
+        }
+
         animator.SetBool("hit", true);
         // Enemy enemy = hitInfo.GetComponent<Enemy>();
         // if (enemy != null) {
