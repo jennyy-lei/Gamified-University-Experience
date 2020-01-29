@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 {
     public float speed;
     public int dmg;
+    public Animator animator;
 
     private Rigidbody2D rb2d;
 
@@ -19,11 +20,16 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        Debug.Log("hit!");
+        animator.SetBool("hit", true);
         // Enemy enemy = hitInfo.GetComponent<Enemy>();
         // if (enemy != null) {
         //     enemy.TakeDamage(dmg );
         // }
 
-        Destroy(gameObject);
+        animator.Update(0);
+
+        Destroy (gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+        rb2d.velocity = new Vector2(0 ,0);
     }
 }
