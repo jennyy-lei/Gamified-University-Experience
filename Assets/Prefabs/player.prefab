@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &7203202251187698824
@@ -159,9 +159,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7203202251187698839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4818ea4f6e444cbe9948f109095f50f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3834e090a125145788b23f2d65514791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 10
   jumpHeight: 5
   animator: {fileID: 7203202251187698836}
+  spawnPoint: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
