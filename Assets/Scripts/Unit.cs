@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     private bool isDead = false;
     private bool isInit = false;
 
-    public void init(int _health, int _id, int _atkDmg, float _speed)
+    public void setAll(int _health, int _id, int _atkDmg, float _speed)
     {
         remainingHealth = _health;
         totalHealth = _health;
@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
     public int getRemainingHealth() => remainingHealth;
     public int getTotalHealth() => totalHealth;
-    public float getHealthRatio() => remainingHealth / totalHealth;
+    public float getHealthRatio() => 1f * remainingHealth / totalHealth;
     public int getId() => id;
     public float getAtkDmg() => atkDmg;
     public float getMovementSpeed() => movementSpeed;
@@ -36,8 +36,10 @@ public class Unit : MonoBehaviour
     {
         remainingHealth -= h;
 
-        if (remainingHealth <= 0)
+        if (remainingHealth <= 0) {
+            remainingHealth = 0;
             isDead = true;
+        }
     }
 
     void Start()
@@ -50,12 +52,14 @@ public class Unit : MonoBehaviour
         animationEffects();
         moveSprite();
         attack();
-        dead();
+        deadZone();
+        updateHealthBar();
     }
 
     public virtual void init() {}
     public virtual void animationEffects() {}
     public virtual void moveSprite() {}
     public virtual void attack() {}
-    public virtual void dead() {}
+    public virtual void deadZone() {}
+    public virtual void updateHealthBar() {}
 }

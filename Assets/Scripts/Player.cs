@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Unit
 {
@@ -10,6 +11,7 @@ public class Player : Unit
     public Transform spawnPoint;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public Image healthBar;
 
     private Rigidbody2D rb2d;
 
@@ -30,10 +32,12 @@ public class Player : Unit
         }
     }
 
-    public override void dead() {
+    public override void deadZone() {
         // is below death point
         if (transform.position.y < -10) {
             transform.position = spawnPoint.position;
+
+            takeDmg(1);
 
             animator.SetBool("loaded", false);
         }
@@ -44,6 +48,11 @@ public class Player : Unit
         if (animator.GetBool("loaded")) {
             moveController.updateMove();
         }
+    }
+
+    public override void updateHealthBar()
+    {
+        healthBar.fillAmount = getHealthRatio();
     }
 
     // function for animation events
