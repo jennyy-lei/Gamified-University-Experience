@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// provides the following virtual functions:
+// called in start():
+//  init()
+//
+// called in update():
+//  animationEffects()
+//  moveSprite()
+//  attack()
+//  deadZone()
+//  updateHealthBar()
+//  destroy()
 public class Unit : MonoBehaviour
 {
     private int remainingHealth = 10;
@@ -54,6 +65,7 @@ public class Unit : MonoBehaviour
         attack();
         deadZone();
         updateHealthBar();
+        destroy();
     }
 
     public virtual void init() {}
@@ -62,4 +74,5 @@ public class Unit : MonoBehaviour
     public virtual void attack() {}
     public virtual void deadZone() {}
     public virtual void updateHealthBar() {}
+    public virtual void destroy() {}
 }
