@@ -15,13 +15,13 @@ public class Player : Unit
 
     private Rigidbody2D rb2d;
 
-    private MoveController moveController;
+    private PlayerMoveController moveController;
 
     public override void init()
     {
         rb2d = GetComponent<Rigidbody2D>();
 
-        moveController = new MoveController(speed, jumpHeight, animator, rb2d, transform);
+        moveController = new PlayerMoveController(animator, rb2d, transform);
 
         transform.position = spawnPoint.position;
     }
@@ -46,7 +46,15 @@ public class Player : Unit
     public override void moveSprite()
     {
         if (animator.GetBool("loaded")) {
-            moveController.updateMove();
+            float moveHorizontal = Input.GetAxis("Horizontal") * speed;
+
+            animator.SetFloat("speed", Mathf.Abs(moveHorizontal));
+
+            moveController.move(moveHorizontal);
+
+            if (Input.GetButtonDown("Jump")) {
+                moveController.jump(jumpHeight);
+            }
         }
     }
 
