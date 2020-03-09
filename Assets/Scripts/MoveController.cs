@@ -4,67 +4,67 @@ using UnityEngine;
 
 public class MoveController
 {
-    private float speed;
-    private float jumpHeight;
-    private Animator animator;
-    private Rigidbody2D rb2d;
-    private Transform unitPos;
+    private Animator animator = null;
+    private Rigidbody2D rb2d = null;
+    private Transform unitPos = null;
     private bool isGrounded = true;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-
-    public MoveController(float _speed, float _jumpHeight, Animator _animator, Rigidbody2D _rb2d, Transform _unitPos)
+    
+    public void init(Animator _animator, Rigidbody2D _rb2d, Transform _unitPos)
     {
-        speed = _speed;
-        jumpHeight = _jumpHeight;
         animator = _animator;
         rb2d = _rb2d;
         unitPos = _unitPos;
     }
 
-    public void updateMove()
-    {
-        jump();
-        move();
+    public void setUnitPos(Transform _unitPos) {
+        unitPos = _unitPos;
     }
 
-    private void move()
+    public Transform getUnitPos() => unitPos;
+
+    public void toggleDirection() {
+        m_FacingRight = !m_FacingRight;
+    }
+
+    public bool getIsFacingRight() => m_FacingRight;
+
+    public void moveHorizontal(float movement, bool cond1, bool cond2 = false)
     {
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed;
+        Vector3 v = new Vector3(movement, 0f, 0f);
 
-        Vector3 movement = new Vector3(moveHorizontal, 0f, 0f);
+        unitPos.position += v * Time.deltaTime;
 
-        animator.SetFloat("speed", Mathf.Abs(movement.x));
+        FlipCondition(movement, cond1, cond2);
+    }
 
-        unitPos.position += movement * Time.deltaTime;
-
+    private void FlipCondition(float movement, bool cond1, bool cond2) {
         // If the input is moving the player right and the player is facing left...
-        if (movement.x > 0 && !m_FacingRight)
+        if (cond1)
         {
             // ... flip the player.
-            Flip();
+            FlipSprite();
         }
         // Otherwise if the input is moving the player left and the player is facing right...
-        else if (movement.x < 0 && m_FacingRight)
+        else if (cond2)
         {
             // ... flip the player.
-            Flip();
+            FlipSprite();
         }
     }
 
-    private void Flip()
+    public virtual void FlipSprite()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		toggleDirection();
 
         unitPos.Rotate(0f, 180f, 0f);
 	}
 
-    private void jump()
+    public void jump(float jumpHeight)
     {
-        if (Input.GetButtonDown("Jump") && isGrounded) {
-            rb2d.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
 
             // isGrounded = false;
-        }
     }
 }

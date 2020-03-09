@@ -25,10 +25,10 @@ public class BulletController : MonoBehaviour
         }
 
         animator.SetBool("hit", true);
-        // Enemy enemy = hitInfo.GetComponent<Enemy>();
-        // if (enemy != null) {
-        //     enemy.TakeDamage(dmg );
-        // }
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null) {
+            enemy.takeDmg(1);
+        }
 
         animator.Update(0);
 
