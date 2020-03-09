@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerAtkIgnore
+  - Platform
   layers:
   - Default
   - TransparentFX

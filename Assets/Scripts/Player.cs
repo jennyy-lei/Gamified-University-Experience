@@ -36,6 +36,7 @@ public class Player : Unit
         // is below death point
         if (transform.position.y < -10) {
             transform.position = spawnPoint.position;
+            rb2d.velocity = new Vector3(0, 0, 0);
 
             takeDmg(1);
 
