@@ -28,7 +28,7 @@ public class Enemy : Unit
             m = -speed;
         
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
-        Debug.Log(groundInfo.collider);
+        //Debug.Log(groundInfo.collider);
         moveController.move(m, !groundInfo.collider);
 
         healthBar.transform.rotation = Quaternion.Euler(0, 0, 0);

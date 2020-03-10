@@ -46,7 +46,6 @@ public class BulletController : MonoBehaviour
 
     private bool ReachedBoundary(){
         float x = Camera.main.WorldToViewportPoint (transform.position).x;
-        Debug.Log(x);
         return x >= 1 || x <= 0;
     }
 }
