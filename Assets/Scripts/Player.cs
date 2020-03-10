@@ -57,6 +57,7 @@ public class Player : Unit
                 moveController.jump(jumpHeight);
             }
         }
+        RestrainWithBg();
     }
 
     public override void updateHealthBar()
@@ -67,5 +68,16 @@ public class Player : Unit
     // function for animation events
     public void EndLoad() {
         animator.SetBool("loaded", true);
+    }
+
+    private void RestrainWithBg(){
+        Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp(pos.y, -1, 1);
+        Debug.Log("pos.y" + pos.y);
+        if(pos.y == 1){
+            rb2d.velocity = Vector3.zero;
+        }
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 }
