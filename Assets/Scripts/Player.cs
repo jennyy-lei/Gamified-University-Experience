@@ -74,7 +74,6 @@ public class Player : Unit
         Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp(pos.y, -1, 1);
-        Debug.Log("pos.y" + pos.y);
         if(pos.y == 1){
             rb2d.velocity = Vector3.zero;
         }

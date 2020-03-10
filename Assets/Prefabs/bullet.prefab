@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  maxDist: 7
   dmg: 0
   animator: {fileID: 2142384093052051583}
 --- !u!58 &1710237571152438036
