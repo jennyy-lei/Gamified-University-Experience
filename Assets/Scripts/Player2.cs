@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player2 : Unit2,IJumpable,IShootable
 {
@@ -9,7 +10,13 @@ public class Player2 : Unit2,IJumpable,IShootable
     [field: SerializeField]
     public float shootDist{get;set;}
     [field: SerializeField]
+    public float bulletLimit{get;set;}
+    public float bulletCount{get;set;}
+
+    [field: SerializeField]
     public GameObject bullet {get;set;}
+    [field: SerializeField]
+    public TextMeshProUGUI bulletText{get;set;}
 
     public void Update(){
         base.Update();
@@ -18,6 +25,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     }
     protected override void initSpawn(){
         spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
+        bulletCount = bulletLimit;
     }
     public void EndLoad() {
         animator.SetBool("loaded", true);
@@ -43,5 +51,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         }
     }
 
-
+    public void updateDisplay() {
+        bulletText.text = bulletCount + " / " + bulletLimit;
+    }
 }

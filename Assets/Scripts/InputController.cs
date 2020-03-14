@@ -30,7 +30,10 @@ public class InputController : MonoBehaviour
         if(playerAnim.GetBool("loaded")){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(player, info);
-            if (Input.GetButtonDown("Fire1")) atkCmd.execute(player,info);
+            if (Input.GetButtonDown("Fire1")) {
+                atkCmd.execute(player,info);
+                info.updateDisplay();
+            }
             if (Input.GetButtonDown("Jump")) jumpCmd.execute(player,info);
         }
         

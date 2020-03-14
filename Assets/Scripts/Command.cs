@@ -71,11 +71,13 @@ public class ShootCmd : Command{
 
     }
 
-    public override void execute(Transform character, Unit2 info){
+    public override void execute(Transform character, Unit2 info){        
         IShootable shootInfo = (IShootable) info;
+
+        if (shootInfo.bulletCount == 0) return;
+
         Transform firePoint = character.transform.GetChild(0);
         GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
-        }
+        shootInfo.bulletCount--;
+    }
 }
-
-

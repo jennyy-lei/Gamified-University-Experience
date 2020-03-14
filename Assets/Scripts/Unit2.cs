@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public abstract class Unit2 : MonoBehaviour
@@ -29,6 +30,8 @@ public abstract class Unit2 : MonoBehaviour
     public bool isGrounded {get;set;}
     public bool isDead{get;set;}
     public bool isInit{get;set;}
+    [field: SerializeField] 
+    public Image healthBar{get;set;}
 
     protected Vector3 prevPos;
     public void Awake()
@@ -41,6 +44,8 @@ public abstract class Unit2 : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         prevPos = transform.position;
+        remainHealth = totalHealth;
+        healthBar.fillAmount = getHealthRatio();
         initSpawn();
     }
     
@@ -56,6 +61,8 @@ public abstract class Unit2 : MonoBehaviour
             remainHealth = 0;
             isDead = true;
         }
+
+        healthBar.fillAmount = getHealthRatio();
     }
 
     public void Update(){

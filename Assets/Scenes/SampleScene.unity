@@ -1259,8 +1259,10 @@ MonoBehaviour:
   <MAX_WALK_SPEED>k__BackingField: 5
   <curSpeed>k__BackingField: 0
   <facingRight>k__BackingField: 1
+  healthBar: {fileID: 0}
   <jumpPow>k__BackingField: 4
   <shootDist>k__BackingField: 6
+  <bulletLimit>k__BackingField: 10
   <bullet>k__BackingField: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
     type: 3}
 --- !u!114 &2006366388
@@ -1282,7 +1284,7 @@ MonoBehaviour:
   firePoint: {fileID: 1937907239}
   bulletPrefab: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
     type: 3}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1031745997}
 --- !u!1 &2037549105
 GameObject:
   m_ObjectHideFlags: 0

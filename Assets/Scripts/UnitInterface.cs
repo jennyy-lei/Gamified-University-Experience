@@ -11,7 +11,9 @@ interface IDashable
 interface IShootable
 {
     float shootDist {set;get;}
-    GameObject bullet{set;get;}
+    float bulletLimit {set;get;}
+    float bulletCount {set;get;}
+    GameObject bullet {set;get;}
 }
 
 interface IJumpable
