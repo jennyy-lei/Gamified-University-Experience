@@ -11,26 +11,26 @@ public abstract class Unit2 : MonoBehaviour
     public int totalHealth{get;set;}
     public int remainHealth{get;set;}
     [field: SerializeField]
-    public float MAX_WALK_SPEED{get;set;}
-
-    public float walkSpeed{get;set;}
-
-    [field: SerializeField] 
-    public float curSpeed {get; set;}
-    [field: SerializeField]
     public float atkDmg{get;set;}
     [field: SerializeField]
     public float atkRange{get;set;}
+    [field: SerializeField]
+    public float MAX_WALK_SPEED{get;set;}
+    [field: SerializeField] 
+    public float curSpeed {get; protected set;}
+    public float walkSpeed{get;set;}
+
 
     [field: SerializeField] 
     public bool facingRight{get;set;}
     protected Animator animator {get;set;}
     protected Rigidbody2D rb2d {get;set;}
+    protected Transform spawnPoint {get;set;}
     public bool isGrounded {get;set;}
     public bool isDead{get;set;}
     public bool isInit{get;set;}
 
-    private Vector3 prevPos;
+    protected Vector3 prevPos;
     public void Awake()
     {
         isGrounded = true;
@@ -41,6 +41,7 @@ public abstract class Unit2 : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         prevPos = transform.position;
+        initSpawn();
     }
     
     public float getHealthRatio()
@@ -71,9 +72,12 @@ public abstract class Unit2 : MonoBehaviour
     }
 
     public void flip(){
+        Debug.Log(curSpeed);
         transform.Rotate(0f,180f,0f);
         facingRight = !facingRight;
     }
+
+    protected abstract void initSpawn();
 }
 
 public abstract class Enemy2 : Unit2

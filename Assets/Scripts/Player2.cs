@@ -13,10 +13,12 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     public void Update(){
         base.Update();
-        
+        deadZone();
         restrainWithBg();
     }
-    
+    protected override void initSpawn(){
+        spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
+    }
     public void EndLoad() {
         animator.SetBool("loaded", true);
     }
@@ -29,6 +31,16 @@ public class Player2 : Unit2,IJumpable,IShootable
             rb2d.velocity = Vector3.zero;
         }
         transform.position = Camera.main.ViewportToWorldPoint(pos);
+    }
+
+       public void deadZone() {
+        // is below death point
+        if (transform.position.y < -10) {
+            prevPos = transform.position = spawnPoint.position;
+            rb2d.velocity = new Vector3(0, 0, 0);
+            takeDmg(1);
+            animator.SetBool("loaded", false);
+        }
     }
 
 
