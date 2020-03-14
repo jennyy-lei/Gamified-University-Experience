@@ -23,7 +23,7 @@ public abstract class Command
         this.name = name;
     }
 
-    public abstract void execute(GameObject character);
+    public abstract void execute(Transform character, Unit2 info);
 
 }
 
@@ -33,8 +33,7 @@ public class TemplateCmd : Command{
         
     }
 
-    public override void execute(GameObject character){
-        Unit info = character.GetComponent<Unit>();
+    public override void execute(Transform character, Unit2 info){
         //..
     }
 }
@@ -46,12 +45,9 @@ public class MoveCmd : Command{
 
     }
 
-    public override void execute(GameObject character){
-        Transform pos = character.GetComponent<Transform>();
-        Unit info = character.GetComponent<Unit>();
-
-        if (pos == null) throw new System.ArgumentException("Gameobject does not have Transform Component.", "character");
-        if (info == null) throw new System.ArgumentException("Gameobject does not have Transform Component.", "character");
+    public override void execute(Transform character, Unit2 info){
+        Vector3 v = new Vector3(info.walkSpeed, 0f, 0f);
+        character.position += v * Time.deltaTime;
     }
 }
 
@@ -61,30 +57,25 @@ public class JumpCmd : Command{
         
     }
 
-    public override void execute(GameObject character){
+    public override void execute(Transform character, Unit2 info){
         Rigidbody2D rb2d = character.GetComponent<Rigidbody2D>();
-        Unit info = character.GetComponent<Player>();
-
-        if (rb2d == null) throw new System.ArgumentException("Gameobject does not have Rigidbody2D Component.", "character");
-        if (info == null) throw new System.ArgumentException("Gameobject does not have Transform Component.", "character");
-    
-        rb2d.AddForce(new Vector2(0f, 5), ForceMode2D.Impulse);
+        IJumpable jumpInfo = (IJumpable) info;
+        rb2d.AddForce(new Vector2(0f, jumpInfo.jumpPow), ForceMode2D.Impulse);
     }
 }
 
 public class ShootCmd : Command{
-    public ShootCmd() : base("Shoot")
+
+    public ShootCmd(GameObject bullet) : base("Shoot")
     {
 
     }
 
-    public override void execute(GameObject character){
-        Transform pos = character.GetComponent<Transform>();
-        Unit info = character.GetComponent<Unit>();
-        
-        if (pos == null) throw new System.ArgumentException("Gameobject does not have Transform Component.", "character");
-        if (info == null) throw new System.ArgumentException("Gameobject does not have Transform Component.", "character");
-    }
+    public override void execute(Transform character, Unit2 info){
+        IShootable shootInfo = (IShootable) info;
+        Transform firePoint = character.transform.GetChild(0);
+        GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
+        }
 }
 
 
