@@ -15,10 +15,14 @@ public class InputController : MonoBehaviour
     private Command atkCmd;
     private Command moveCmd;
 
+    private int jumpNum;
+
     void Awake(){
-        playerAnim = player.GetComponent<Animator>();
-        info = player.GetComponent<Player2>();
-        rb2d = player.GetComponent<Rigidbody2D>();
+        playerAnim = GetComponent<Animator>();
+        info = GetComponent<Player2>();
+        rb2d = GetComponent<Rigidbody2D>();
+
+        jumpNum = 0;
 
         jumpCmd = new JumpCmd();
         atkCmd = new ShootCmd(info.bullet);
@@ -34,8 +38,18 @@ public class InputController : MonoBehaviour
                 atkCmd.execute(player,info);
                 info.updateDisplay();
             }
-            if (Input.GetButtonDown("Jump")) jumpCmd.execute(player,info);
+
+            if (Input.GetButtonDown("Jump") && jumpNum <= 2) {
+                jumpCmd.execute(player,info);
+                jumpNum++;
+            }
         }
-        
+    }
+
+    void OnCollisionEnter2D(Collision2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Platform") {
+            jumpNum = 0;
+        }
     }
 }
