@@ -23,7 +23,6 @@ public class Player2 : Unit2,IJumpable,IShootable
     public TextMeshProUGUI goldText{get;set;}
 
     public void Update(){
-        base.Update();
         deadZone();
         restrainWithBg();
     }
@@ -34,7 +33,6 @@ public class Player2 : Unit2,IJumpable,IShootable
     public void EndLoad() {
         animator.SetBool("loaded", true);
     }
-
     private void restrainWithBg(){
         Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
         pos.x = Mathf.Clamp01(pos.x);

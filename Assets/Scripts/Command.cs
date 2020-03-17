@@ -15,20 +15,28 @@ All available Command class, use Ctrl+F wisely!
 
 public abstract class Command
 {
+    protected Animator animator;
+
     public string name{
         get;
     }
 
-    public Command(string name){
+    public Command(Animator anim,string name){
+        this.animator = anim;
         this.name = name;
     }
 
     public abstract void execute(Transform character, Unit2 info);
 
+    public void setAnimFloat(string name,float val){
+        if(animator != null){
+            animator.SetFloat(name, val);
+        }
+    }
 }
 
 public class TemplateCmd : Command{
-    public TemplateCmd() : base("Template")
+    public TemplateCmd() : base(null,"Template")
     {
         
     }
@@ -39,26 +47,32 @@ public class TemplateCmd : Command{
 }
 
 public class MoveCmd : Command{
-
-    public MoveCmd() : base("Move")
+    
+    public MoveCmd(Animator anim) : base(anim,"Move")
     {
 
     }
 
     public override void execute(Transform character, Unit2 info){
         Vector3 v = new Vector3(info.walkSpeed, 0f, 0f);
+        if((info.facingRight && info.walkSpeed < 0) || (!info.facingRight && info.walkSpeed > 0)){
+            character.Rotate(0f,180f,0f);
+            info.facingRight = !info.facingRight;
+        }
         character.position += v * Time.deltaTime;
+        setAnimFloat("speed",Mathf.Abs(info.walkSpeed));
     }
 }
 
 public class JumpCmd : Command{
-    public JumpCmd() : base("Jump")
+    private Rigidbody2D rb2d;
+    public JumpCmd(Animator anim, Rigidbody2D rb2d) : base(anim,"Jump")
     {
+        this.rb2d = rb2d;
         
     }
 
     public override void execute(Transform character, Unit2 info){
-        Rigidbody2D rb2d = character.GetComponent<Rigidbody2D>();
         IJumpable jumpInfo = (IJumpable) info;
         rb2d.AddForce(new Vector2(0f, jumpInfo.jumpPow), ForceMode2D.Impulse);
     }
@@ -66,7 +80,7 @@ public class JumpCmd : Command{
 
 public class ShootCmd : Command{
 
-    public ShootCmd(GameObject bullet) : base("Shoot")
+    public ShootCmd(Animator anim) : base(anim,"Shoot")
     {
 
     }

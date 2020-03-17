@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform player;
     private Player2 info;
 
     private Animator playerAnim;
@@ -24,23 +22,23 @@ public class InputController : MonoBehaviour
 
         jumpNum = 0;
 
-        jumpCmd = new JumpCmd();
-        atkCmd = new ShootCmd(info.bullet);
-        moveCmd = new MoveCmd();
+        jumpCmd = new JumpCmd(playerAnim,rb2d);
+        atkCmd = new ShootCmd(playerAnim);
+        moveCmd = new MoveCmd(playerAnim);
     }
     // Update is called once per frame
     void Update()
     {
         if(playerAnim.GetBool("loaded")){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
-            moveCmd.execute(player, info);
+            moveCmd.execute(transform, info);
             if (Input.GetButtonDown("Fire1")) {
-                atkCmd.execute(player,info);
+                atkCmd.execute(transform,info);
                 info.updateAmmo();
             }
 
             if (Input.GetButtonDown("Jump") && jumpNum <= 2) {
-                jumpCmd.execute(player,info);
+                jumpCmd.execute(transform,info);
                 jumpNum++;
             }
         }

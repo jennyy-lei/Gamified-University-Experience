@@ -18,7 +18,6 @@ public abstract class Unit2 : MonoBehaviour
     [field: SerializeField]
     public float MAX_WALK_SPEED{get;set;}
     [field: SerializeField] 
-    public float curSpeed {get; protected set;}
     public float walkSpeed{get;set;}
 
 
@@ -40,7 +39,7 @@ public abstract class Unit2 : MonoBehaviour
         isDead = false;
         isInit = false;
         this.id = -1;
-        walkSpeed = curSpeed = 0;
+        walkSpeed = 0;
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         prevPos = transform.position;
@@ -69,25 +68,6 @@ public abstract class Unit2 : MonoBehaviour
         }
 
         healthBar.fillAmount = getHealthRatio();
-    }
-
-    public void Update(){
-        updateCurSpeed();
-        if(facingRight && curSpeed < -0.01) flip();
-        if(!facingRight && curSpeed > 0.01) flip();
-    }
-
-    public void updateCurSpeed(){
-        float diff = transform.position.x - prevPos.x;
-        curSpeed = diff/Time.deltaTime;
-        animator.SetFloat("speed", Mathf.Abs(curSpeed));
-        prevPos = transform.position;
-    }
-
-    public void flip(){
-        Debug.Log(curSpeed);
-        transform.Rotate(0f,180f,0f);
-        facingRight = !facingRight;
     }
 
     protected abstract void initSpawn();
