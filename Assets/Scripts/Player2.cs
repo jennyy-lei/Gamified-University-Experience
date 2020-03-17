@@ -18,6 +18,10 @@ public class Player2 : Unit2,IJumpable,IShootable
     [field: SerializeField]
     public TextMeshProUGUI bulletText{get;set;}
 
+    private int gold = 0;
+    [field: SerializeField]
+    public TextMeshProUGUI goldText{get;set;}
+
     public void Update(){
         base.Update();
         deadZone();
@@ -51,7 +55,31 @@ public class Player2 : Unit2,IJumpable,IShootable
         }
     }
 
-    public void updateDisplay() {
+    public void updateAmmo() {
         bulletText.text = bulletCount + " / " + bulletLimit;
+    }
+
+    public void updateGold() {
+        goldText.text = gold.ToString();
+    }
+
+    public void incHealth(int amt) {
+        remainHealth += amt;
+        if (remainHealth > totalHealth) remainHealth = totalHealth;
+
+        updateHealthBar();
+    }
+
+    public void incAmmo(int amt) {
+        bulletCount += amt;
+        if (bulletCount > bulletLimit) bulletCount = bulletLimit;
+
+        updateAmmo();
+    }
+
+    public void incGold(int amt) {
+        gold += amt;
+
+        updateGold();
     }
 }

@@ -36,7 +36,7 @@ public class InputController : MonoBehaviour
             moveCmd.execute(player, info);
             if (Input.GetButtonDown("Fire1")) {
                 atkCmd.execute(player,info);
-                info.updateDisplay();
+                info.updateAmmo();
             }
 
             if (Input.GetButtonDown("Jump") && jumpNum <= 2) {

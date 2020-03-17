@@ -33,7 +33,7 @@ public class BulletController : MonoBehaviour
         }
 
         animator.Update(0);
-        Destroy (gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
         rb2d.velocity = new Vector2(0 ,0);
     }
 

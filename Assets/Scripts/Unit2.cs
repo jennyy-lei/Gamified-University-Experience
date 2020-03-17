@@ -45,13 +45,19 @@ public abstract class Unit2 : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         prevPos = transform.position;
         remainHealth = totalHealth;
-        healthBar.fillAmount = getHealthRatio();
+
+        updateHealthBar();
         initSpawn();
     }
     
-    public float getHealthRatio()
+    private float getHealthRatio()
     {
         return 1f * remainHealth/totalHealth;
+    }
+
+    public void updateHealthBar()
+    {
+        healthBar.fillAmount = getHealthRatio();
     }
 
     public void takeDmg(int health)

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerAtkIgnore
   - Platform
+  - Item
   layers:
   - Default
   - TransparentFX
