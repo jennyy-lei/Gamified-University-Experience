@@ -23,6 +23,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     public TextMeshProUGUI goldText{get;set;}
 
     public void Update(){
+        base.Update();
         deadZone();
         restrainWithBg();
     }

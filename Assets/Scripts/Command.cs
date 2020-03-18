@@ -15,20 +15,17 @@ All available Command class, use Ctrl+F wisely!
 
 public abstract class Command
 {
-    protected Animator animator;
-
     public string name{
         get;
     }
 
-    public Command(Animator anim,string name){
-        this.animator = anim;
+    public Command(string name){
         this.name = name;
     }
 
     public abstract void execute(Transform character, Unit2 info);
 
-    public void setAnimFloat(string name,float val){
+    public void setAnimFloat(Animator animator, string name,float val){
         if(animator != null){
             animator.SetFloat(name, val);
         }
@@ -36,7 +33,7 @@ public abstract class Command
 }
 
 public class TemplateCmd : Command{
-    public TemplateCmd() : base(null,"Template")
+    public TemplateCmd() : base("Template")
     {
         
     }
@@ -47,8 +44,8 @@ public class TemplateCmd : Command{
 }
 
 public class MoveCmd : Command{
-    Transform flipPos;
-    public MoveCmd(Animator anim,Transform flipPos = null) : base(anim,"Move")
+    private Transform flipPos;
+    public MoveCmd(Transform flipPos = null) : base("Move")
     {
         this.flipPos = flipPos;
     }
@@ -64,27 +61,25 @@ public class MoveCmd : Command{
             info.facingRight = !info.facingRight;
         }
         character.position += v * Time.deltaTime;
-        setAnimFloat("speed",Mathf.Abs(info.walkSpeed));
+        setAnimFloat(info.animator, "speed", Mathf.Abs(info.walkSpeed));
     }
 }
 
 public class JumpCmd : Command{
-    private Rigidbody2D rb2d;
-    public JumpCmd(Animator anim, Rigidbody2D rb2d) : base(anim,"Jump")
+    public JumpCmd() : base("Jump")
     {
-        this.rb2d = rb2d;
-        
+
     }
 
     public override void execute(Transform character, Unit2 info){
         IJumpable jumpInfo = (IJumpable) info;
-        rb2d.AddForce(new Vector2(0f, jumpInfo.jumpPow), ForceMode2D.Impulse);
+        info.rb2d.AddForce(new Vector2(0f, jumpInfo.jumpPow), ForceMode2D.Impulse);
     }
 }
 
 public class ShootCmd : Command{
 
-    public ShootCmd(Animator anim) : base(anim,"Shoot")
+    public ShootCmd() : base("Shoot")
     {
 
     }
