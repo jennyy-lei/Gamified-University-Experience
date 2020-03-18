@@ -8,7 +8,7 @@ public class ItemBullet : MonoBehaviour
     private int value;
     
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "PlayerAtkIgnore") {
+        if (other.gameObject.CompareTag("Player")) {
             Player2 player = other.gameObject.GetComponent<Player2>();
             player.incAmmo(value);
             

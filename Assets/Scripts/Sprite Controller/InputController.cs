@@ -46,7 +46,7 @@ public class InputController : MonoBehaviour
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetector.position, Vector2.down, 0.1f);
         string tagName = "Platform";
         Debug.Log(groundInfo.collider);
-        if (hitInfo.gameObject.tag == tagName && groundInfo.collider) {
+        if (hitInfo.gameObject.CompareTag(tagName) && groundInfo.collider) {
             // Debug.Log("collision!");
             jumpNum = 0;
         }

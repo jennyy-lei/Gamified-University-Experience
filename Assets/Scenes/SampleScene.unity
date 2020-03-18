@@ -291,8 +291,9 @@ MonoBehaviour:
   <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 443103496}
   <aggroRadius>k__BackingField: 1
-  <dashDist>k__BackingField: 1
-  <dashSpeed>k__BackingField: 1
+  <dashDist>k__BackingField: 1.5
+  <dashSpeed>k__BackingField: 2
+  <isDashing>k__BackingField: 0
 --- !u!95 &481846014
 Animator:
   serializedVersion: 3
@@ -2438,6 +2439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983373459880451560, guid: e3998170630a140109c841e6e1012b20,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6983373459880451562, guid: e3998170630a140109c841e6e1012b20,
         type: 3}

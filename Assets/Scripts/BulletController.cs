@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag == "PlayerAtkIgnore") {
+        if (hitInfo.gameObject.CompareTag("Player")) {
             return;
         }
 
