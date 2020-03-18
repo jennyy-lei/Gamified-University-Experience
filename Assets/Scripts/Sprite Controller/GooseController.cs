@@ -16,7 +16,7 @@ public class GooseController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         info = GetComponent<Goose>();
         info.walkSpeed = info.MAX_WALK_SPEED;
-        moveCmd = new MoveCmd(playerAnim,transform.GetChild(0));
+        moveCmd = new MoveCmd(transform.GetChild(0));
     }
 
     // Update is called once per frame

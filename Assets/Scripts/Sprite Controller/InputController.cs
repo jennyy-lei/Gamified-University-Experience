@@ -6,9 +6,6 @@ public class InputController : MonoBehaviour
 {
     private Player2 info;
 
-    private Animator playerAnim;
-    private Rigidbody2D rb2d;
-
     private Command jumpCmd;
     private Command atkCmd;
     private Command moveCmd;
@@ -18,20 +15,18 @@ public class InputController : MonoBehaviour
     private Transform groundDetector;
 
     void Awake(){
-        playerAnim = GetComponent<Animator>();
         info = GetComponent<Player2>();
-        rb2d = GetComponent<Rigidbody2D>();
 
         jumpNum = 0;
 
-        jumpCmd = new JumpCmd(playerAnim,rb2d);
-        atkCmd = new ShootCmd(playerAnim);
-        moveCmd = new MoveCmd(playerAnim);
+        jumpCmd = new JumpCmd();
+        atkCmd = new ShootCmd();
+        moveCmd = new MoveCmd();
     }
     // Update is called once per frame
     void Update()
     {
-        if(playerAnim.GetBool("loaded")){
+        if(info.animator.GetBool("loaded")){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(transform, info);
             if (Input.GetButtonDown("Fire1")) {

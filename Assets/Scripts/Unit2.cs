@@ -23,9 +23,9 @@ public abstract class Unit2 : MonoBehaviour
 
     [field: SerializeField] 
     public bool facingRight{get;set;}
-    protected Animator animator {get;set;}
-    protected Rigidbody2D rb2d {get;set;}
-    protected Transform spawnPoint {get;set;}
+    public Animator animator {get;set;}
+    public Rigidbody2D rb2d {get;set;}
+    public Transform spawnPoint {get;set;}
     public bool isGrounded {get;set;}
     public bool isDead{get;set;}
     public bool isInit{get;set;}
@@ -51,7 +51,7 @@ public abstract class Unit2 : MonoBehaviour
     public void Update(){
         destroy();
     }
-    
+
     private float getHealthRatio()
     {
         return 1f * remainHealth/totalHealth;
