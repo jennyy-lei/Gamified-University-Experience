@@ -470,10 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2006366381}
   lerp_speed: 0.1
-  topLimit: 15
-  bottomLimit: -0.5
-  rightLimit: 3.5
-  leftLimit: 0.5
+  background: {fileID: 1814117654}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
