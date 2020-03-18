@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
     public float lerp_speed = 5f;
+    public SpriteRenderer background;
 
-    public float topLimit;
-    public float bottomLimit;
-    public float rightLimit;
-    public float leftLimit;
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
 
 
     private Vector3 offset;
@@ -19,6 +21,16 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         offset = transform.position - player.transform.position;
+        float vertExtent = Camera.main.GetComponent<Camera>().orthographicSize;    
+        float horzExtent = vertExtent * Screen.width / Screen.height;
+        Bounds levelBounds = background.bounds;
+
+        minX = levelBounds.min.x + horzExtent;
+        maxX = levelBounds.max.x - horzExtent;
+        minY = levelBounds.min.y + vertExtent;
+        maxY = levelBounds.max.y - vertExtent;    
+
+        
     }
 
     // Update is called once per frame
@@ -26,10 +38,10 @@ public class CameraController : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, player.transform.position  + offset, lerp_speed) + new Vector3(0, 0, -5);
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x,leftLimit,rightLimit),
-            Mathf.Clamp(transform.position.y,bottomLimit,topLimit),
+            Mathf.Clamp(transform.position.x,minX,maxX),
+            Mathf.Clamp(transform.position.y,minY,maxY),
             transform.position.z
         );
-        // transform.position = player.transform.position + offset;
+        //transform.position = player.transform.position + offset;
     }
 }
