@@ -8,6 +8,8 @@ public class Goose : Enemy2,IDashable
     public float dashDist {get;set;}
     [field: SerializeField]
     public float dashSpeed{get;set;}
+    [field: SerializeField]
+    public bool isDashing{get;set;}
 
     protected override void initSpawn(){}
 }

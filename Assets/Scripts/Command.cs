@@ -94,3 +94,27 @@ public class ShootCmd : Command{
         shootInfo.bulletCount--;
     }
 }
+
+public class DashCmd : Command{
+
+    private MoveCmd moveCmd;
+    private float dashedDist;
+
+    public DashCmd(Transform flipPos = null) : base("Dash")
+    {
+        dashedDist = 0;
+        moveCmd = new MoveCmd(flipPos);
+
+    }
+
+    public override void execute(Transform character, Unit2 info){
+        IDashable dashInfo = (IDashable) info; 
+        if(dashedDist >= dashInfo.dashDist){
+            dashedDist = 0;
+            dashInfo.isDashing = false;
+            return;
+        }
+        dashedDist += dashInfo.dashSpeed * Time.deltaTime;
+        moveCmd.execute(character,info);
+    }
+}

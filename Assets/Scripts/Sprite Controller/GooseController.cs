@@ -9,25 +9,33 @@ public class GooseController : MonoBehaviour
     private Transform groundDetection;
     private Animator playerAnim;
 
-    private Command moveCmd;
+    private Command walkCmd;
+    private Command dashCmd;
     void Awake()
     {
         groundDetection = transform.GetChild(0).GetChild(0);
         playerAnim = GetComponent<Animator>();
         info = GetComponent<Goose>();
         info.walkSpeed = info.MAX_WALK_SPEED;
-        moveCmd = new MoveCmd(transform.GetChild(0));
+        walkCmd = new MoveCmd(transform.GetChild(0));
+        dashCmd = new DashCmd();
     }
 
     // Update is called once per frame
     void Update()
     {
-       RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
-       if(!info.facingRight) info.walkSpeed = -info.MAX_WALK_SPEED;
-       else info.walkSpeed = info.MAX_WALK_SPEED;
-       if(!groundInfo.collider){
-           info.walkSpeed *= -1;
-       } 
-       moveCmd.execute(transform,info);
+        walk(info);
+    }
+
+    void walk(IDashable dashInfo){
+        Command moveCmd;
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
+        info.walkSpeed = dashInfo.isDashing ? dashInfo.dashSpeed : info.MAX_WALK_SPEED;
+        info.walkSpeed *= info.facingRight ? 1 : -1;
+        if(!groundInfo.collider){
+            info.walkSpeed *= -1;
+        }
+        moveCmd = dashInfo.isDashing ? dashCmd : walkCmd;
+        moveCmd.execute(transform,info);
     }
 }
