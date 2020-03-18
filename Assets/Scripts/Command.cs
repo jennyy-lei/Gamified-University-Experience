@@ -47,16 +47,20 @@ public class TemplateCmd : Command{
 }
 
 public class MoveCmd : Command{
-    
-    public MoveCmd(Animator anim) : base(anim,"Move")
+    Transform flipPos;
+    public MoveCmd(Animator anim,Transform flipPos = null) : base(anim,"Move")
     {
-
+        this.flipPos = flipPos;
     }
 
     public override void execute(Transform character, Unit2 info){
         Vector3 v = new Vector3(info.walkSpeed, 0f, 0f);
         if((info.facingRight && info.walkSpeed < 0) || (!info.facingRight && info.walkSpeed > 0)){
-            character.Rotate(0f,180f,0f);
+            if(flipPos == null) {
+                character.Rotate(0f,180f,0f);
+            }else{
+                flipPos.Rotate(0f,180f,0f);
+            }
             info.facingRight = !info.facingRight;
         }
         character.position += v * Time.deltaTime;
