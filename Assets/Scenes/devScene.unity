@@ -869,8 +869,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 133.5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -78.705, y: 151.78}
+  m_SizeDelta: {x: 42.59, y: 13.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &859347851
 MonoBehaviour:
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 150.62721, w: 33.375134}
+  m_margin: {x: 0, y: 0, z: -0.0049580713, w: -0.11995135}
   m_textInfo:
     textComponent: {fileID: 859347851}
     characterCount: 7
@@ -1130,7 +1130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -359.9, y: 203.33}
+  m_AnchoredPosition: {x: -359.9, y: 202.2}
   m_SizeDelta: {x: 20.28, y: 24.14}
   m_Pivot: {x: 0.50000024, y: 0.5}
 --- !u!114 &972796402
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.8939318, w: 0.8941226}
+  m_margin: {x: 0, y: 0, z: 0.10973947, w: 0.09116412}
   m_textInfo:
     textComponent: {fileID: 972796402}
     characterCount: 1
@@ -2047,8 +2047,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3, y: 160.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -78.86, y: 181.1}
+  m_SizeDelta: {x: 42.28, y: 17.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2037549107
 MonoBehaviour:
@@ -2103,7 +2103,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 513
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 154.68767, w: 34.29036}
+  m_margin: {x: 0, y: 0, z: 0.2274796, w: -0.16171816}
   m_textInfo:
     textComponent: {fileID: 2037549107}
     characterCount: 6
