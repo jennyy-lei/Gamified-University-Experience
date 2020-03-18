@@ -70,6 +70,13 @@ public abstract class Unit2 : MonoBehaviour
         healthBar.fillAmount = getHealthRatio();
     }
 
+    public void destroy()
+    {
+        if (remainHealth <= 0) {
+            Destroy (gameObject);
+        }
+    }
+
     protected abstract void initSpawn();
 }
 
