@@ -48,6 +48,9 @@ public abstract class Unit2 : MonoBehaviour
         updateHealthBar();
         initSpawn();
     }
+    public void Update(){
+        destroy();
+    }
     
     private float getHealthRatio()
     {
