@@ -14,6 +14,8 @@ public class InputController : MonoBehaviour
     private Command moveCmd;
 
     private int jumpNum;
+    [SerializeField]
+    private Transform groundDetector;
 
     void Awake(){
         playerAnim = GetComponent<Animator>();
@@ -46,7 +48,11 @@ public class InputController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D hitInfo)
     {
-        if (hitInfo.gameObject.tag == "Platform") {
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetector.position, Vector2.down, 0.1f);
+        string tagName = "Platform";
+        Debug.Log(groundInfo.collider);
+        if (hitInfo.gameObject.tag == tagName && groundInfo.collider) {
+            // Debug.Log("collision!");
             jumpNum = 0;
         }
     }
