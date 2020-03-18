@@ -241,12 +241,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443103496 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6208452582895763964, guid: 87b799e8d668f441788dbaac8fcd4e46,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086067796177636102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &481846009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6208452581316882034, guid: 87b799e8d668f441788dbaac8fcd4e46,
     type: 3}
   m_PrefabInstance: {fileID: 1086067796177636102}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &481846010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481846009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fb507f4ae4fa64383ddfa18d50f076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &481846011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481846009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd68d42c66cfdeb48826ef5dc0afe140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <totalHealth>k__BackingField: 10
+  <atkDmg>k__BackingField: 1
+  <atkRange>k__BackingField: 1
+  <MAX_WALK_SPEED>k__BackingField: 1
+  <walkSpeed>k__BackingField: 0
+  <facingRight>k__BackingField: 1
+  <healthBar>k__BackingField: {fileID: 443103496}
+  <aggroRadius>k__BackingField: 1
+  <dashDist>k__BackingField: 1
+  <dashSpeed>k__BackingField: 1
 --- !u!95 &481846014
 Animator:
   serializedVersion: 3
@@ -1675,7 +1721,7 @@ MonoBehaviour:
   <atkDmg>k__BackingField: 10
   <atkRange>k__BackingField: 7
   <MAX_WALK_SPEED>k__BackingField: 5
-  <curSpeed>k__BackingField: 0
+  <walkSpeed>k__BackingField: 0
   <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 1031745997}
   <jumpPow>k__BackingField: 4
@@ -1717,7 +1763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b99b441bb44c9144865920960df4ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2006366386}
   groundDetector: {fileID: 1442207907}
 --- !u!1 &2037549105
 GameObject:
@@ -2167,7 +2212,7 @@ PrefabInstance:
     - target: {fileID: 6208452581316882035, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6208452581560034443, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
