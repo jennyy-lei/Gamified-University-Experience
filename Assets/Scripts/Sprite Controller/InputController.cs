@@ -11,8 +11,11 @@ public class InputController : MonoBehaviour
     private Command moveCmd;
 
     private int jumpNum;
+
     [SerializeField]
     private Transform groundDetector;
+    [SerializeField]
+    private Weapon weapon;
 
     void Awake(){
         info = GetComponent<Player2>();
@@ -29,7 +32,8 @@ public class InputController : MonoBehaviour
         if(info.animator.GetBool("loaded")){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(transform, info);
-            if (Input.GetButtonDown("Fire1")) {
+
+            if (Input.GetButtonDown("Fire1") && weapon.Attack()) {
                 atkCmd.execute(transform,info);
                 info.updateAmmo();
             }
