@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float speed;
+    public float knockbackForce;
     public float maxDist;
     public int dmg;
     public Animator animator;
@@ -29,7 +30,7 @@ public class BulletController : MonoBehaviour
         animator.SetBool("hit", true);
         Enemy2 enemy = hitInfo.GetComponent<Enemy2>();
         if (enemy != null) {
-            enemy.takeDmg(1);
+            enemy.takeDmg(dmg);
         }
 
         animator.Update(0);

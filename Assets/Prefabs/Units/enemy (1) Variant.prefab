@@ -88,7 +88,7 @@ MonoBehaviour:
   <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 6208452582895763964}
   <aggroRadius>k__BackingField: 1
-  <knockBackForce>k__BackingField: 4
+  <knockbackForce>k__BackingField: 3
   <dashDist>k__BackingField: 1.5
   <dashSpeed>k__BackingField: 2
   <isDashing>k__BackingField: 0
