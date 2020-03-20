@@ -8,13 +8,8 @@ public class ItemDrop : MonoBehaviour
     private GameObject[] itemList;
 
     private int DropRange = 2;
-    
-    void OnDestroy()
-    {
-        Drop();
-    }
 
-    private void Drop()
+    public void Drop()
     {
         int randNum = Random.Range(0, 100);
 

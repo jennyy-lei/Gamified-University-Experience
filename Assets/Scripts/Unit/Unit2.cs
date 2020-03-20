@@ -49,7 +49,6 @@ public abstract class Unit2 : MonoBehaviour
         initSpawn();
     }
     public void Update(){
-        destroy();
     }
 
     private float getHealthRatio()
@@ -65,9 +64,12 @@ public abstract class Unit2 : MonoBehaviour
     public void takeDmg(int health)
     {
         remainHealth -= health;
-        if (remainHealth < 0){
+        if (remainHealth <= 0){
             remainHealth = 0;
             isDead = true;
+            ItemDrop dropController = GetComponent<ItemDrop>();
+            if(dropController != null) dropController.Drop();
+            destroy();
         }
 
         healthBar.fillAmount = getHealthRatio();
