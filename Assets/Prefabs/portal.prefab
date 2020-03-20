@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6372577322405731041}
   - component: {fileID: 6372577322405731043}
   m_Layer: 0
-  m_Name: portal
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

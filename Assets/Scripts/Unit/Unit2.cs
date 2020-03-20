@@ -31,7 +31,7 @@ public abstract class Unit2 : MonoBehaviour
     {
         facingRight = true;
         walkSpeed = 0;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         remainHealth = totalHealth;
 

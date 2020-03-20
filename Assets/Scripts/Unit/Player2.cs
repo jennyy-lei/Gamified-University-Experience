@@ -53,9 +53,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
         bulletCount = bulletLimit;
     }
-    public void EndLoad() {
-        animator.SetBool("loaded", true);
-    }
+    
     private void restrainWithBg(){
         Vector3 pos = Camera.main.WorldToViewportPoint (transform.position);
         pos.x = Mathf.Clamp01(pos.x);

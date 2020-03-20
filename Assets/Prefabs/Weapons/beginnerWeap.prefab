@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1803717944055099615}
   - component: {fileID: 1803717944055099584}
   m_Layer: 0
-  m_Name: beginnerWeap
+  m_Name: BeginnerWeap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
