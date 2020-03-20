@@ -33,13 +33,8 @@ PolygonCollider2D:
       - {x: -0.14638889, y: 0.002752781}
       - {x: -0.2628343, y: -0.113357306}
       - {x: -0.26297903, y: -0.14307332}
-      - {x: -0.1581757, y: -0.15742826}
-      - {x: -0.052809596, y: -0.24710894}
-      - {x: 0.053185582, y: -0.24750757}
-      - {x: 0.18822181, y: -0.096987724}
-      - {x: 0.21756935, y: -0.037744284}
-      - {x: 0.21806228, y: 0.0532372}
-      - {x: 0.23867476, y: 0.11606574}
+      - {x: -0.14585304, y: -0.25345278}
+      - {x: 0.26464272, y: -0.25313234}
       - {x: 0.27647793, y: 0.15501285}
       - {x: 0.23164773, y: 0.2163651}
 --- !u!95 &481846014
@@ -93,6 +88,7 @@ MonoBehaviour:
   <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 6208452582895763964}
   <aggroRadius>k__BackingField: 1
+  <knockBackForce>k__BackingField: 4
   <dashDist>k__BackingField: 1.5
   <dashSpeed>k__BackingField: 2
   <isDashing>k__BackingField: 0
@@ -257,6 +253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429634291728979927, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291972234542, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}

@@ -9,8 +9,8 @@ public abstract class Unit2 : MonoBehaviour
 
     public int id{get;private set;}
     [field: SerializeField]
-    public int totalHealth{get;set;}
-    public int remainHealth{get;set;}
+    public float totalHealth{get;set;}
+    public float remainHealth{get;set;}
     [field: SerializeField]
     public float atkDmg{get;set;}
     [field: SerializeField]
@@ -53,7 +53,7 @@ public abstract class Unit2 : MonoBehaviour
 
     private float getHealthRatio()
     {
-        return 1f * remainHealth/totalHealth;
+        return remainHealth/totalHealth;
     }
 
     public void updateHealthBar()
@@ -61,7 +61,7 @@ public abstract class Unit2 : MonoBehaviour
         healthBar.fillAmount = getHealthRatio();
     }
 
-    public void takeDmg(int health)
+    public void takeDmg(float health)
     {
         remainHealth -= health;
         if (remainHealth <= 0){
@@ -89,6 +89,8 @@ public abstract class Enemy2 : Unit2
 {
     [field: SerializeField]
     public float aggroRadius {get;set;}
+    [field: SerializeField]
+    public float knockBackForce {get;set;}
 }
 
 

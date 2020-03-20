@@ -104,8 +104,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1647337459
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 3054439076135632626, guid: 325719894d26a49a7bb798d8583c8dab,
     type: 3}
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacd461fa873a74468a1b21e51144688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <totalHealth>k__BackingField: 20
+  <totalHealth>k__BackingField: 100
   <atkDmg>k__BackingField: 10
   <atkRange>k__BackingField: 7
   <MAX_WALK_SPEED>k__BackingField: 5
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 6332164813657609845}
   weapon: {fileID: 22903700406785942}
+  bounceCooldown: 0.5
 --- !u!1001 &1826571537150322518
 PrefabInstance:
   m_ObjectHideFlags: 0

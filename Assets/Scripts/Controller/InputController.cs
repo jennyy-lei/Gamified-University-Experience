@@ -17,11 +17,13 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
 
+    private bool enabled;
+    public float bounceCooldown;
+
     void Awake(){
         info = GetComponent<Player2>();
-
         jumpNum = 0;
-
+        enabled = true;
         jumpCmd = new JumpCmd();
         atkCmd = new ShootCmd();
         moveCmd = new MoveCmd();
@@ -29,7 +31,7 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(info.animator.GetBool("loaded")){
+        if(info.animator.GetBool("loaded") && enabled){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(transform, info);
 
@@ -48,11 +50,22 @@ public class InputController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hitInfo)
     {
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetector.position, Vector2.down, 0.1f);
-        string tagName = "Platform";
-        Debug.Log(groundInfo.collider);
-        if (hitInfo.gameObject.CompareTag(tagName) && groundInfo.collider) {
-            // Debug.Log("collision!");
+        string platformTag = "Platform";
+        string enemyTag = "Enemy";
+        if (hitInfo.gameObject.CompareTag(platformTag) && groundInfo.collider) {
             jumpNum = 0;
         }
+        else if(hitInfo.gameObject.CompareTag(enemyTag)){
+            Enemy2 enemyInfo = hitInfo.gameObject.GetComponent<Enemy2>();
+            info.takeDmg(enemyInfo.atkDmg);
+            Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
+            dir = -dir.normalized;
+            info.rb2d.velocity = Vector2.zero;
+            info.rb2d.AddForce(dir*enemyInfo.knockBackForce,ForceMode2D.Impulse);
+            enabled = false;
+            Invoke("resetCoolDown", bounceCooldown);
+        }
     }
+
+    private void resetCoolDown() => enabled = true;
 }
