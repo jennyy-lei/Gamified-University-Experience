@@ -28,7 +28,6 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     //info
     private int gold = 0;
-
     public void Update(){
         base.Update();
         deadZone();
@@ -54,8 +53,8 @@ public class Player2 : Unit2,IJumpable,IShootable
        public void deadZone() {
         // is below death point
         if (transform.position.y < -10) {
-            prevPos = transform.position = spawnPoint.position;
             rb2d.velocity = new Vector3(0, 0, 0);
+            transform.position = spawnPoint.position;
             takeDmg(1);
             animator.SetBool("loaded", false);
         }

@@ -23,3 +23,10 @@ interface IJumpable
 {
     float jumpPow {set;get;}
 }
+
+interface IMelee
+{
+    float meleeDmg {get;set;}
+    float meleeRange {get;set;}
+    float knockbackForce {get;set;}
+}

@@ -17,13 +17,13 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
 
-    private bool enabled;
+    private bool allowInput;
     public float bounceCooldown;
 
     void Awake(){
         info = GetComponent<Player2>();
         jumpNum = 0;
-        enabled = true;
+        allowInput = true;
         jumpCmd = new JumpCmd();
         atkCmd = new ShootCmd();
         moveCmd = new MoveCmd();
@@ -31,7 +31,7 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(info.animator.GetBool("loaded") && enabled){
+        if(info.animator.GetBool("loaded") && allowInput){
             info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(transform, info);
 
@@ -57,16 +57,16 @@ public class InputController : MonoBehaviour
             jumpNum = 0;
         }
         else if(hitInfo.gameObject.CompareTag(enemyTag)){
-            Enemy2 enemyInfo = hitInfo.gameObject.GetComponent<Enemy2>();
-            info.takeDmg(enemyInfo.atkDmg);
+            IMelee atkInfo = hitInfo.gameObject.GetComponent<IMelee>();
+            info.takeDmg(atkInfo.meleeDmg);
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
             dir = -dir.normalized;
             info.rb2d.velocity = Vector2.zero;
-            info.rb2d.AddForce(dir*enemyInfo.knockbackForce,ForceMode2D.Impulse);
-            enabled = false;
+            info.rb2d.AddForce(dir*atkInfo.knockbackForce,ForceMode2D.Impulse);
+            allowInput = false;
             Invoke("resetCoolDown", bounceCooldown);
         }
     }
 
-    private void resetCoolDown() => enabled = true;
+    private void resetCoolDown() => allowInput = true;
 }
