@@ -2007,12 +2007,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3965898244272843667}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2006366384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7656027566931849722, guid: e3998170630a140109c841e6e1012b20,
-    type: 3}
-  m_PrefabInstance: {fileID: 3965898244272843667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037549105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,13 +2652,8 @@ PrefabInstance:
     - target: {fileID: 6372577322405731042, guid: fd38519bffec54200aff53e796f500df,
         type: 3}
       propertyPath: m_Name
-      value: portal
+      value: Portal
       objectReference: {fileID: 0}
-    - target: {fileID: 6372577322405731043, guid: fd38519bffec54200aff53e796f500df,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2006366384}
     - target: {fileID: 6372577322405731070, guid: fd38519bffec54200aff53e796f500df,
         type: 3}
       propertyPath: m_LocalPosition.x
