@@ -89,7 +89,7 @@ public class ShootCmd : Command{
 
         if (shootInfo.bulletCount == 0) return;
 
-        Transform firePoint = character.transform.GetChild(1).GetChild(0);
+        Transform firePoint = shootInfo.shootPos;
         GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
         shootInfo.bulletCount--;
     }

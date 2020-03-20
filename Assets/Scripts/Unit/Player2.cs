@@ -5,22 +5,29 @@ using TMPro;
 
 public class Player2 : Unit2,IJumpable,IShootable
 {
+    //Jumpable property
     [field: SerializeField]
     public float jumpPow{get;set;}
+
+    //Shootable property
     [field: SerializeField]
     public float shootDist{get;set;}
     [field: SerializeField]
     public float bulletLimit{get;set;}
-    public float bulletCount{get;set;}
-
+    [field: SerializeField]
+    public Transform shootPos{get;set;}
     [field: SerializeField]
     public GameObject bullet {get;set;}
+    public float bulletCount{get;set;}
+
+    //text
     [field: SerializeField]
     public TextMeshProUGUI bulletText{get;set;}
-
-    private int gold = 0;
     [field: SerializeField]
     public TextMeshProUGUI goldText{get;set;}
+
+    //info
+    private int gold = 0;
 
     public void Update(){
         base.Update();
