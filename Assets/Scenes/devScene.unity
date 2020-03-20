@@ -1748,6 +1748,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8836296789020727650}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2097627709 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1803717943650896570, guid: b2d8b865ef16743e79274544ccb7c614,
+    type: 3}
+  m_PrefabInstance: {fileID: 188020676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143999838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,15 +2174,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <totalHealth>k__BackingField: 100
-  <atkDmg>k__BackingField: 10
-  <atkRange>k__BackingField: 7
   <MAX_WALK_SPEED>k__BackingField: 5
   <walkSpeed>k__BackingField: 0
-  <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 1031745997}
   <jumpPow>k__BackingField: 4
+  <maxJumpNum>k__BackingField: 3
+  <jumpNum>k__BackingField: 0
   <shootDist>k__BackingField: 6
   <bulletLimit>k__BackingField: 20
+  <shootPos>k__BackingField: {fileID: 2097627709}
   <bullet>k__BackingField: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
     type: 3}
   <bulletText>k__BackingField: {fileID: 859347851}
@@ -2193,6 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b99b441bb44c9144865920960df4ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundDetector: {fileID: 0}
   bounceCooldown: 0.5
 --- !u!114 &4897953527915284325
 MonoBehaviour:

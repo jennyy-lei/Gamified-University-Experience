@@ -81,17 +81,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <totalHealth>k__BackingField: 3
-  <atkDmg>k__BackingField: 1
-  <atkRange>k__BackingField: 1
   <MAX_WALK_SPEED>k__BackingField: 1
   <walkSpeed>k__BackingField: 0
-  <facingRight>k__BackingField: 1
   <healthBar>k__BackingField: {fileID: 6208452582895763964}
   <aggroRadius>k__BackingField: 1
-  <knockbackForce>k__BackingField: 3
   <dashDist>k__BackingField: 1.5
   <dashSpeed>k__BackingField: 2
   <isDashing>k__BackingField: 0
+  <meleeDmg>k__BackingField: 1
+  <knockbackForce>k__BackingField: 3
 --- !u!114 &481846017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 6429634291728979927, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_Name
-      value: enemy (1)
+      value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291728979927, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
