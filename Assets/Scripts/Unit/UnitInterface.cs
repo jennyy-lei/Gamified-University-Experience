@@ -22,6 +22,9 @@ interface IShootable
 interface IJumpable
 {
     float jumpPow {set;get;}
+    int jumpNum {set;get;}
+    int maxJumpNum {set;get;}
+    bool canJump{get;}
 }
 
 interface IMelee

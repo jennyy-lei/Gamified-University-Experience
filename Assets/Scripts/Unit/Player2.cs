@@ -8,6 +8,13 @@ public class Player2 : Unit2,IJumpable,IShootable
     //Jumpable property
     [field: SerializeField]
     public float jumpPow{get;set;}
+    [field: SerializeField]
+    public int maxJumpNum{get;set;}
+    [field: SerializeField]
+    public int jumpNum{get;set;}
+    public bool canJump{
+        get => jumpNum < maxJumpNum;
+    }
 
     //Shootable property
     [field: SerializeField]
@@ -33,6 +40,15 @@ public class Player2 : Unit2,IJumpable,IShootable
         deadZone();
         restrainWithBg();
     }
+
+    void OnCollisionEnter2D(Collision2D hitInfo)
+    {
+        string platformTag = "Platform";
+        if (hitInfo.gameObject.CompareTag(platformTag) && hitInfo.transform.position.y < transform.position.y) {
+            jumpNum = 0;
+        }
+    }
+
     protected override void initSpawn(){
         spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
         bulletCount = bulletLimit;

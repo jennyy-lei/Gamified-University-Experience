@@ -10,8 +10,6 @@ public class InputController : MonoBehaviour
     private Command atkCmd;
     private Command moveCmd;
 
-    private int jumpNum;
-
     [SerializeField]
     private Transform groundDetector;
     [SerializeField]
@@ -22,7 +20,6 @@ public class InputController : MonoBehaviour
 
     void Awake(){
         info = GetComponent<Player2>();
-        jumpNum = 0;
         allowInput = true;
         jumpCmd = new JumpCmd();
         atkCmd = new ShootCmd();
@@ -40,23 +37,17 @@ public class InputController : MonoBehaviour
                 info.updateAmmo();
             }
 
-            if (Input.GetButtonDown("Jump") && jumpNum <= 2) {
+            if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {
                 jumpCmd.execute(transform,info);
-                jumpNum++;
+                ((IJumpable) info).jumpNum++;
             }
         }
     }
 
     void OnCollisionEnter2D(Collision2D hitInfo)
     {
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetector.position, Vector2.down, 0.1f);
-        string platformTag = "Platform";
         string enemyTag = "Enemy";
-        
-        if (hitInfo.gameObject.CompareTag(platformTag) && groundInfo.collider) {
-            jumpNum = 0;
-        }
-        else if(hitInfo.gameObject.CompareTag(enemyTag)){
+        if(hitInfo.gameObject.CompareTag(enemyTag)){
             IMelee atkInfo = hitInfo.gameObject.GetComponent<IMelee>();
             info.takeDmg(atkInfo.meleeDmg);
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
