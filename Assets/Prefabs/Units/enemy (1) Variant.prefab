@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd68d42c66cfdeb48826ef5dc0afe140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <totalHealth>k__BackingField: 10
+  <totalHealth>k__BackingField: 3
   <atkDmg>k__BackingField: 1
   <atkRange>k__BackingField: 1
   <MAX_WALK_SPEED>k__BackingField: 1
@@ -196,12 +196,12 @@ PrefabInstance:
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.301
+      value: 5.01
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.15
+      value: -4.26
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 6429634291728979927, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_Name
-      value: enemy (1) Variant
+      value: enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291972234542, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
