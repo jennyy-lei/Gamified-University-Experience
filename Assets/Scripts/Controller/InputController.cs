@@ -12,15 +12,16 @@ public class InputController : MonoBehaviour
 
     private int jumpNum;
 
-    [SerializeField]
     private Transform groundDetector;
-    [SerializeField]
     private Weapon weapon;
 
     private bool enabled;
     public float bounceCooldown;
 
     void Awake(){
+        groundDetector = transform.GetChild(0).GetChild(0);
+        weapon = GetComponentInChildren<Weapon>();
+
         info = GetComponent<Player2>();
         jumpNum = 0;
         enabled = true;

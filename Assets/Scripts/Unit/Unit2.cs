@@ -40,7 +40,7 @@ public abstract class Unit2 : MonoBehaviour
         isInit = false;
         this.id = -1;
         walkSpeed = 0;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         prevPos = transform.position;
         remainHealth = totalHealth;
