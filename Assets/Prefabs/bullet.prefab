@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1710237571152438036}
   m_Layer: 9
   m_Name: bullet
-  m_TagString: PlayerAtkIgnore
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  knockbackForce: 1.5
   maxDist: 7
-  dmg: 0
+  dmg: 1
   animator: {fileID: 2142384093052051583}
 --- !u!58 &1710237571152438036
 CircleCollider2D:

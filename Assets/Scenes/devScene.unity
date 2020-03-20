@@ -2401,16 +2401,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 22903700406785928, guid: e3998170630a140109c841e6e1012b20,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 22903700406785928, guid: e3998170630a140109c841e6e1012b20,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 780883791313114299, guid: e3998170630a140109c841e6e1012b20,
         type: 3}
       propertyPath: spawnPoint
@@ -2440,16 +2430,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656027566931849721, guid: e3998170630a140109c841e6e1012b20,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1647337459
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656027566931849721, guid: e3998170630a140109c841e6e1012b20,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7656027566931849722, guid: e3998170630a140109c841e6e1012b20,
         type: 3}

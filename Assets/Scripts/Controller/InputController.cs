@@ -53,6 +53,7 @@ public class InputController : MonoBehaviour
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetector.position, Vector2.down, 0.1f);
         string platformTag = "Platform";
         string enemyTag = "Enemy";
+        
         if (hitInfo.gameObject.CompareTag(platformTag) && groundInfo.collider) {
             jumpNum = 0;
         }
@@ -62,7 +63,7 @@ public class InputController : MonoBehaviour
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
             dir = -dir.normalized;
             info.rb2d.velocity = Vector2.zero;
-            info.rb2d.AddForce(dir*enemyInfo.knockBackForce,ForceMode2D.Impulse);
+            info.rb2d.AddForce(dir*enemyInfo.knockbackForce,ForceMode2D.Impulse);
             enabled = false;
             Invoke("resetCoolDown", bounceCooldown);
         }

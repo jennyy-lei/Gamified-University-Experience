@@ -90,7 +90,7 @@ public abstract class Enemy2 : Unit2
     [field: SerializeField]
     public float aggroRadius {get;set;}
     [field: SerializeField]
-    public float knockBackForce {get;set;}
+    public float knockbackForce {get;set;}
 }
 
 
