@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 0}
-  bounceCooldown: 0.5
+  bounceCooldown: 0.25
 --- !u!114 &4897953527915284325
 MonoBehaviour:
   m_ObjectHideFlags: 0

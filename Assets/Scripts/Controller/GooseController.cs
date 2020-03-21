@@ -68,7 +68,6 @@ public class GooseController : EnemyController
         dashDist = dashInfo.dashDist;
         info.moveSpeed = dashInfo.dashSpeed;
         info.moveSpeed *= target.position.x > transform.position.x ? 1 : -1;
-        Debug.Log("triggered");
     }
 
     bool isGround(){
