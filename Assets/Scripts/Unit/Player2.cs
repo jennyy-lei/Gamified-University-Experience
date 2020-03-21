@@ -72,7 +72,7 @@ public class Player2 : Unit2,IJumpable,IShootable
             rb2d.velocity = new Vector3(0, 0, 0);
             transform.position = spawnPoint.position;
             takeDmg(1);
-            animator.SetBool("loaded", false);
+            animator.SetBool("unloaded", true);
         }
     }
 

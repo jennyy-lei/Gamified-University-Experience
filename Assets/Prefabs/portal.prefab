@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8775130185505164249}
   - component: {fileID: 3812381112368065209}
   - component: {fileID: 8802945167802876514}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 6372577321849570247}
   - component: {fileID: 6372577321849570246}
   - component: {fileID: 6372577321849570249}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,8 +184,9 @@ GameObject:
   - component: {fileID: 6372577322405731070}
   - component: {fileID: 6372577322405731041}
   - component: {fileID: 6372577322405731043}
-  m_Layer: 0
-  m_Name: Portal
+  - component: {fileID: 1219321966}
+  m_Layer: 10
+  m_Name: portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,8 +268,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a0c8445235342bd98e33e89f853439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stayDuration: 1.5
+  tpTime: 1.5
   player: {fileID: 0}
   textCanvas: {fileID: 6372577321849570251}
+--- !u!61 &1219321966
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372577322405731042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2, y: 1.2}
+    newSize: {x: 1.2, y: 1.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.75}
+  m_EdgeRadius: 0
 --- !u!1 &6372577323521673725
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +309,7 @@ GameObject:
   - component: {fileID: 6372577323521673722}
   - component: {fileID: 6372577323521673720}
   - component: {fileID: 6372577323521673723}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
