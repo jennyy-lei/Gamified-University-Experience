@@ -211,6 +211,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2526778744707031588}
     m_Modifications:
+    - target: {fileID: 1803717943650896571, guid: b2d8b865ef16743e79274544ccb7c614,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BeginnerWeap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803717944055099586, guid: b2d8b865ef16743e79274544ccb7c614,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d8b865ef16743e79274544ccb7c614, type: 3}
@@ -2016,7 +2026,7 @@ GameObject:
   - component: {fileID: 4897953527915284322}
   - component: {fileID: 4897953527915284325}
   - component: {fileID: 4897953527915284324}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2371,26 +2381,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1548592121}
     m_Modifications:
-    - target: {fileID: 8204462724409873732, guid: ee3de342b544144c9a2e6e45fec3a5ee,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204462724409873733, guid: ee3de342b544144c9a2e6e45fec3a5ee,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204462724409873733, guid: ee3de342b544144c9a2e6e45fec3a5ee,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204462724409873733, guid: ee3de342b544144c9a2e6e45fec3a5ee,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8204462724409873735, guid: ee3de342b544144c9a2e6e45fec3a5ee,
         type: 3}
       propertyPath: m_Name
@@ -2460,6 +2450,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2526778744707031588}
     m_Modifications:
+    - target: {fileID: 1894106919911629957, guid: 881505a08599744f98d04e3f71ad7f69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8836296787749349984, guid: 881505a08599744f98d04e3f71ad7f69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2519,6 +2514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DefaultSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836296787749349987, guid: 881505a08599744f98d04e3f71ad7f69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 881505a08599744f98d04e3f71ad7f69, type: 3}

@@ -11,6 +11,7 @@ public class Goose : Enemy2,IDashable,IMelee
     public float dashSpeed{get;set;}
     [field: SerializeField]
     public bool isDashing{get;set;}
+    public float dashTargetX{get;set;}
 
     //Melee Property
     [field: SerializeField]

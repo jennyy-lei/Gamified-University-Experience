@@ -7,6 +7,7 @@ interface IDashable
     float dashDist {set;get;}
     float dashSpeed {set;get;}
     bool isDashing {set;get;}
+    float dashTargetX{set;get;}
 }
 
 interface IShootable
