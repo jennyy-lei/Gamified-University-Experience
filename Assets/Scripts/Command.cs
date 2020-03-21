@@ -51,8 +51,8 @@ public class MoveCmd : Command{
     }
 
     public override void execute(Transform character, Unit2 info){
-        Vector3 v = new Vector3(info.walkSpeed, 0f, 0f);
-        if((info.facingRight && info.walkSpeed < 0) || (!info.facingRight && info.walkSpeed > 0)){
+        Vector3 v = new Vector3(info.moveSpeed, 0f, 0f);
+        if((info.facingRight && info.moveSpeed < 0) || (!info.facingRight && info.moveSpeed > 0)){
             if(flipPos == null) {
                 character.Rotate(0f,180f,0f);
             }else{
@@ -61,7 +61,7 @@ public class MoveCmd : Command{
             info.facingRight = !info.facingRight;
         }
         character.position += v * Time.deltaTime;
-        setAnimFloat(info.animator, "speed", Mathf.Abs(info.walkSpeed));
+        setAnimFloat(info.animator, "speed", Mathf.Abs(info.moveSpeed));
     }
 }
 
@@ -92,29 +92,5 @@ public class ShootCmd : Command{
         Transform firePoint = shootInfo.shootPos;
         GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
         shootInfo.bulletCount--;
-    }
-}
-
-public class DashCmd : Command{
-
-    private MoveCmd moveCmd;
-    private float dashedDist;
-
-    public DashCmd(Transform flipPos = null) : base("Dash")
-    {
-        dashedDist = 0;
-        moveCmd = new MoveCmd(flipPos);
-
-    }
-
-    public override void execute(Transform character, Unit2 info){
-        IDashable dashInfo = (IDashable) info; 
-        if(dashedDist >= dashInfo.dashDist){
-            dashedDist = 0;
-            dashInfo.isDashing = false;
-            return;
-        }
-        dashedDist += dashInfo.dashSpeed * Time.deltaTime;
-        moveCmd.execute(character,info);
     }
 }

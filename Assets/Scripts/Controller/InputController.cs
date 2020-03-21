@@ -31,7 +31,7 @@ public class InputController : MonoBehaviour
     void Update()
     {
         if(info.animator.GetBool("loaded") && allowInput){
-            info.walkSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
+            info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             moveCmd.execute(transform, info);
 
             if (Input.GetButtonDown("Fire1") && weapon.Attack()) {

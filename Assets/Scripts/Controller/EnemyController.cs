@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class EnemyController : MonoBehaviour
 {
-    public abstract void triggerAggro();
+    public abstract void triggerAggro(Transform target);
 }

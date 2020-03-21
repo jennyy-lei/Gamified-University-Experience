@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <totalHealth>k__BackingField: 100
   <MAX_WALK_SPEED>k__BackingField: 5
-  <walkSpeed>k__BackingField: 0
+  <moveSpeed>k__BackingField: 0
   <healthBar>k__BackingField: {fileID: 1031745997}
   <jumpPow>k__BackingField: 4
   <maxJumpNum>k__BackingField: 3
@@ -2450,11 +2450,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2526778744707031588}
     m_Modifications:
-    - target: {fileID: 1894106919911629957, guid: 881505a08599744f98d04e3f71ad7f69,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 8836296787749349984, guid: 881505a08599744f98d04e3f71ad7f69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2514,11 +2509,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DefaultSprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 8836296787749349987, guid: 881505a08599744f98d04e3f71ad7f69,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 881505a08599744f98d04e3f71ad7f69, type: 3}

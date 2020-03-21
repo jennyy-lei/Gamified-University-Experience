@@ -12,7 +12,7 @@ public abstract class Unit2 : MonoBehaviour
     [field: SerializeField]
     public float MAX_WALK_SPEED{get;set;}
     [field: SerializeField] 
-    public float walkSpeed{get;set;}
+    public float moveSpeed{get;set;}
     public bool facingRight{get;set;}
 
     public Animator animator {get;set;}
@@ -30,7 +30,7 @@ public abstract class Unit2 : MonoBehaviour
     public void Awake()
     {
         facingRight = true;
-        walkSpeed = 0;
+        moveSpeed = 0;
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         remainHealth = totalHealth;
