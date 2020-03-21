@@ -20,4 +20,15 @@ public class Goose : Enemy2,IDashable,IMelee
     public float knockbackForce{get;set;}
 
     protected override void initSpawn(){}
+    void OnTriggerEnter2D (Collider2D hitInfo){
+        string bulletTag = "Bullet";
+        if(hitInfo.gameObject.CompareTag(bulletTag)){
+            hitInfo.enabled = false;
+            float force = hitInfo.gameObject.GetComponent<BulletController>().knockbackForce;
+            bool left = (hitInfo.transform.position.x - transform.position.x) > 0;
+            force = left ? -force : force;
+            rb2d.velocity = Vector2.zero;
+            rb2d.AddForce(new Vector2(force,0),ForceMode2D.Impulse);
+        }
+    }
 }

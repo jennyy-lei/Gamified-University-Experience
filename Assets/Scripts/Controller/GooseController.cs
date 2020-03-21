@@ -39,14 +39,4 @@ public class GooseController : MonoBehaviour
         moveCmd = dashInfo.isDashing ? dashCmd : walkCmd;
         moveCmd.execute(transform,info);
     }
-    void OnTriggerEnter2D (Collider2D hitInfo){
-        string bulletTag = "Bullet";
-        if(hitInfo.gameObject.CompareTag(bulletTag)){
-            float force = hitInfo.gameObject.GetComponent<BulletController>().knockbackForce;
-            bool left = (hitInfo.transform.position.x - transform.position.x) > 0;
-            force = left ? -force : force;
-            info.rb2d.velocity = Vector2.zero;
-            info.rb2d.AddForce(new Vector2(force,0),ForceMode2D.Impulse);
-        }
-    }
 }
