@@ -9,5 +9,11 @@ public class PlayerAnimation : MonoBehaviour
     
     public void EndLoad() {
         animator.SetBool("loaded", true);
+        animator.SetBool("unloaded",false);
+    }
+
+    public void EndUnload(){
+        animator.SetBool("unloaded", true);
+        animator.SetBool("loaded", true);
     }
 }

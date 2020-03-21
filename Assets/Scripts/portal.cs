@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class portal : MonoBehaviour
 {
+    public float stayDuration;
+    public float tpTime;
+
     [SerializeField]
     private Transform player;
 
@@ -15,7 +18,6 @@ public class portal : MonoBehaviour
     void Start()
     {
         textCanvas.SetActive(false);
-
         textStartPosition = textCanvas.transform.position;
     }
 
@@ -27,7 +29,22 @@ public class portal : MonoBehaviour
         } else {
             textCanvas.SetActive(false);
         }
-
         textCanvas.transform.position = new Vector2(textStartPosition.x, textStartPosition.y + Mathf.Sin(Time.time * 3) * 0.05f);
+    }
+
+    void OnTriggerEnter2D (Collider2D hitInfo){
+        Invoke("teleport",stayDuration);
+    }
+
+    void OnTriggerExit2D(Collider2D hitInfo){
+        CancelInvoke("teleport");
+    }
+
+    void teleport(){
+        player.GetComponentInChildren<Animator>().SetBool("loaded", false);
+        Invoke("switchScene",tpTime);
+    }
+    void switchScene(){
+        LevelController.switchScene(1);
     }
 }
