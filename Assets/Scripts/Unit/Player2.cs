@@ -37,8 +37,10 @@ public class Player2 : Unit2,IJumpable,IShootable
     private int gold = 0;
     public void Update(){
         base.Update();
+        if(animator.GetBool("loaded")){
+            restrainWithBg();
+        }
         deadZone();
-        restrainWithBg();
     }
 
     void OnCollisionEnter2D(Collision2D hitInfo)
