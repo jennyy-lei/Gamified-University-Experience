@@ -45,6 +45,6 @@ public class portal : MonoBehaviour
         Invoke("switchScene",tpTime);
     }
     void switchScene(){
-        LevelController.switchScene(1);
+        LevelController.switchScene(2);
     }
 }
