@@ -22,5 +22,10 @@ public class CharacterSelect : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("start!");
+
+        player.GetComponent<Player2>().animator = player.GetComponentInChildren<Animator>();
+
+        player.GetComponent<InputController>().enabled = true;
+        gameObject.SetActive(false);
     }
 }
