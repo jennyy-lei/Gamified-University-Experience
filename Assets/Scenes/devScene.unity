@@ -714,6 +714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750579597}
+  - component: {fileID: 750579596}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -721,6 +722,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &750579596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750579595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad2c39e1b54e0b45a13cd987ef82a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  save: 0
+  data: {fileID: 4897953527915284322}
 --- !u!4 &750579597
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,22 +1184,22 @@ PrefabInstance:
     - target: {fileID: 6208452581311863275, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6208452581311863275, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208452581311863275, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208452581311863275, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208452581316882031, guid: 87b799e8d668f441788dbaac8fcd4e46,
         type: 3}
@@ -1245,6 +1260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208452581316882034, guid: 87b799e8d668f441788dbaac8fcd4e46,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87b799e8d668f441788dbaac8fcd4e46, type: 3}
