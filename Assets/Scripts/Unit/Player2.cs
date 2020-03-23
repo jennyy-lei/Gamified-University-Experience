@@ -12,7 +12,8 @@ public class Player2 : Unit2,IJumpable,IShootable
     public int maxJumpNum{get;set;}
     [field: SerializeField]
     public int jumpNum{get;set;}
-    public bool canJump{
+    public bool canJump
+    {
         get => jumpNum < maxJumpNum;
     }
 
@@ -25,7 +26,19 @@ public class Player2 : Unit2,IJumpable,IShootable
     public Transform shootPos{get;set;}
     [field: SerializeField]
     public GameObject bullet {get;set;}
-    public float bulletCount{get;set;}
+
+    private float _bulletCount;
+    public float bulletCount
+    {
+        get => _bulletCount;
+        set
+        {
+            _bulletCount = value;
+            if (_bulletCount > bulletLimit) bulletCount = bulletLimit;
+            updateBullet();
+
+        }
+    }
 
     //text
     [field: SerializeField]
@@ -54,6 +67,16 @@ public class Player2 : Unit2,IJumpable,IShootable
     protected override void initSpawn(){
         spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
         bulletCount = bulletLimit;
+
+        PlayerState state = LevelController.loadData<PlayerState>("PlayerState");
+
+        if(state != null){
+            this.remainHealth = state.remainHealth;
+            this.gold = state.gold;
+            this.facingRight = state.facingRight;
+            this.bulletCount = state.bulletCount;
+            if(!facingRight) transform.Rotate(0f,180f,0f);
+        }
     }
     
     private void restrainWithBg(){
@@ -71,12 +94,13 @@ public class Player2 : Unit2,IJumpable,IShootable
         if (transform.position.y < -10) {
             rb2d.velocity = new Vector3(0, 0, 0);
             transform.position = spawnPoint.position;
-            takeDmg(1);
+            remainHealth -= 1;
+            animator.SetBool("loaded",false);
             animator.SetBool("unloaded", true);
         }
     }
 
-    public void updateAmmo() {
+    public void updateBullet() {
         bulletText.text = bulletCount + " / " + bulletLimit;
     }
 
@@ -84,23 +108,18 @@ public class Player2 : Unit2,IJumpable,IShootable
         goldText.text = gold.ToString();
     }
 
-    public void incHealth(int amt) {
-        remainHealth += amt;
-        if (remainHealth > totalHealth) remainHealth = totalHealth;
-
-        updateHealthBar();
-    }
-
-    public void incAmmo(int amt) {
-        bulletCount += amt;
-        if (bulletCount > bulletLimit) bulletCount = bulletLimit;
-
-        updateAmmo();
-    }
-
     public void incGold(int amt) {
         gold += amt;
 
         updateGold();
+    }
+
+    public PlayerState getGameState(){
+        PlayerState state = new PlayerState();
+        state.remainHealth = remainHealth;
+        state.gold = gold;
+        state.bulletCount = bulletCount;
+        state.facingRight = facingRight;
+        return state;
     }
 }

@@ -8,7 +8,24 @@ public abstract class Unit2 : MonoBehaviour
 {
     [field: SerializeField]
     public float totalHealth{get;set;}
-    public float remainHealth{get;set;}
+    private float _remainHealth;
+    public float remainHealth
+    {
+        get => _remainHealth;
+        set
+        {
+            _remainHealth = value;
+            if (_remainHealth > totalHealth) _remainHealth = totalHealth;
+            if (_remainHealth <= 0){
+                _remainHealth = 0;
+                ItemDrop dropController = GetComponent<ItemDrop>();
+                if(dropController != null) dropController.Drop();
+                Destroy(gameObject);
+            }
+            updateHealthBar();
+        }
+    }
+
     [field: SerializeField]
     public float MAX_WALK_SPEED{get;set;}
     [field: SerializeField] 
@@ -22,9 +39,7 @@ public abstract class Unit2 : MonoBehaviour
     public Image healthBar{get;set;}
 
     public bool isDead{
-        get{
-            return remainHealth <= 0;
-        }
+        get =>remainHealth <= 0;
     }
 
     public void Awake()
@@ -49,26 +64,6 @@ public abstract class Unit2 : MonoBehaviour
     public void updateHealthBar()
     {
         healthBar.fillAmount = getHealthRatio();
-    }
-
-    public void takeDmg(float health)
-    {
-        remainHealth -= health;
-        if (remainHealth <= 0){
-            remainHealth = 0;
-            ItemDrop dropController = GetComponent<ItemDrop>();
-            if(dropController != null) dropController.Drop();
-            destroy();
-        }
-
-        healthBar.fillAmount = getHealthRatio();
-    }
-
-    public void destroy()
-    {
-        if (remainHealth <= 0) {
-            Destroy (gameObject);
-        }
     }
 
     protected abstract void initSpawn();

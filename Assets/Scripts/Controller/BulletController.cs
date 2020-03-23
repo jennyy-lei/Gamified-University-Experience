@@ -30,7 +30,7 @@ public class BulletController : MonoBehaviour
         animator.SetBool("hit", true);
         Enemy2 enemy = hitInfo.GetComponentInParent<Enemy2>();
         if (enemy != null) {
-            enemy.takeDmg(dmg);
+            enemy.remainHealth -= dmg;
         }
 
         animator.Update(0);

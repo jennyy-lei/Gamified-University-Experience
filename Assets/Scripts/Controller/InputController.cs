@@ -36,7 +36,6 @@ public class InputController : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1") && weapon.Attack()) {
                 atkCmd.execute(transform,info);
-                info.updateAmmo();
             }
 
             if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {
@@ -51,7 +50,7 @@ public class InputController : MonoBehaviour
         string enemyTag = "Enemy";
         if(hitInfo.gameObject.CompareTag(enemyTag)){
             IMelee atkInfo = hitInfo.gameObject.GetComponent<IMelee>();
-            info.takeDmg(atkInfo.meleeDmg);
+            info.remainHealth -= atkInfo.meleeDmg;
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
             dir = -dir.normalized;
             info.rb2d.velocity = Vector2.zero;

@@ -10,7 +10,7 @@ public class ItemBullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             Player2 player = other.gameObject.GetComponent<Player2>();
-            player.incAmmo(value);
+            player.bulletCount += value;
             
             Destroy(gameObject);
         }
