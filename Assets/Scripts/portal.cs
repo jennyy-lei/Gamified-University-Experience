@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class portal : MonoBehaviour
+public class Portal : MonoBehaviour
 {
     public float stayDuration;
     public float tpTime;
 
-    [SerializeField]
     private Transform player;
 
     [SerializeField]
@@ -19,6 +18,14 @@ public class portal : MonoBehaviour
     {
         textCanvas.SetActive(false);
         textStartPosition = textCanvas.transform.position;
+        
+    }
+
+    void Awake()
+    {
+        Debug.Log("hello?");
+        player = GameObject.FindWithTag("Player").transform;
+        Debug.Log(player);
     }
 
     void Update()
