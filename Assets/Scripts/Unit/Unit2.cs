@@ -63,6 +63,8 @@ public abstract class Unit2 : MonoBehaviour
 
     public void updateHealthBar()
     {
+        if (!healthBar) return;
+        
         healthBar.fillAmount = getHealthRatio();
     }
 

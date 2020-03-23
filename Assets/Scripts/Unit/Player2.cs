@@ -101,10 +101,14 @@ public class Player2 : Unit2,IJumpable,IShootable
     }
 
     public void updateBullet() {
+        if (!bulletText) return;
+
         bulletText.text = bulletCount + " / " + bulletLimit;
     }
 
     public void updateGold() {
+        if (!goldText) return;
+
         goldText.text = gold.ToString();
     }
 
