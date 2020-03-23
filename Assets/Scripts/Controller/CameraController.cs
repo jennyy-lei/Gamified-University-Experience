@@ -20,7 +20,8 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        //Debug.Log(transform.position - player.transform.position);
+        offset = new Vector3(5.2f,2.7f,-5.0f);
         float vertExtent = Camera.main.GetComponent<Camera>().orthographicSize;    
         float horzExtent = vertExtent * Screen.width / Screen.height;
         Bounds levelBounds = background.bounds;

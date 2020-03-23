@@ -75,6 +75,7 @@ public class Player2 : Unit2,IJumpable,IShootable
             this.gold = state.gold;
             this.facingRight = state.facingRight;
             this.bulletCount = state.bulletCount;
+            this.transform.position = state.position.toVector2();
             if(!facingRight) transform.Rotate(0f,180f,0f);
         }
     }
@@ -115,7 +116,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     }
 
     public PlayerState getGameState(){
-        PlayerState state = new PlayerState();
+        PlayerState state = new PlayerState(transform.position);
         state.remainHealth = remainHealth;
         state.gold = gold;
         state.bulletCount = bulletCount;

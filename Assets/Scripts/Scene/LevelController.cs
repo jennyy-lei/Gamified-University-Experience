@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using System.Text;
+
 public class LevelController
 {
     private static int curSceneIndex = 0;
@@ -19,19 +21,37 @@ public class LevelController
 
     public static void saveData<T>(T data, string fileName){
         string tempPath = Path.Combine(Application.persistentDataPath,"data");
+
+        //Debug Purpose
+        string jsonPath = Path.Combine(tempPath,fileName + "_readable.txt");
+        string json = JsonUtility.ToJson(data,true);
+        if(!Directory.Exists(Path.GetDirectoryName(jsonPath))){
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonPath));
+        }
+        try{
+            File.WriteAllText(jsonPath,json);
+        }
+        catch(Exception e){
+            Debug.LogWarning("Failed to save data to: " + jsonPath.Replace("/", "\\"));
+            Debug.LogWarning("Error: " + e.Message);
+        }
+
+        //Real file
         tempPath = Path.Combine(tempPath, fileName + ".txt");
         Debug.Log("Saved path: " + tempPath.Replace("/", "\\"));
-        string jsonData = JsonUtility.ToJson(data,true);
+        string jsonData = JsonUtility.ToJson(data,false);
+        byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
         if(!Directory.Exists(Path.GetDirectoryName(tempPath))){
             Directory.CreateDirectory(Path.GetDirectoryName(tempPath));
         }
         try{
-            File.WriteAllText(tempPath,jsonData);
+            File.WriteAllText(tempPath,Convert.ToBase64String(jsonByte));
         }
         catch(Exception e){
             Debug.LogWarning("Failed to save data to: " + tempPath.Replace("/", "\\"));
             Debug.LogWarning("Error: " + e.Message);
         }
+        
 
 
     }
@@ -59,7 +79,7 @@ public class LevelController
             Debug.LogWarning("Error: " + e.Message);
         }
 
-        return JsonUtility.FromJson<T>(json);
+        return JsonUtility.FromJson<T>(Encoding.UTF8.GetString(Convert.FromBase64String(json)));
     }
 
 }
