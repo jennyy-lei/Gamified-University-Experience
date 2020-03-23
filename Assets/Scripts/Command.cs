@@ -51,7 +51,6 @@ public class MoveCmd : Command{
     }
 
     public override void execute(Transform character, Unit2 info){
-        if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
         Vector3 v = new Vector3(info.moveSpeed, 0f, 0f);
         if((info.facingRight && info.moveSpeed < 0) || (!info.facingRight && info.moveSpeed > 0)){
             if(flipPos == null) {

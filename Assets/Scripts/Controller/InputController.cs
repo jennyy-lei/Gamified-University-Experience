@@ -32,6 +32,7 @@ public class InputController : MonoBehaviour
     {
         if(info.animator.GetBool("loaded") && allowInput){
             info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
+            if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
             moveCmd.execute(transform, info);
 
             if (Input.GetButtonDown("Fire1") && weapon.Attack()) {
