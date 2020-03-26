@@ -137,6 +137,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6429634291724034124, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6429634291724034126, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -308,10 +313,25 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6429634292723068261, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6429634293020153630, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429634293020153631, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429634293307881510, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6429634293307881563, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
