@@ -19,7 +19,7 @@ public class CharacterSelect : MonoBehaviour
 
     public void Awake()
     {
-        charList = Resources.LoadAll<GameObject>("Units/PlayerSprites/");
+        charList = Globals.getCharList();
         Debug.Log(charList.Length);
 
         LoadButtons();
