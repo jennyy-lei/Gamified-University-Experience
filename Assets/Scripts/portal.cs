@@ -40,11 +40,15 @@ public class Portal : MonoBehaviour
     }
 
     void OnTriggerEnter2D (Collider2D hitInfo){
-        Invoke("teleport",stayDuration);
+        if(hitInfo.gameObject.CompareTag("Player")){
+            Invoke("teleport",stayDuration);
+        }
     }
 
     void OnTriggerExit2D(Collider2D hitInfo){
-        CancelInvoke("teleport");
+        if(hitInfo.gameObject.CompareTag("Player")){
+            CancelInvoke("teleport");
+        }
     }
 
     void teleport(){

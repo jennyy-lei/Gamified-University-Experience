@@ -287,6 +287,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6429634292153242228, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6429634292153242230, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_Sprite
