@@ -29,9 +29,7 @@ public class CameraController : MonoBehaviour
         minX = levelBounds.min.x + horzExtent;
         maxX = levelBounds.max.x - horzExtent;
         minY = levelBounds.min.y + vertExtent;
-        maxY = levelBounds.max.y - vertExtent;    
-
-        
+        maxY = levelBounds.max.y - vertExtent;
     }
 
     // Update is called once per frame
