@@ -27,6 +27,7 @@ public class Vector2State
     }
 
 }
+
 [System.Serializable]
 public class PlayerState
 {
@@ -44,10 +45,26 @@ public class PlayerState
     }
 }
 
+public enum EnemyType
+{
+    Goose
+}
+
+[System.Serializable]
+public class EnemyState
+{
+    public float remainHealth;
+    public float facingRight;
+    public Vector2State position;
+    public EnemyType id;
+}
+
 [System.Serializable]
 public class GameState
 {
     public int curSceneIndex;
+    public PlayerState playerState;
+    public List<EnemyState> enemyState;
 
     public GameState(){
         curSceneIndex = 0;
