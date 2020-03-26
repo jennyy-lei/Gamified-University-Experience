@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6974528633812782425}
   - component: {fileID: 6974528633812782430}
   m_Layer: 11
-  m_Name: RedSprite
+  m_Name: 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,9 +103,9 @@ SpriteRenderer:
   m_SortingLayerID: 1647337459
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3054439076135632626, guid: 325719894d26a49a7bb798d8583c8dab,
+  m_Sprite: {fileID: 3054439076135632626, guid: 8d3013605f4b24e059b7b5a914f1d3a2,
     type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -125,7 +125,7 @@ Animator:
   m_GameObject: {fileID: 6974528633812782428}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1904cad88a4ed408493ddf6c01944e24, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8bdb323994bc54d6ea83e763cf16d7d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -151,7 +151,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.4, y: 0.4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
