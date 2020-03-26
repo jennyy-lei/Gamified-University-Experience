@@ -76,16 +76,14 @@ public class GooseController : EnemyController
     }
 
     void OnTriggerEnter2D (Collider2D hitInfo){
-        string bulletTag = "Bullet";
-        if(hitInfo.gameObject.CompareTag(bulletTag)){
+        if(hitInfo.gameObject.CompareTag(StrConstant.bulletTag)){
             hitInfo.enabled = false;
             dmgKnockback(hitInfo.transform);
         }
     }
 
     void OnTriggerStay2D (Collider2D hitInfo){
-        string playerTag = "Player";
-        if(canDash && hitInfo.gameObject.CompareTag(playerTag)){
+        if(canDash && hitInfo.gameObject.CompareTag(StrConstant.playerTag)){
             canDash = false;
             triggerAggro(hitInfo.transform);
             Invoke("resetDashCD",dashCD);

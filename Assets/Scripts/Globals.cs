@@ -8,3 +8,14 @@ public static class Globals
 
     public static GameObject[] getCharList () => charList;
 }
+
+public static class StrConstant
+{
+    public const string playerSpawnAddr = "GameManager/PlayerSpawnPoint";
+    public const string platformTag = "Platform";
+    public const string playerTag = "Player";
+    public const string enemyTag = "Enemy";
+    public const string bulletTag = "Bullet";
+    
+
+}

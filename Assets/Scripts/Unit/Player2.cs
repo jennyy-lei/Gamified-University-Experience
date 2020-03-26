@@ -58,14 +58,13 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     void OnCollisionEnter2D(Collision2D hitInfo)
     {
-        string platformTag = "Platform";
-        if (hitInfo.gameObject.CompareTag(platformTag) && hitInfo.transform.position.y < transform.position.y) {
+        if (hitInfo.gameObject.CompareTag(StrConstant.platformTag) && hitInfo.transform.position.y < transform.position.y) {
             jumpNum = 0;
         }
     }
 
     protected override void initSpawn(){
-        spawnPoint = GameObject.Find("GameManager/PlayerSpawnPoint").transform;
+        spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
         bulletCount = bulletLimit;
 
         PlayerState state = LevelController.loadData<PlayerState>("PlayerState");

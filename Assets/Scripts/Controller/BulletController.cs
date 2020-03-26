@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.gameObject.CompareTag("Player")) {
+        if (hitInfo.gameObject.CompareTag(StrConstant.playerTag)) {
             return;
         }
 

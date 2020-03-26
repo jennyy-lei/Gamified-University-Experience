@@ -8,7 +8,7 @@ public class ItemHealth : MonoBehaviour
     private int value;
     
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag(StrConstant.playerTag)) {
             Player2 player = other.gameObject.GetComponent<Player2>();
             player.remainHealth += value;
             

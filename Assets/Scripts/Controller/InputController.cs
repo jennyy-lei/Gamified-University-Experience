@@ -48,8 +48,7 @@ public class InputController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D hitInfo)
     {
-        string enemyTag = "Enemy";
-        if(hitInfo.gameObject.CompareTag(enemyTag)){
+        if(hitInfo.gameObject.CompareTag(StrConstant.enemyTag)){
             IMelee atkInfo = hitInfo.gameObject.GetComponent<IMelee>();
             info.remainHealth -= atkInfo.meleeDmg;
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
