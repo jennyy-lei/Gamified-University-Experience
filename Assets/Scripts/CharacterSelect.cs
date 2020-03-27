@@ -57,6 +57,8 @@ public class CharacterSelect : MonoBehaviour
         newObj.transform.SetSiblingIndex(0);
 
         getAnimator();
+
+        Globals.setCharIndex(index);
     }
 
     public void StartGame()
