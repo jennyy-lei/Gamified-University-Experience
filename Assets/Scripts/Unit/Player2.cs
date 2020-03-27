@@ -105,7 +105,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
-       public void deadZone() {
+    public void deadZone() {
         // is below death point
         if (transform.position.y < -10) {
             rb2d.velocity = new Vector3(0, 0, 0);
