@@ -52,7 +52,7 @@ public class Portal : MonoBehaviour
     }
 
     void teleport(){
-        player.GetComponentInChildren<Animator>().SetBool("loaded", false);
+        player.GetComponentInChildren<PlayerAnimation>().StartUnload();
         Invoke("switchScene",tpTime);
     }
     void switchScene(){

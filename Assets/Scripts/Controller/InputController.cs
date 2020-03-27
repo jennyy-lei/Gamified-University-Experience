@@ -30,7 +30,7 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(info.animator.GetBool("loaded") && allowInput){
+        if(info.animator.GetInteger("LoadState") == 1 && allowInput){
             info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
             moveCmd.execute(transform, info);

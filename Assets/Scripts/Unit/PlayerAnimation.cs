@@ -8,12 +8,14 @@ public class PlayerAnimation : MonoBehaviour
     public Animator animator;
     
     public void EndLoad() {
-        animator.SetBool("loaded", true);
-        animator.SetBool("unloaded",false);
+        animator.SetInteger("LoadState",1);
     }
 
-    public void EndUnload(){
-        animator.SetBool("unloaded", true);
-        animator.SetBool("loaded", true);
+    public void StartLoad(){
+        animator.SetInteger("LoadState",0);
+    }
+
+    public void StartUnload(){
+        animator.SetInteger("LoadState",2);
     }
 }

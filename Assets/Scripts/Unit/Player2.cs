@@ -50,7 +50,11 @@ public class Player2 : Unit2,IJumpable,IShootable
     private int gold = 0;
     public void Update(){
         base.Update();
-        if(animator.GetBool("loaded")){
+        int loadState = animator.GetInteger("LoadState");
+        if(loadState == 2){
+            animator.SetInteger("LoadState", 0);
+        }
+        else if(loadState == 1){
             restrainWithBg();
         }
         deadZone();
@@ -95,8 +99,7 @@ public class Player2 : Unit2,IJumpable,IShootable
             rb2d.velocity = new Vector3(0, 0, 0);
             transform.position = spawnPoint.position;
             remainHealth -= 1;
-            animator.SetBool("loaded",false);
-            animator.SetBool("unloaded", true);
+            animator.SetInteger("LoadState",2);
         }
     }
 
