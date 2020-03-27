@@ -36,10 +36,12 @@ public class PlayerState
     public bool facingRight;
     public int gold;
     public Vector2State position;
+    public int charIndex;
 
     public PlayerState(Vector2 position){
         remainHealth = bulletCount = 0f;
         gold = 0;
+        charIndex = 0;
         this.facingRight = true;
         this.position = new Vector2State(position);
     }

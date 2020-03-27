@@ -46,6 +46,9 @@ public class Player2 : Unit2,IJumpable,IShootable
     [field: SerializeField]
     public TextMeshProUGUI goldText{get;set;}
 
+    private int charIndex;
+    public void setCharIndex(int index) => charIndex = index;
+
     //info
     private int gold = 0;
     public void Update(){
@@ -70,6 +73,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     protected override void initSpawn(){
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
         bulletCount = bulletLimit;
+        charIndex = Globals.getCharIndex();
 
         PlayerState state = LevelController.loadData<PlayerState>("PlayerState");
 
@@ -79,8 +83,23 @@ public class Player2 : Unit2,IJumpable,IShootable
             this.facingRight = state.facingRight;
             this.bulletCount = state.bulletCount;
             this.transform.position = state.position.toVector2();
+            this.charIndex = state.charIndex;
             if(!facingRight) transform.Rotate(0f,180f,0f);
         }
+
+        changeChar();
+    }
+
+    private void changeChar() {
+        GameObject newObj = (GameObject)Instantiate(Globals.getCharList()[charIndex], transform.GetChild(0).position, transform.GetChild(0).rotation);
+        newObj.transform.localScale = new Vector3(1, 1, 1);
+
+        Destroy(transform.GetChild(0).gameObject);
+
+        newObj.transform.SetParent(transform);
+        newObj.transform.SetSiblingIndex(0);
+
+        GetComponent<Player2>().animator = GetComponentInChildren<Animator>();
     }
     
     private void restrainWithBg(){
@@ -127,6 +146,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         state.gold = gold;
         state.bulletCount = bulletCount;
         state.facingRight = facingRight;
+        state.charIndex = charIndex;
         return state;
     }
 }
