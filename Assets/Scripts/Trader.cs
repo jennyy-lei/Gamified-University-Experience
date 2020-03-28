@@ -15,6 +15,8 @@ public class Trader : MonoBehaviour
     private GameObject convoText;
 
     private Vector2 textStartPosition;
+
+    private bool isFacingRight;
     
     void Start()
     {
@@ -23,6 +25,8 @@ public class Trader : MonoBehaviour
 
         nameText.SetActive(true);
         convoText.SetActive(false);
+
+        isFacingRight = true;
     }
 
     void Awake()
@@ -50,10 +54,18 @@ public class Trader : MonoBehaviour
         }
         
         textCanvas.transform.position = new Vector2(textStartPosition.x, textStartPosition.y + Mathf.Sin(Time.time * 3) * 0.05f);
+    
+        if (player.transform.position.x < transform.position.x && isFacingRight) {
+            transform.GetComponent<SpriteRenderer>().flipX = true;;
+            isFacingRight = false;
+        } else if (player.transform.position.x > transform.position.x && !isFacingRight) {
+            transform.GetComponent<SpriteRenderer>().flipX = false;;
+            isFacingRight = true;
+        }
     }
 
     private void Input()
     {
-        
+
     }
 }
