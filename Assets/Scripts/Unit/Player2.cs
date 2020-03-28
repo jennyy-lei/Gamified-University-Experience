@@ -46,9 +46,6 @@ public class Player2 : Unit2,IJumpable,IShootable
     [field: SerializeField]
     public TextMeshProUGUI goldText{get;set;}
 
-    private int charIndex;
-    public void setCharIndex(int index) => charIndex = index;
-
     //info
     private int gold = 0;
     public void Update(){
@@ -73,7 +70,6 @@ public class Player2 : Unit2,IJumpable,IShootable
     protected override void initSpawn(){
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
         bulletCount = bulletLimit;
-        charIndex = Globals.getCharIndex();
 
         PlayerState state = LevelController.loadData<PlayerState>("PlayerState");
 
@@ -83,7 +79,7 @@ public class Player2 : Unit2,IJumpable,IShootable
             this.facingRight = state.facingRight;
             this.bulletCount = state.bulletCount;
             this.transform.position = state.position.toVector2();
-            this.charIndex = state.charIndex;
+            Globals.setCharIndex(state.charIndex);
             if(!facingRight) transform.Rotate(0f,180f,0f);
         }
 
@@ -91,7 +87,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     }
 
     private void changeChar() {
-        GameObject newObj = (GameObject)Instantiate(Globals.getCharList()[charIndex], transform.GetChild(0).position, transform.GetChild(0).rotation);
+        GameObject newObj = (GameObject)Instantiate(Globals.getCharList()[Globals.getCharIndex()], transform.GetChild(0).position, transform.GetChild(0).rotation);
         newObj.transform.localScale = new Vector3(1, 1, 1);
 
         Destroy(transform.GetChild(0).gameObject);
@@ -112,7 +108,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
-       public void deadZone() {
+    public void deadZone() {
         // is below death point
         if (transform.position.y < -10) {
             rb2d.velocity = new Vector3(0, 0, 0);
@@ -146,7 +142,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         state.gold = gold;
         state.bulletCount = bulletCount;
         state.facingRight = facingRight;
-        state.charIndex = charIndex;
+        state.charIndex = Globals.getCharIndex();
         return state;
     }
 }

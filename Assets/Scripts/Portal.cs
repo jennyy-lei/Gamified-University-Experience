@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour
         textCanvas.transform.position = new Vector2(textStartPosition.x, textStartPosition.y + Mathf.Sin(Time.time * 3) * 0.05f);
     }
 
-    void OnTriggerEnter2D (Collider2D hitInfo){
+    void OnTriggerEnter2D(Collider2D hitInfo){
         if(hitInfo.gameObject.CompareTag("Player")){
             Invoke("teleport",stayDuration);
         }

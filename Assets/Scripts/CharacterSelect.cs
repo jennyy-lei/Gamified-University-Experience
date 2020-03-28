@@ -23,6 +23,8 @@ public class CharacterSelect : MonoBehaviour
         Debug.Log(charList.Length);
 
         LoadButtons();
+
+        content.GetChild(Globals.getCharIndex()).GetComponent<Selectable>().Select();
     }
 
     private void LoadButtons()
