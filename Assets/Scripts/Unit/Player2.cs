@@ -51,10 +51,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     public void Update(){
         base.Update();
         int loadState = animator.GetInteger("LoadState");
-        if(loadState == 2){
-            animator.SetInteger("LoadState", 0);
-        }
-        else if(loadState == 1){
+        if(loadState == 1){
             restrainWithBg();
         }
         deadZone();
