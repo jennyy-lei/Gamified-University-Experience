@@ -23,9 +23,7 @@ public class Portal : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("hello?");
         player = GameObject.FindWithTag("Player").transform;
-        Debug.Log(player);
     }
 
     void Update()
@@ -53,6 +51,8 @@ public class Portal : MonoBehaviour
 
     void teleport(){
         player.GetComponentInChildren<PlayerAnimation>().StartUnload();
+        Globals.gameState.teleporting = true;
+        Globals.playerState = player.GetComponent<Player2>().getPlayerState();
         Invoke("switchScene",tpTime);
     }
     void switchScene(){

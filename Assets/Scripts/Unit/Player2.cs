@@ -69,20 +69,26 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     protected override void initSpawn(){
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
-        bulletCount = bulletLimit;
+    }
 
-        PlayerState state = LevelController.loadData<PlayerState>("PlayerState");
-
-        if(state != null){
+    protected override void initStat(){
+        PlayerState state = Globals.playerState;
+        if(state == null) {
+            state = getPlayerState();
+            Globals.playerState = state;
+            this.bulletCount = bulletLimit;
+        }
+        else if(state != null){
             this.remainHealth = state.remainHealth;
             this.gold = state.gold;
             this.facingRight = state.facingRight;
             this.bulletCount = state.bulletCount;
-            this.transform.position = state.position.toVector2();
             Globals.setCharIndex(state.charIndex);
             if(!facingRight) transform.Rotate(0f,180f,0f);
         }
-
+        state.position = Globals.gameState.teleporting ? new Vector2State(spawnPoint.position) : state.position;
+        transform.position = state.position.toVector2();
+        Globals.gameState.teleporting = false;
         changeChar();
     }
 
@@ -114,7 +120,7 @@ public class Player2 : Unit2,IJumpable,IShootable
             rb2d.velocity = new Vector3(0, 0, 0);
             transform.position = spawnPoint.position;
             remainHealth -= 1;
-            animator.SetInteger("LoadState",2);
+            animator.SetInteger("LoadState",0);
         }
     }
 
@@ -136,7 +142,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         updateGold();
     }
 
-    public PlayerState getGameState(){
+    public PlayerState getPlayerState(){
         PlayerState state = new PlayerState(transform.position);
         state.remainHealth = remainHealth;
         state.gold = gold;

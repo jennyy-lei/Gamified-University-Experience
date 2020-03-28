@@ -16,6 +16,9 @@ public static class Globals
         if (index >= 0 && index <= charList.Length)
             charIndex = index;
     }
+
+    public static GameState gameState = GameState.get();
+    public static PlayerState playerState = PlayerState.get();
 }
 
 public static class StrConstant

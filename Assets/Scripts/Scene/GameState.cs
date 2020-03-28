@@ -45,6 +45,9 @@ public class PlayerState
         this.facingRight = true;
         this.position = new Vector2State(position);
     }
+    public static PlayerState get(){
+        return LevelController.loadData<PlayerState>("PlayerState");
+    }
 }
 
 public enum EnemyType
@@ -65,10 +68,17 @@ public class EnemyState
 public class GameState
 {
     public int curSceneIndex;
-    public PlayerState playerState;
+    public bool teleporting;
     public List<EnemyState> enemyState;
+
+    public static GameState get(){
+        GameState state = LevelController.loadData<GameState>("GameState");
+        if (state != null) return state;
+        return new GameState();
+    }
 
     public GameState(){
         curSceneIndex = 0;
+        teleporting = false;
     }
 }

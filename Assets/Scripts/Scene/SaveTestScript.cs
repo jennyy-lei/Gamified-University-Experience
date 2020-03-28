@@ -17,7 +17,9 @@ public class SaveTestScript : MonoBehaviour
     {
         if(save){
             save = !save;
-            LevelController.saveData<PlayerState>(data.getGameState(),"PlayerState");
+            Globals.playerState = data.getPlayerState();
+            LevelController.saveData<GameState>(Globals.gameState,"GameState");
+            LevelController.saveData<PlayerState>(Globals.playerState,"PlayerState");
         }
     }
 }

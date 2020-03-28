@@ -49,9 +49,8 @@ public abstract class Unit2 : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         remainHealth = totalHealth;
-
-        updateHealthBar();
         initSpawn();
+        initStat();
     }
     public void Update(){
     }
@@ -69,6 +68,9 @@ public abstract class Unit2 : MonoBehaviour
     }
 
     protected abstract void initSpawn();
+    protected virtual void initStat(){
+
+    }
 }
 
 public abstract class Enemy2 : Unit2
