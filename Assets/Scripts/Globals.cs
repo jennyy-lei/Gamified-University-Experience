@@ -9,9 +9,6 @@ public static class Globals
 
     private static readonly GameObject[] itemList = Resources.LoadAll<GameObject>("Items/");
 
-    public static GameState gameState = GameState.get();
-    public static PlayerState playerState = PlayerState.get();
-
     // getters
     public static GameObject[] getCharList () => charList;
     public static int getCharIndex () => charIndex;
