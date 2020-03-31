@@ -50,7 +50,7 @@ public abstract class Unit2 : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         remainHealth = totalHealth;
         initSpawn();
-        initStat();
+        initGameStat();
     }
     public void Update(){
     }
@@ -68,7 +68,7 @@ public abstract class Unit2 : MonoBehaviour
     }
 
     protected abstract void initSpawn();
-    protected virtual void initStat(){
+    protected virtual void initGameStat(){
 
     }
 }

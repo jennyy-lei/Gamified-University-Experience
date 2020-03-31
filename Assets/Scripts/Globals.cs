@@ -17,8 +17,21 @@ public static class Globals
             charIndex = index;
     }
 
-    public static GameState gameState = GameState.get();
+    private static GameState _gameState;
+    public static GameState gameState{
+        get{
+            if(_gameState == null){
+                _gameState = GameState.get();
+            }
+            return _gameState;
+        }
+        set{
+            _gameState = value;
+        }
+    }
     public static PlayerState playerState = PlayerState.get();
+
+    public static bool useStatePos = false;
 }
 
 public static class StrConstant

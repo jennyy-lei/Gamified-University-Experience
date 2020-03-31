@@ -34,7 +34,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         set
         {
             _bulletCount = value;
-            if (_bulletCount > bulletLimit) bulletCount = bulletLimit;
+            if (_bulletCount > bulletLimit) _bulletCount = bulletLimit;
             updateBullet();
 
         }
@@ -48,6 +48,11 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     //info
     private int gold = 0;
+
+    public void Awake(){
+        base.Awake();
+        bulletCount = bulletLimit;
+    }
     public void Update(){
         base.Update();
         int loadState = animator.GetInteger("LoadState");
@@ -68,25 +73,33 @@ public class Player2 : Unit2,IJumpable,IShootable
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
     }
 
-    protected override void initStat(){
+    protected override void initGameStat(){
         PlayerState state = Globals.playerState;
-        if(state == null) {
+        if(state == null && Globals.useStatePos) {
+            this.bulletCount = this.bulletLimit;
+            this.remainHealth = this.totalHealth;
             state = getPlayerState();
             Globals.playerState = state;
-            this.bulletCount = bulletLimit;
         }
         else if(state != null){
             this.remainHealth = state.remainHealth;
             this.gold = state.gold;
-            this.facingRight = state.facingRight;
             this.bulletCount = state.bulletCount;
             Globals.setCharIndex(state.charIndex);
+        }
+        if(Globals.useStatePos)
+        {
+            this.facingRight = state.facingRight;
+            transform.position = state.position.toVector3();
             if(!facingRight) transform.Rotate(0f,180f,0f);
         }
-        state.position = Globals.gameState.teleporting ? new Vector2State(spawnPoint.position) : state.position;
-        transform.position = state.position.toVector2();
-        Globals.gameState.teleporting = false;
+        else
+        {
+            transform.position = spawnPoint.position;
+            this.facingRight = true;
+        } 
         changeChar();
+        
     }
 
     private void changeChar() {
@@ -114,6 +127,7 @@ public class Player2 : Unit2,IJumpable,IShootable
     public void deadZone() {
         // is below death point
         if (transform.position.y < -10) {
+            if(spawnPoint == null) initSpawn();
             rb2d.velocity = new Vector3(0, 0, 0);
             transform.position = spawnPoint.position;
             remainHealth -= 1;

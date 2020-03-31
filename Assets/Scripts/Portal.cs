@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PortalType
+{
+    Start,
+    Teleport,
+    Exit
+}
 public class Portal : MonoBehaviour
 {
     public float stayDuration;
     public float tpTime;
+    public PortalType type;
 
     private Transform player;
+
+    private Player2 playerScript;
 
     [SerializeField]
     private GameObject textCanvas;
@@ -24,6 +33,7 @@ public class Portal : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
+        playerScript = player.GetComponent<Player2>();
     }
 
     void Update()
@@ -51,11 +61,20 @@ public class Portal : MonoBehaviour
 
     void teleport(){
         player.GetComponentInChildren<PlayerAnimation>().StartUnload();
-        Globals.gameState.teleporting = true;
-        Globals.playerState = player.GetComponent<Player2>().getPlayerState();
         Invoke("switchScene",tpTime);
     }
     void switchScene(){
-        LevelController.switchScene(2);
+        switch(type){
+            case PortalType.Start:
+                Globals.useStatePos = true;
+                LevelController.initGameScene();
+                break;
+            default:
+                Globals.useStatePos = false;
+                LevelController.switchScene(2);
+                player = GameObject.FindWithTag("Player").transform;
+                playerScript = player.GetComponent<Player2>();
+                break;
+        }
     }
 }

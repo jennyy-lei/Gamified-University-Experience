@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 229907673}
   - component: {fileID: 229907672}
   m_Layer: 11
-  m_Name: Player
+  m_Name: rrr
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}

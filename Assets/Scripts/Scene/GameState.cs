@@ -68,7 +68,6 @@ public class EnemyState
 public class GameState
 {
     public int curSceneIndex;
-    public bool teleporting;
     public List<EnemyState> enemyState;
 
     public static GameState get(){
@@ -78,7 +77,6 @@ public class GameState
     }
 
     public GameState(){
-        curSceneIndex = 0;
-        teleporting = false;
+        curSceneIndex = 2;
     }
 }
