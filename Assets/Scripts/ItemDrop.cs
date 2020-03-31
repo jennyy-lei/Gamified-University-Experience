@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] itemList;
-
     private int DropRange = 2;
+
+    [SerializeField]
+    private float dropMultiplier = 1;
+
+    [SerializeField]
+    private int maxDrop = 4, minDrop = 1;
 
     public void Drop()
     {
-        int randNum = Random.Range(0, 100);
+        float randNum;
+        int randAmt = Random.Range(minDrop, maxDrop);
+        float lowerBound = 0, upperBound;
 
-        GenItem(itemList[0]);
-        GenItem(itemList[0]);
-        GenItem(itemList[0]);
+        for (int i = 0; i < randAmt; i++) {
+            randNum = (float)Random.Range(0, 1000) / 1000;
+            lowerBound = 0;
+
+            foreach (GameObject item in Globals.getItemList()) {
+                upperBound = (item.GetComponent<IItem>().dropChance / Globals.totalDropChance()) + lowerBound;
+
+                if (randNum <= upperBound && randNum >= lowerBound) {
+                    GenItem(item);
+                    break;
+                }
+
+                lowerBound = upperBound;
+            }
+        }
     }
 
     private void GenItem(GameObject item)
