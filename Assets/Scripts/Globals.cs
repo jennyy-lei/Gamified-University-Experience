@@ -7,9 +7,15 @@ public static class Globals
     private static readonly GameObject[] charList = Resources.LoadAll<GameObject>("Units/PlayerSprites/");
     private static int charIndex = 0;
 
+    private static readonly GameObject[] itemList = Resources.LoadAll<GameObject>("Items/");
+
+    public static GameState gameState = GameState.get();
+    public static PlayerState playerState = PlayerState.get();
+
     // getters
     public static GameObject[] getCharList () => charList;
     public static int getCharIndex () => charIndex;
+    public static GameObject[] getItemList () => itemList;
     
     // setters
     public static void setCharIndex (int index) {
@@ -32,6 +38,16 @@ public static class Globals
     public static PlayerState playerState = PlayerState.get();
 
     public static bool useStatePos = false;
+    // other functions
+    public static float totalDropChance() {
+        float max = 0;
+        foreach (GameObject item in itemList) {
+            //if(max <= item.GetComponent<IItem>().dropChance)
+                max += item.GetComponent<IItem>().dropChance;
+        }
+
+        return max;
+    }
 }
 
 public static class StrConstant
@@ -41,6 +57,4 @@ public static class StrConstant
     public const string playerTag = "Player";
     public const string enemyTag = "Enemy";
     public const string bulletTag = "Bullet";
-    
-
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5895159135251449461}
   - component: {fileID: 5895159135251449458}
   m_Layer: 8
-  m_Name: item_gold
+  m_Name: Item_gold
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,4 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8206dd95b9d41b88233311f25565be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  <value>k__BackingField: 1
+  <dropChance>k__BackingField: 50
