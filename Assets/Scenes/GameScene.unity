@@ -1418,7 +1418,6 @@ GameObject:
   - component: {fileID: 926455427}
   - component: {fileID: 926455426}
   - component: {fileID: 926455425}
-  - component: {fileID: 926455424}
   - component: {fileID: 926455423}
   m_Layer: 11
   m_Name: Player
@@ -1441,26 +1440,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 0}
   bounceCooldown: 0.25
---- !u!114 &926455424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926455422}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3834e090a125145788b23f2d65514791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpHeight: 4
-  animator: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
-    type: 3}
-  healthBar: {fileID: 0}
 --- !u!114 &926455425
 MonoBehaviour:
   m_ObjectHideFlags: 0

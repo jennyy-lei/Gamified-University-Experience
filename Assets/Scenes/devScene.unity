@@ -894,7 +894,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750579597}
-  - component: {fileID: 750579596}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -902,20 +901,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &750579596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750579595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad2c39e1b54e0b45a13cd987ef82a15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  save: 0
-  data: {fileID: 4897953527915284322}
 --- !u!4 &750579597
 Transform:
   m_ObjectHideFlags: 0
@@ -2486,7 +2471,6 @@ GameObject:
   - component: {fileID: 2526778744707031588}
   - component: {fileID: 2526778744707031590}
   - component: {fileID: 4897953527915284322}
-  - component: {fileID: 4897953527915284325}
   - component: {fileID: 4897953527915284324}
   m_Layer: 11
   m_Name: Player
@@ -2644,26 +2628,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 0}
   bounceCooldown: 0.25
---- !u!114 &4897953527915284325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2526778744707031609}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3834e090a125145788b23f2d65514791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpHeight: 4
-  animator: {fileID: 0}
-  spawnPoint: {fileID: 684484614}
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
-    type: 3}
-  healthBar: {fileID: 1031745997}
 --- !u!1001 &6372577322764455854
 PrefabInstance:
   m_ObjectHideFlags: 0
