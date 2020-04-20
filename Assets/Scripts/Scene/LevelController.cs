@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
 using System;
+using System.IO;
 using System.Text;
 
 public class LevelController
 {
+
+    private static int minLevel = 2;
+    private static int maxLevel = 3;
+    public static void startLevel(){
+        switchLevel();
+    }
+
+    public static void exitLevel(){
+        switchScene(1);
+    }
+
+    public static void switchLevel(){
+        switchScene(UnityEngine.Random.Range(minLevel,maxLevel + 1));
+    }
     public static void switchScene(int index){
             SceneManager.LoadScene(index);
     }
-
-    public static void save(){
-
-    }
-
     public static void saveData<T>(T data, string fileName){
         string tempPath = Path.Combine(Application.persistentDataPath,"data");
 

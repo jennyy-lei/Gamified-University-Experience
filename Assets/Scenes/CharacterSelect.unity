@@ -962,6 +962,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 6372577322405731043, guid: fd38519bffec54200aff53e796f500df,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6372577322405731070, guid: fd38519bffec54200aff53e796f500df,
         type: 3}
       propertyPath: m_LocalPosition.x

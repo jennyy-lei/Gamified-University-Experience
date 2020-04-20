@@ -1455,7 +1455,7 @@ MonoBehaviour:
   <totalHealth>k__BackingField: 100
   <MAX_WALK_SPEED>k__BackingField: 5
   <moveSpeed>k__BackingField: 0
-  <healthBar>k__BackingField: {fileID: 0}
+  <healthBar>k__BackingField: {fileID: 1031745997}
   <jumpPow>k__BackingField: 4
   <maxJumpNum>k__BackingField: 3
   <jumpNum>k__BackingField: 0
@@ -1464,8 +1464,8 @@ MonoBehaviour:
   <shootPos>k__BackingField: {fileID: 1084720960}
   <bullet>k__BackingField: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
     type: 3}
-  <bulletText>k__BackingField: {fileID: 0}
-  <goldText>k__BackingField: {fileID: 0}
+  <bulletText>k__BackingField: {fileID: 859347851}
+  <goldText>k__BackingField: {fileID: 972796402}
 --- !u!50 &926455426
 Rigidbody2D:
   serializedVersion: 4
@@ -3383,12 +3383,12 @@ PrefabInstance:
     - target: {fileID: 6372577322405731070, guid: fd38519bffec54200aff53e796f500df,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.19
+      value: 4.408
       objectReference: {fileID: 0}
     - target: {fileID: 6372577322405731070, guid: fd38519bffec54200aff53e796f500df,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.9
+      value: 16.014
       objectReference: {fileID: 0}
     - target: {fileID: 6372577322405731070, guid: fd38519bffec54200aff53e796f500df,
         type: 3}

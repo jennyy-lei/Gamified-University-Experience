@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum PortalType
 {
+    Null,
     Start,
     Teleport,
     Exit
@@ -34,6 +35,11 @@ public class Portal : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         playerScript = player.GetComponent<Player2>();
+        if(type == PortalType.Null){
+            type = (PortalType) Random.Range((int)PortalType.Teleport,((int) PortalType.Exit) +1);
+            Debug.Log(type);
+        }
+
     }
 
     void Update()
@@ -64,6 +70,16 @@ public class Portal : MonoBehaviour
         Invoke("switchScene",tpTime);
     }
     void switchScene(){
-        LevelController.switchScene(2);
+        switch(type){
+            case PortalType.Start:
+                LevelController.startLevel();
+                break;
+            case PortalType.Exit:
+                LevelController.exitLevel();
+                break;
+            case PortalType.Teleport:
+                LevelController.switchLevel();
+                break;
+        }
     }
 }
