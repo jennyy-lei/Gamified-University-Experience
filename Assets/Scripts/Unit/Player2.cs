@@ -51,6 +51,7 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     public void Awake(){
         base.Awake();
+        changeChar();
         bulletCount = bulletLimit;
     }
     public void Update(){
@@ -71,35 +72,6 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     protected override void initSpawn(){
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
-    }
-
-    protected override void initGameStat(){
-        PlayerState state = Globals.playerState;
-        if(state == null && Globals.useStatePos) {
-            this.bulletCount = this.bulletLimit;
-            this.remainHealth = this.totalHealth;
-            state = getPlayerState();
-            Globals.playerState = state;
-        }
-        else if(state != null){
-            this.remainHealth = state.remainHealth;
-            this.gold = state.gold;
-            this.bulletCount = state.bulletCount;
-            Globals.setCharIndex(state.charIndex);
-        }
-        if(Globals.useStatePos)
-        {
-            this.facingRight = state.facingRight;
-            transform.position = state.position.toVector3();
-            if(!facingRight) transform.Rotate(0f,180f,0f);
-        }
-        else
-        {
-            transform.position = spawnPoint.position;
-            this.facingRight = true;
-        } 
-        changeChar();
-        
     }
 
     private void changeChar() {

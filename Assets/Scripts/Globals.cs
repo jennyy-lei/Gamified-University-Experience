@@ -19,22 +19,6 @@ public static class Globals
         if (index >= 0 && index <= charList.Length)
             charIndex = index;
     }
-
-    private static GameState _gameState;
-    public static GameState gameState{
-        get{
-            if(_gameState == null){
-                _gameState = GameState.get();
-            }
-            return _gameState;
-        }
-        set{
-            _gameState = value;
-        }
-    }
-    public static PlayerState playerState = PlayerState.get();
-
-    public static bool useStatePos = false;
     // other functions
     public static float totalDropChance() {
         float max = 0;

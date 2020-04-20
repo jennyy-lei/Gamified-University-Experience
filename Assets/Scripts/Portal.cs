@@ -64,17 +64,6 @@ public class Portal : MonoBehaviour
         Invoke("switchScene",tpTime);
     }
     void switchScene(){
-        switch(type){
-            case PortalType.Start:
-                Globals.useStatePos = true;
-                LevelController.initGameScene();
-                break;
-            default:
-                Globals.useStatePos = false;
-                LevelController.switchScene(2);
-                player = GameObject.FindWithTag("Player").transform;
-                playerScript = player.GetComponent<Player2>();
-                break;
-        }
+        LevelController.switchScene(2);
     }
 }

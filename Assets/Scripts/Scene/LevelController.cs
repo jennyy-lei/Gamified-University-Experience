@@ -8,16 +8,8 @@ using System.Text;
 
 public class LevelController
 {
-
-    public static void initGameScene(){
-        int index = Globals.gameState.curSceneIndex;
-        if(SceneManager.GetActiveScene().buildIndex != index){
-            LevelController.switchScene(index);
-        }
-    }
     public static void switchScene(int index){
             SceneManager.LoadScene(index);
-            Globals.gameState.curSceneIndex = index;
     }
 
     public static void save(){
