@@ -11,20 +11,28 @@ public class LevelController
 
     private static int minLevel = 2;
     private static int maxLevel = 3;
+
+    public static PlayerState playerState = PlayerState.get();
+
     public static void startLevel(){
-        switchLevel();
+        switchLevel(playerState);
     }
 
-    public static void exitLevel(){
+    public static void exitLevel(PlayerState state){
+        playerState = state;
+        playerState.position = null;
         switchScene(1);
     }
 
-    public static void switchLevel(){
+    public static void switchLevel(PlayerState state){
+        playerState = state;
+        playerState.position = null;
         switchScene(UnityEngine.Random.Range(minLevel,maxLevel + 1));
     }
     public static void switchScene(int index){
             SceneManager.LoadScene(index);
     }
+
     public static void saveData<T>(T data, string fileName){
         string tempPath = Path.Combine(Application.persistentDataPath,"data");
 

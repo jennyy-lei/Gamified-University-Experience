@@ -48,11 +48,14 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     //info
     private int gold = 0;
+    public int getGold(){
+        return gold;
+    }
 
     public void Awake(){
         base.Awake();
         changeChar();
-        bulletCount = bulletLimit;
+        setPlayerState(LevelController.playerState);
     }
     public void Update(){
         base.Update();
@@ -125,13 +128,27 @@ public class Player2 : Unit2,IJumpable,IShootable
         updateGold();
     }
 
-    public PlayerState getPlayerState(){
+    public PlayerState getPlayerState(bool keepPos){
         PlayerState state = new PlayerState(transform.position);
+        if(!keepPos) state.position = null;
         state.remainHealth = remainHealth;
+        state.totalHealth = totalHealth;
         state.gold = gold;
         state.bulletCount = bulletCount;
+        state.bulletLimit = bulletLimit;
         state.facingRight = facingRight;
         state.charIndex = Globals.getCharIndex();
         return state;
+    }
+
+    public void setPlayerState(PlayerState state){
+        totalHealth = state.totalHealth;
+        remainHealth = state.remainHealth;
+        gold = state.gold;
+        bulletCount = state.bulletCount;
+        bulletLimit = state.bulletLimit;
+        facingRight = state.facingRight;
+        if(!facingRight) transform.Rotate(0f,180f,0f);
+        transform.position =  state.position == null ? spawnPoint.position : state.position.toVector3();
     }
 }

@@ -32,12 +32,24 @@ public class Vector2State
 public class PlayerState
 {
     public float remainHealth;
+    public float totalHealth;
     public float bulletCount;
+    public float bulletLimit;
     public bool facingRight;
     public int gold;
     public Vector2State position;
     public int charIndex;
 
+    public PlayerState(){
+        remainHealth = 20;
+        totalHealth = 20;
+        gold = 0;
+        charIndex = Globals.getCharIndex();
+        facingRight = true;
+        bulletCount = 20;
+        bulletLimit = 20;
+        position = null;
+    }
     public PlayerState(Vector2 position){
         remainHealth = bulletCount = 0f;
         gold = 0;
@@ -45,8 +57,10 @@ public class PlayerState
         this.facingRight = true;
         this.position = new Vector2State(position);
     }
+    
     public static PlayerState get(){
-        return LevelController.loadData<PlayerState>("PlayerState");
+        PlayerState state = LevelController.loadData<PlayerState>("PlayerState");
+        return state != null ? state : new PlayerState();
     }
 }
 

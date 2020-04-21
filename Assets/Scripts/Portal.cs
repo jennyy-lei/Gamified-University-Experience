@@ -75,10 +75,10 @@ public class Portal : MonoBehaviour
                 LevelController.startLevel();
                 break;
             case PortalType.Exit:
-                LevelController.exitLevel();
+                LevelController.exitLevel(playerScript.getPlayerState(false));
                 break;
             case PortalType.Teleport:
-                LevelController.switchLevel();
+                LevelController.switchLevel(playerScript.getPlayerState(false));
                 break;
         }
     }
