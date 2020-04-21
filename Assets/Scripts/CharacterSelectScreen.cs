@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelect : MonoBehaviour
+public class CharacterSelectScreen : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
@@ -25,6 +25,13 @@ public class CharacterSelect : MonoBehaviour
         LoadButtons();
 
         content.GetChild(Globals.getCharIndex()).GetComponent<Selectable>().Select();
+    }
+
+    public void Update()
+    {
+        if(Input.GetButtonDown("Submit")) {
+            StartGame();
+        }
     }
 
     private void LoadButtons()
@@ -65,11 +72,9 @@ public class CharacterSelect : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("start!");
-
         getAnimator();
 
-        player.GetComponent<InputController>().enabled = true;
+        // player.GetComponent<InputController>().enabled = true;
         gameObject.SetActive(false);
     }
 
