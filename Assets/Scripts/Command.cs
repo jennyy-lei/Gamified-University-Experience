@@ -90,7 +90,13 @@ public class ShootCmd : Command{
         if (shootInfo.bulletCount == 0) return;
 
         Transform firePoint = shootInfo.shootPos;
-        GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
-        shootInfo.bulletCount--;
+        GameObject bullet = GameObject.Instantiate(shootInfo.bullet, firePoint.position, firePoint.rotation);
+        
+        BulletController bulletCon = bullet.GetComponent<BulletController>();
+        
+        if(bulletCon) {
+            bulletCon.dmg = shootInfo.bulletDmg;
+            shootInfo.bulletCount--;
+        }
     }
 }

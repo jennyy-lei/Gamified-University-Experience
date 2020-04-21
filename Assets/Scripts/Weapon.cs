@@ -6,6 +6,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
+    
+    [field: SerializeField]
+    public int dmg;
 
     [SerializeField]
     private float coolDown;

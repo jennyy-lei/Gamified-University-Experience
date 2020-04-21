@@ -13,6 +13,7 @@ interface IShootable
     float shootDist {set;get;}
     float bulletLimit {set;get;}
     float bulletCount {set;get;}
+    int bulletDmg {set;get;}
 
     Transform shootPos{set;get;}
     GameObject bullet {set;get;}

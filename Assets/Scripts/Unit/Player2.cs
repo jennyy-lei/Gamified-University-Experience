@@ -39,6 +39,7 @@ public class Player2 : Unit2,IJumpable,IShootable
 
         }
     }
+    public int bulletDmg{get;set;}
 
     //text
     [field: SerializeField]
@@ -54,6 +55,7 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     public void Awake(){
         base.Awake();
+        changeWeapon();
         changeChar();
         setPlayerState(LevelController.playerState);
     }
@@ -79,14 +81,20 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     private void changeChar() {
         GameObject newObj = (GameObject)Instantiate(Globals.getCharList()[Globals.getCharIndex()], transform.GetChild(0).position, transform.GetChild(0).rotation);
-        newObj.transform.localScale = new Vector3(1, 1, 1);
-
+        
         Destroy(transform.GetChild(0).gameObject);
-
         newObj.transform.SetParent(transform);
         newObj.transform.SetSiblingIndex(0);
+        
+        newObj.transform.localScale = new Vector3(1, 1, 1);
 
         GetComponent<Player2>().animator = GetComponentInChildren<Animator>();
+    }
+
+    private void changeWeapon() {
+        Weapon weap = transform.GetChild(1).GetComponent<Weapon>();
+
+        bulletDmg = weap.dmg;
     }
     
     private void restrainWithBg(){
