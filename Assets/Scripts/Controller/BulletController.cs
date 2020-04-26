@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     public float speed;
     public float knockbackForce;
     public float maxDist;
-    public int dmg;
+    public int dmg{get;set;}
     public Animator animator;
 
     private Rigidbody2D rb2d;

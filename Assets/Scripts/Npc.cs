@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trader : MonoBehaviour
+public class Npc : MonoBehaviour
 {
     private Transform player;
 
@@ -17,6 +17,7 @@ public class Trader : MonoBehaviour
     private Vector2 textStartPosition;
 
     private bool isFacingRight;
+    private bool isActive;
     
     void Start()
     {
@@ -27,6 +28,7 @@ public class Trader : MonoBehaviour
         convoText.SetActive(false);
 
         isFacingRight = true;
+        isActive = false;
     }
 
     void Awake()
@@ -43,10 +45,15 @@ public class Trader : MonoBehaviour
                 nameText.SetActive(false);
                 convoText.SetActive(true);
 
-                Input();
+                OnInput();
             } else {
                 nameText.SetActive(true);
                 convoText.SetActive(false);
+
+                if(isActive) {
+                    Close();
+                    isActive = false;
+                }
             }
         } else {
             textCanvas.SetActive(false);
@@ -63,8 +70,14 @@ public class Trader : MonoBehaviour
         }
     }
 
-    private void Input()
+    private void OnInput()
     {
-
+        if (Input.GetButtonDown("Submit")) {
+            isActive = true;
+            Open();
+        }
     }
+
+    virtual public void Open() {}
+    virtual public void Close() {}
 }

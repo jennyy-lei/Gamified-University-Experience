@@ -39,7 +39,7 @@ public abstract class Unit2 : MonoBehaviour
     public Image healthBar{get;set;}
 
     public bool isDead{
-        get =>remainHealth <= 0;
+        get => remainHealth <= 0;
     }
 
     public void Awake()
@@ -74,5 +74,3 @@ public abstract class Enemy2 : Unit2
     [field: SerializeField]
     public float aggroRadius {get;set;}
 }
-
-

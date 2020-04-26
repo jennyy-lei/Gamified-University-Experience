@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1803717943650896570}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: shoot point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1803717944055099614}
   - component: {fileID: 1803717944055099615}
   - component: {fileID: 1803717944055099584}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BeginnerWeap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803717944055099586}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.152, y: -0.203, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -145,4 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1803717944055099615}
+  dmg: 3
   coolDown: 0.5
