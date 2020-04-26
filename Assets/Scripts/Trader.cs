@@ -31,7 +31,6 @@ public class Trader : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("hello?");
         player = GameObject.FindWithTag("Player").transform;
     }
 
