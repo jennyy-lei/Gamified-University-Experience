@@ -75,10 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aff28de2f65244e881adfe953e69802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 22800560163573054, guid: 7dc7cd70be622491c9de8f5ff685b50f, type: 3}
-  - {fileID: 5895159135251449460, guid: 50edf499414f64d63bf05233f720150c, type: 3}
-  - {fileID: 4705158967212632011, guid: d90a17c343e0549a0b5ebef72e2ab03b, type: 3}
+  dropMultiplier: 1
+  maxDrop: 4
+  minDrop: 1
 --- !u!60 &496273464
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -200,12 +199,12 @@ PrefabInstance:
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.01
+      value: -15.04
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.26
+      value: -4.2
       objectReference: {fileID: 0}
     - target: {fileID: 6429634291728979914, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}
@@ -317,6 +316,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429634292723068057, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429634292723068057, guid: 66180a03069624420bd1315ad9ad65cc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6429634292723068261, guid: 66180a03069624420bd1315ad9ad65cc,
         type: 3}

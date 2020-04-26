@@ -37,7 +37,7 @@ public class Portal : MonoBehaviour
         playerScript = player.GetComponent<Player2>();
         if(type == PortalType.Null){
             type = (PortalType) Random.Range((int)PortalType.Teleport,((int) PortalType.Exit) +1);
-            Debug.Log(type);
+            Debug.Log("Next portal:" + type);
         }
 
     }

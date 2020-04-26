@@ -12,6 +12,10 @@ public class Vector2State
         this.x = v.x;
         this.y = v.y;
     }
+    public Vector2State(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
     
     public void fromVector2(Vector2 v){
         x = v.x;
@@ -73,7 +77,7 @@ public enum EnemyType
 public class EnemyState
 {
     public float remainHealth;
-    public float facingRight;
+    public bool facingRight;
     public Vector2State position;
     public EnemyType id;
 }

@@ -20,7 +20,6 @@ public class CharacterSelectScreen : MonoBehaviour
     public void Awake()
     {
         charList = Globals.getCharList();
-        Debug.Log(charList.Length);
 
         LoadButtons();
 
@@ -48,8 +47,6 @@ public class CharacterSelectScreen : MonoBehaviour
 
             charSprite.transform.position = new Vector3(0, 0);
             charSprite.transform.localScale = new Vector3(scale, scale);
-
-            Debug.Log(charSprite.transform.position);
 
             charParent.GetComponent<Button>().onClick.AddListener(() => Select(index));
         }
