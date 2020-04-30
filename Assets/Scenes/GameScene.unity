@@ -1313,6 +1313,7 @@ GameObject:
   - component: {fileID: 926455426}
   - component: {fileID: 926455425}
   - component: {fileID: 926455423}
+  - component: {fileID: 926455424}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1334,6 +1335,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 0}
   bounceCooldown: 0.25
+--- !u!114 &926455424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926455422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f550c3313b0a6f4189f6e7c1c5099e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &926455425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacd461fa873a74468a1b21e51144688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   <totalHealth>k__BackingField: 100
   <MAX_WALK_SPEED>k__BackingField: 5
   <moveSpeed>k__BackingField: 0

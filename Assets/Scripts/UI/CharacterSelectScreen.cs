@@ -84,7 +84,7 @@ public class CharacterSelectScreen : MonoBehaviour
     public void Submit()
     {
         if(Globals.getCharIndex() != tempChar){
-            if(playerScript.gold < tempChar) return;
+            if(playerScript.gold < 0) return;
             playerScript.gold -= tempChar; //temp price for each sprite
         }
         Globals.setCharIndex(tempChar);

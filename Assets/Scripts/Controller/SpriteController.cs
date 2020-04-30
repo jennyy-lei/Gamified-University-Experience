@@ -11,6 +11,10 @@ public class SpriteController : MonoBehaviour
         charList = Globals.getCharList();
     }
 
+    void Start(){
+        switchChar(Globals.getCharIndex());
+    }
+
     public void switchChar(int index){
         GameObject newObj = (GameObject)Instantiate(charList[index], transform.GetChild(0).position, transform.GetChild(0).rotation);
         newObj.transform.localScale = new Vector3(1, 1, 1);

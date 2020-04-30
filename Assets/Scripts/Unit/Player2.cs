@@ -61,7 +61,6 @@ public class Player2 : Unit2,IJumpable,IShootable
     public void Awake(){
         base.Awake();
         changeWeapon();
-        changeChar();
         setPlayerState(LevelController.playerState);
         isInvincible = LevelController.getSceneIndex() == 1;
     }
@@ -83,18 +82,6 @@ public class Player2 : Unit2,IJumpable,IShootable
 
     protected override void initSpawn(){
         spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
-    }
-
-    private void changeChar() {
-        GameObject newObj = (GameObject)Instantiate(Globals.getCharList()[Globals.getCharIndex()], transform.GetChild(0).position, transform.GetChild(0).rotation);
-        
-        Destroy(transform.GetChild(0).gameObject);
-        newObj.transform.SetParent(transform);
-        newObj.transform.SetSiblingIndex(0);
-        
-        newObj.transform.localScale = new Vector3(1, 1, 1);
-
-        GetComponent<Player2>().animator = GetComponentInChildren<Animator>();
     }
 
     private void changeWeapon() {
