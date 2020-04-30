@@ -482,6 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacd461fa873a74468a1b21e51144688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   <totalHealth>k__BackingField: 100
   <MAX_WALK_SPEED>k__BackingField: 5
   <moveSpeed>k__BackingField: 0
@@ -915,10 +916,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02702cdd33a504e3d916c6decdc044e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1650141647}
   player: {fileID: 229907671}
   content: {fileID: 1212983320}
   prefab: {fileID: 3443333268951782826, guid: d9d45014a396841f3ad594c35eb889a4, type: 3}
   scale: 55
+  tempChar: 0
 --- !u!1 &419386199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2401,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 394123215}
-        m_MethodName: StartGame
+        m_MethodName: Submit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

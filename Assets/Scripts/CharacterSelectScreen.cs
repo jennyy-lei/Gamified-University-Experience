@@ -9,15 +9,14 @@ public class CharacterSelectScreen : MonoBehaviour
     public Button button;
     private TextMeshProUGUI buttonText;
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
     private Transform content;
     [SerializeField]
     private GameObject prefab;
 
     private GameObject[] charList;
 
-    private Player2 playerScript;
+    public Player2 playerScript;
+    private SpriteController spriteScript;
 
     [SerializeField]
     private int scale;
@@ -31,7 +30,7 @@ public class CharacterSelectScreen : MonoBehaviour
         LoadButtons();
 
         content.GetChild(Globals.getCharIndex()).GetComponent<Selectable>().Select();
-        playerScript = player.GetComponent<Player2>();
+        spriteScript = playerScript.gameObject.GetComponent<SpriteController>();
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
         buttonText.text = "0 gold";
     }
@@ -39,7 +38,7 @@ public class CharacterSelectScreen : MonoBehaviour
     public void Update()
     {
         if(Input.GetButtonDown("Submit")) {
-            StartGame();
+            Submit();
         }
     }
 
@@ -64,15 +63,7 @@ public class CharacterSelectScreen : MonoBehaviour
 
     public void Select(int index)
     {
-        GameObject newObj = (GameObject)Instantiate(charList[index], player.transform.GetChild(0).position, player.transform.GetChild(0).rotation);
-        newObj.transform.localScale = new Vector3(1, 1, 1);
-
-        Destroy(player.transform.GetChild(0).gameObject);
-
-        newObj.transform.SetParent(player.transform);
-        newObj.transform.SetSiblingIndex(0);
-
-        getAnimator();
+        spriteScript.switchChar(index);
         tempChar = index;
         buttonText.text = tempChar + " gold";
         if(playerScript.gold < tempChar){
@@ -85,16 +76,18 @@ public class CharacterSelectScreen : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void Submit()
     {
-        getAnimator();
         if(Globals.getCharIndex() != tempChar){
+            if(playerScript.gold < tempChar) return;
             playerScript.gold -= tempChar; //temp price for each sprite
-            Debug.Log("in");
         }
-        gameObject.SetActive(false);
         Globals.setCharIndex(tempChar);
+        gameObject.SetActive(false);
     }
-
-    private void getAnimator() => player.GetComponent<Player2>().animator = player.GetComponentInChildren<Animator>();
+    void OnDisable(){
+        if(Globals.getCharIndex() != tempChar){
+            Select(Globals.getCharIndex());
+        }
+    }
 }

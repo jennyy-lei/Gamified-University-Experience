@@ -12,10 +12,6 @@ public class CharSelectNPC : Npc
     }
 
     override public void Close() {
-        CharacterSelectScreen script = selectScreen.GetComponent<CharacterSelectScreen>(); 
-        if(script.tempChar != Globals.getCharIndex()){
-            script.Select(Globals.getCharIndex());
-        }
         selectScreen.SetActive(false);
     }
 }
