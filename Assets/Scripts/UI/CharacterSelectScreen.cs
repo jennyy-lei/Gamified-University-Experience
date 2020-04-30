@@ -67,8 +67,8 @@ public class CharacterSelectScreen : MonoBehaviour
     }
     public void Select(int index)
     {
-        buttonText.text = tempChar + " gold";
-        if(playerScript.gold < tempChar){
+        buttonText.text = index + " gold";
+        if(playerScript.gold < index){
             button.interactable = false;
             buttonText.color = Color.red;
         }
