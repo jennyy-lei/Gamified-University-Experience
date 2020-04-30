@@ -48,9 +48,14 @@ public class Player2 : Unit2,IJumpable,IShootable
     public TextMeshProUGUI goldText{get;set;}
 
     //info
-    private int gold = 0;
-    public int getGold(){
-        return gold;
+    private int _gold;
+    public int gold
+    {
+        get => _gold;
+        set{
+            _gold = value;
+            updateGold();
+        }
     }
 
     public void Awake(){
@@ -129,12 +134,6 @@ public class Player2 : Unit2,IJumpable,IShootable
         if (!goldText) return;
 
         goldText.text = gold.ToString();
-    }
-
-    public void incGold(int amt) {
-        gold += amt;
-
-        updateGold();
     }
 
     public PlayerState getPlayerState(bool keepPos){

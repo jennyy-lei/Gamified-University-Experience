@@ -75,7 +75,7 @@ public class CharacterSelectScreen : MonoBehaviour
         getAnimator();
         tempChar = index;
         buttonText.text = tempChar + " gold";
-        if(playerScript.getGold() < tempChar){
+        if(playerScript.gold < tempChar){
             button.enabled = false;
             buttonText.color = Color.red;
         }
@@ -89,7 +89,7 @@ public class CharacterSelectScreen : MonoBehaviour
     {
         getAnimator();
         if(Globals.getCharIndex() != tempChar){
-            playerScript.incGold(-tempChar); //temp price for each sprite
+            playerScript.gold -= tempChar; //temp price for each sprite
             Debug.Log("in");
         }
         gameObject.SetActive(false);
