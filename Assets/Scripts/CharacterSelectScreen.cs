@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSelectScreen : MonoBehaviour
 {
+    public Button button;
+    private TextMeshProUGUI buttonText;
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -13,6 +16,8 @@ public class CharacterSelectScreen : MonoBehaviour
     private GameObject prefab;
 
     private GameObject[] charList;
+
+    private Player2 playerScript;
 
     [SerializeField]
     private int scale;
@@ -26,6 +31,9 @@ public class CharacterSelectScreen : MonoBehaviour
         LoadButtons();
 
         content.GetChild(Globals.getCharIndex()).GetComponent<Selectable>().Select();
+        playerScript = player.GetComponent<Player2>();
+        buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+        buttonText.text = "0 gold";
     }
 
     public void Update()
@@ -66,13 +74,24 @@ public class CharacterSelectScreen : MonoBehaviour
 
         getAnimator();
         tempChar = index;
+        buttonText.text = tempChar + " gold";
+        if(playerScript.getGold() < tempChar){
+            button.enabled = false;
+            buttonText.color = Color.red;
+        }
+        else{
+            button.enabled = true;
+            buttonText.color = Color.black;
+        }
     }
 
     public void StartGame()
     {
         getAnimator();
-
-        // player.GetComponent<InputController>().enabled = true;
+        if(Globals.getCharIndex() != tempChar){
+            playerScript.incGold(-tempChar); //temp price for each sprite
+            Debug.Log("in");
+        }
         gameObject.SetActive(false);
         Globals.setCharIndex(tempChar);
     }
