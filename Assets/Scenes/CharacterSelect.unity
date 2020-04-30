@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 229907675}
   - component: {fileID: 229907674}
   - component: {fileID: 229907672}
+  - component: {fileID: 229907673}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -470,6 +471,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 0}
   bounceCooldown: 0.5
+--- !u!114 &229907673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229907671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f550c3313b0a6f4189f6e7c1c5099e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &229907674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,9 +930,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1650141647}
-  player: {fileID: 229907671}
   content: {fileID: 1212983320}
   prefab: {fileID: 3443333268951782826, guid: d9d45014a396841f3ad594c35eb889a4, type: 3}
+  playerScript: {fileID: 229907674}
   scale: 55
   tempChar: 0
 --- !u!1 &419386199
