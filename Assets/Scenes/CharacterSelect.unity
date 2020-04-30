@@ -933,6 +933,7 @@ MonoBehaviour:
   content: {fileID: 1212983320}
   prefab: {fileID: 3443333268951782826, guid: d9d45014a396841f3ad594c35eb889a4, type: 3}
   playerScript: {fileID: 229907674}
+  spriteScript: {fileID: 229907673}
   scale: 55
   tempChar: 0
 --- !u!1 &419386199

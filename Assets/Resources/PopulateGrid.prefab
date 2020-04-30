@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9000749508982086851}
   - component: {fileID: 9000749508982086848}
   - component: {fileID: 9000749508982086850}
+  - component: {fileID: 4301794703570042909}
   m_Layer: 5
   m_Name: PopulateGrid
   m_TagString: Untagged
@@ -116,15 +117,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9000749508982086848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Select
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 3443333268951782826}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &4301794703570042909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443333268951782826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1390f3687f2d1e448a9a99f32b27a8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class CharacterSelectScreen : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class CharacterSelectScreen : MonoBehaviour
     private GameObject[] charList;
 
     public Player2 playerScript;
-    private SpriteController spriteScript;
+    public SpriteController spriteScript;
 
     [SerializeField]
     private int scale;
@@ -26,13 +27,16 @@ public class CharacterSelectScreen : MonoBehaviour
     public void Awake()
     {
         charList = Globals.getCharList();
-
         LoadButtons();
-
-        content.GetChild(Globals.getCharIndex()).GetComponent<Selectable>().Select();
-        spriteScript = playerScript.gameObject.GetComponent<SpriteController>();
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-        buttonText.text = "0 gold";
+        tempChar = Globals.getCharIndex();
+    }
+
+    public void OnEnable(){
+        //Why this? See https://answers.unity.com/questions/1159573/eventsystemsetselectedgameobject-doesnt-highlight.html
+        Button temp = content.GetChild(Globals.getCharIndex()).GetComponent<Button>();
+        temp.Select();
+        temp.OnSelect(null);
     }
 
     public void Update()
@@ -48,7 +52,7 @@ public class CharacterSelectScreen : MonoBehaviour
             GameObject charParent = (GameObject)Instantiate(prefab);
             GameObject charSprite = (GameObject)Instantiate(charList[i]);
             int index = i;
-
+            charParent.name = i.ToString();
             charSprite.transform.SetParent(charParent.transform);
             charParent.transform.SetParent(content);
 
@@ -58,13 +62,11 @@ public class CharacterSelectScreen : MonoBehaviour
             charSprite.transform.localScale = new Vector3(scale, scale);
 
             charParent.GetComponent<Button>().onClick.AddListener(() => Select(index));
+            charParent.GetComponent<SelectableEvent>().onSelect.AddListener(()=>Select(index));
         }
     }
-
     public void Select(int index)
     {
-        spriteScript.switchChar(index);
-        tempChar = index;
         buttonText.text = tempChar + " gold";
         if(playerScript.gold < tempChar){
             button.interactable = false;
@@ -74,6 +76,9 @@ public class CharacterSelectScreen : MonoBehaviour
             button.interactable = true;
             buttonText.color = Color.black;
         }
+        if(tempChar == index) return;
+        spriteScript.switchChar(index);
+        tempChar = index;
     }
 
     public void Submit()
