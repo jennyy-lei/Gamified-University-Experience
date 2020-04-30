@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public abstract class Unit2 : MonoBehaviour
 {
+    public bool isInvincible;
     [field: SerializeField]
     public float totalHealth{get;set;}
     private float _remainHealth;
@@ -14,6 +15,7 @@ public abstract class Unit2 : MonoBehaviour
         get => _remainHealth;
         set
         {
+            if(isInvincible && value <= _remainHealth) return;
             _remainHealth = value;
             if (_remainHealth > totalHealth) _remainHealth = totalHealth;
             if (_remainHealth <= 0){
@@ -44,6 +46,7 @@ public abstract class Unit2 : MonoBehaviour
 
     public void Awake()
     {
+        isInvincible = false;
         facingRight = true;
         moveSpeed = 0;
         animator = GetComponentInChildren<Animator>();

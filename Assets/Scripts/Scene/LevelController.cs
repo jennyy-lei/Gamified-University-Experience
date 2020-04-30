@@ -14,10 +14,13 @@ public class LevelController
 
     public static PlayerState playerState = PlayerState.get();
 
-    public static void startLevel(){
-        switchLevel(playerState);
+    public static int getSceneIndex(){
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
+    public static void startLevel(PlayerState state){
+        switchLevel(state);
+    }
     public static void exitLevel(PlayerState state){
         playerState = state;
         playerState.position = null;

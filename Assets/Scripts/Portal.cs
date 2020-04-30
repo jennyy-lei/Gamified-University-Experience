@@ -72,7 +72,7 @@ public class Portal : MonoBehaviour
     void switchScene(){
         switch(type){
             case PortalType.Start:
-                LevelController.startLevel();
+                LevelController.startLevel(playerScript.getPlayerState(false));
                 break;
             case PortalType.Exit:
                 LevelController.exitLevel(playerScript.getPlayerState(false));

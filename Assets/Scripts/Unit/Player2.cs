@@ -26,13 +26,13 @@ public class Player2 : Unit2,IJumpable,IShootable
     public Transform shootPos{get;set;}
     [field: SerializeField]
     public GameObject bullet {get;set;}
-
     private float _bulletCount;
     public float bulletCount
     {
         get => _bulletCount;
         set
         {
+            if(isInvincible && value <= _bulletCount) return;
             _bulletCount = value;
             if (_bulletCount > bulletLimit) _bulletCount = bulletLimit;
             updateBullet();
@@ -58,6 +58,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         changeWeapon();
         changeChar();
         setPlayerState(LevelController.playerState);
+        isInvincible = LevelController.getSceneIndex() == 1;
     }
     public void Update(){
         base.Update();
