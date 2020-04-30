@@ -17,6 +17,8 @@ public class CharacterSelectScreen : MonoBehaviour
     [SerializeField]
     private int scale;
 
+    public int tempChar;
+
     public void Awake()
     {
         charList = Globals.getCharList();
@@ -63,8 +65,7 @@ public class CharacterSelectScreen : MonoBehaviour
         newObj.transform.SetSiblingIndex(0);
 
         getAnimator();
-
-        Globals.setCharIndex(index);
+        tempChar = index;
     }
 
     public void StartGame()
@@ -73,6 +74,7 @@ public class CharacterSelectScreen : MonoBehaviour
 
         // player.GetComponent<InputController>().enabled = true;
         gameObject.SetActive(false);
+        Globals.setCharIndex(tempChar);
     }
 
     private void getAnimator() => player.GetComponent<Player2>().animator = player.GetComponentInChildren<Animator>();
