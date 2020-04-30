@@ -76,11 +76,11 @@ public class CharacterSelectScreen : MonoBehaviour
         tempChar = index;
         buttonText.text = tempChar + " gold";
         if(playerScript.gold < tempChar){
-            button.enabled = false;
+            button.interactable = false;
             buttonText.color = Color.red;
         }
         else{
-            button.enabled = true;
+            button.interactable = true;
             buttonText.color = Color.black;
         }
     }
