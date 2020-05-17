@@ -8,91 +8,153 @@ using UnityEngine.EventSystems;
 public class CharacterSelectScreen : MonoBehaviour
 {
     public Button button;
+    public TextMeshProUGUI priceText;
     private TextMeshProUGUI buttonText;
-    [SerializeField]
-    private Transform content;
-    [SerializeField]
-    private GameObject prefab;
-
+    public GameObject gridPrefab;
+    public GameObject disabledGrid;
     private GameObject[] charList;
-
     public Player2 playerScript;
     public SpriteController spriteScript;
 
     [SerializeField]
-    private int scale;
-
-    public int tempChar;
-
-    public void Awake()
+    public int selectedIndex;
+    private List<Animator> gridAnims;
+    [SerializeField]
+    private RectTransform contentRect;
+    private bool isMoving;
+    void Awake()
     {
+        isMoving = false;
         charList = Globals.getCharList();
-        LoadButtons();
+        gridAnims = new List<Animator>();
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-        tempChar = Globals.getCharIndex();
+        loadGrid();
     }
-
-    public void OnEnable(){
-        //Why this? See https://answers.unity.com/questions/1159573/eventsystemsetselectedgameobject-doesnt-highlight.html
-        Button temp = content.GetChild(Globals.getCharIndex()).GetComponent<Button>();
-        temp.Select();
-        temp.OnSelect(null);
+    void Start(){
+        button.onClick.AddListener(() => Submit());
     }
-
-    public void Update()
+    void OnEnable(){
+        selectedIndex = Globals.getCharIndex();
+        updatePrice(selectedIndex);
+        loadGridAnim();
+        updateLocation();
+    }
+    void OnDisable(){
+        if(Globals.getCharIndex() != selectedIndex){
+            spriteScript.switchChar(Globals.getCharIndex());
+        }
+        //reset panel
+        gridAnims[selectedIndex].SetTrigger("trigger");
+        contentRect.localPosition -= new Vector3(-selectedIndex*75f,0,0);
+    }
+    private void updateLocation(){
+        contentRect.localPosition += new Vector3(-selectedIndex*75f,0,0);
+        gridAnims[selectedIndex].Play("select",0,1);
+    }
+    private void loadGrid()
+    {
+        for(int i = 0; i < 3; i++){ //disabled grid
+            GameObject disableObj = (GameObject)Instantiate(disabledGrid);
+            disableObj.transform.SetParent(contentRect);
+            disableObj.transform.localScale = new Vector3(1,1,1);
+        }
+        for (int i = 0; i < charList.Length; i++) {
+            GameObject grid = (GameObject)Instantiate(gridPrefab);
+            GameObject charSprite = (GameObject)Instantiate(charList[i]);
+            charSprite.transform.SetParent(grid.transform);
+            grid.transform.SetParent(contentRect);
+            charSprite.transform.localScale = new Vector3(70f,70f,70f);
+            grid.name = i.ToString();
+            Destroy(charSprite.GetComponent<Collider>());
+            int foo = i;
+            grid.GetComponent<Button>().onClick.AddListener(() => onSelect(foo));
+            gridAnims.Insert(foo,grid.GetComponent<Animator>());
+        }
+        for(int i = 0; i < 3; i++){ //disabled grid
+            GameObject disableObj = (GameObject)Instantiate(disabledGrid);
+            disableObj.transform.SetParent(contentRect);
+            disableObj.transform.localScale = new Vector3(1,1,1);
+        }
+        updateLocation();
+    }
+    private void loadGridAnim(){
+        foreach(Animator a in gridAnims){
+            a.Play("unselect",0,1);
+        }
+        
+    }
+    void Update()
     {
         if(Input.GetButtonDown("Submit")) {
             Submit();
         }
-    }
-
-    private void LoadButtons()
-    {
-        for (int i = 0; i < charList.Length; i++) {
-            GameObject charParent = (GameObject)Instantiate(prefab);
-            GameObject charSprite = (GameObject)Instantiate(charList[i]);
-            int index = i;
-            charParent.name = i.ToString();
-            charSprite.transform.SetParent(charParent.transform);
-            charParent.transform.SetParent(content);
-
-            charParent.transform.localScale = new Vector3(1, 1);
-
-            charSprite.transform.position = new Vector3(0, 0);
-            charSprite.transform.localScale = new Vector3(scale, scale);
-
-            charParent.GetComponent<Button>().onClick.AddListener(() => Select(index));
-            charParent.GetComponent<SelectableEvent>().onSelect.AddListener(()=>Select(index));
+        float x = Input.GetAxis("Horizontal");
+        if(x > 0f){
+            onSelect(selectedIndex + 1);
+        }
+        else if (x < 0f){
+            onSelect(selectedIndex - 1);
         }
     }
-    public void Select(int index)
+    public void updatePrice(int index)
     {
-        buttonText.text = index + " gold";
-        if(playerScript.gold < index){
+        priceText.text = index + " gold";
+        if(index > playerScript.gold){
             button.interactable = false;
+            priceText.color = Color.red;
+            buttonText.text = "Unaffordable";
             buttonText.color = Color.red;
         }
         else{
             button.interactable = true;
+            priceText.color = Color.black;
+            buttonText.text = "Buy";
             buttonText.color = Color.black;
         }
-        if(tempChar == index) return;
-        spriteScript.switchChar(index);
-        tempChar = index;
     }
-
     public void Submit()
     {
-        if(Globals.getCharIndex() != tempChar){
+        if(Globals.getCharIndex() != selectedIndex){
             if(playerScript.gold < 0) return;
-            playerScript.gold -= tempChar; //temp price for each sprite
+            playerScript.gold -= selectedIndex; //temp price for each sprite
         }
-        Globals.setCharIndex(tempChar);
+        Globals.setCharIndex(selectedIndex);
         gameObject.SetActive(false);
     }
-    void OnDisable(){
-        if(Globals.getCharIndex() != tempChar){
-            Select(Globals.getCharIndex());
+    void onSelect(int index){
+        if(selectedIndex == index) return;
+        if(index < 0 || index > charList.Length -1) return;
+        if(!isMoving){
+            isMoving = true;
+            StartCoroutine(moveToIndex(index));
+            spriteScript.switchChar(index);
+            updatePrice(index);
         }
+    }
+    public IEnumerator moveToIndex(int index){
+        Vector3 startPos;
+        Vector3 endPos;
+        Vector3 amtToMove = new Vector3(75f,0f,0f);
+        float seconds = 0.6f;
+        float time;
+        int repeat = selectedIndex - index;
+        int direction = repeat >= 0 ? 1 : -1;
+        while(repeat != 0){
+            startPos = contentRect.localPosition;
+            endPos = contentRect.localPosition + direction * amtToMove;
+            time = 0f;
+            gridAnims[selectedIndex].SetTrigger("trigger");
+            selectedIndex -= direction;
+            gridAnims[selectedIndex].SetTrigger("trigger");
+            while(time < 1){
+                time += Time.deltaTime/seconds;
+                contentRect.localPosition = Vector3.Lerp(startPos,endPos,time);
+                yield return null;
+                LayoutRebuilder.MarkLayoutForRebuild(contentRect);
+            }
+            repeat -= direction;
+            contentRect.localPosition = endPos;
+        }
+        isMoving = false;
     }
 }
