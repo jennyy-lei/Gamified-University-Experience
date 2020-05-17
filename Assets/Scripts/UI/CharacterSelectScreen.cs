@@ -22,8 +22,6 @@ public class CharacterSelectScreen : MonoBehaviour
     [SerializeField]
     private RectTransform contentRect;
     private bool isMoving;
-    [SerializeField]
-    public List<GameObject> disabledList;
     void Awake()
     {
         isMoving = false;
@@ -36,9 +34,6 @@ public class CharacterSelectScreen : MonoBehaviour
         button.onClick.AddListener(() => Submit());
     }
     void OnEnable(){
-        foreach(GameObject t in disabledList){
-            t.SetActive(false);
-        }
         selectedIndex = Globals.getCharIndex();
         updatePrice(selectedIndex);
         loadGridAnim();
@@ -51,9 +46,6 @@ public class CharacterSelectScreen : MonoBehaviour
         //reset panel
         gridAnims[selectedIndex].SetTrigger("trigger");
         contentRect.localPosition -= new Vector3(-selectedIndex*75f,0,0);
-        foreach(GameObject t in disabledList){
-            t.SetActive(true);
-        }
     }
     private void updateLocation(){
         contentRect.localPosition += new Vector3(-selectedIndex*75f,0,0);

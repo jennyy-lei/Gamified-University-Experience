@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3625169132099811259}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -311,7 +311,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3625169132099811259}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 3625169131799376690}
   - component: {fileID: 3625169131799376692}
   m_Layer: 5
-  m_Name: panel
+  m_Name: CharSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,6 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 3625169131048543831}
   priceText: {fileID: 3625169131661023147}
+  goldText: {fileID: 0}
   gridPrefab: {fileID: 5839478798076140521, guid: 31f599c9705fb874ab2fb2d00314cb77,
     type: 3}
   disabledGrid: {fileID: 782855062902591823, guid: 034d492a723ebb3499785fa4aa1a8906,
@@ -536,6 +537,8 @@ MonoBehaviour:
   spriteScript: {fileID: 0}
   selectedIndex: 0
   contentRect: {fileID: 3625169132596717364}
+  disabledList:
+  - {fileID: 0}
 --- !u!1 &3625169132099811256
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,8 +566,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3625169131661023144}
   - {fileID: 3625169130607497845}
+  - {fileID: 3625169131661023144}
   m_Father: {fileID: 3625169131799376691}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
