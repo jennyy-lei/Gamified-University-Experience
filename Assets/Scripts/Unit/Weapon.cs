@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public bool Attack()
     {
         if(canShoot) {            
-            animator.SetBool("shooting", true);
+            animator.SetTrigger("shoot");
 
             canShoot = false;
             Invoke("resetCoolDown", coolDown);
@@ -32,12 +32,6 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        animator.SetBool("shooting", false);
         canShoot = true;
-    }
-
-    public void finishAnimation()
-    {
-        animator.SetBool("shooting", false);
     }
 }
