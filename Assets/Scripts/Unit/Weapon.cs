@@ -11,16 +11,19 @@ public class Weapon : MonoBehaviour
     public int dmg;
 
     [SerializeField]
-    private float coolDown;
+    private float shootCD;
+    [SerializeField]
+    private float meleeCD;
     private bool canShoot;
+    private bool canMelee;
 
-    public bool Attack()
+    public bool Shoot()
     {
         if(canShoot) {            
             animator.SetTrigger("shoot");
 
             canShoot = false;
-            Invoke("resetCoolDown", coolDown);
+            Invoke("resetShootCD", shootCD);
 
             return true;
         }
@@ -28,10 +31,25 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    private void resetCoolDown() => canShoot = true;
+    public bool MeleeAtk()
+    {
+        if(canMelee) {            
+            animator.SetTrigger("melee");
 
+            canMelee = false;
+            Invoke("resetMeleeCD", shootCD);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void resetMeleeCD() => canMelee = true;
+    private void resetShootCD() => canShoot = true;
     void Start()
     {
         canShoot = true;
+        canMelee = true;
     }
 }

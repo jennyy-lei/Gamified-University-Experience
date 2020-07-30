@@ -7,7 +7,8 @@ public class InputController : MonoBehaviour
     private Player2 info;
 
     private Command jumpCmd;
-    private Command atkCmd;
+    private Command shootCmd;
+    private Command meleeCmd;
     private Command moveCmd;
 
     [SerializeField]
@@ -24,8 +25,9 @@ public class InputController : MonoBehaviour
         info = GetComponent<Player2>();
         allowInput = true;
         jumpCmd = new JumpCmd();
-        atkCmd = new ShootCmd();
+        shootCmd = new ShootCmd();
         moveCmd = new MoveCmd();
+        meleeCmd = new MeleeCmd();
     }
     // Update is called once per frame
     void Update()
@@ -35,8 +37,11 @@ public class InputController : MonoBehaviour
             if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
             moveCmd.execute(transform, info);
 
-            if (Input.GetButtonDown("Fire1") && weapon.Attack()) {
-                atkCmd.execute(transform,info);
+            if (Input.GetButtonDown("Fire1") && weapon.Shoot()) {
+                shootCmd.execute(transform,info);
+            }
+            if(Input.GetButtonDown("MeleeAtk") && weapon.MeleeAtk()){
+                meleeCmd.execute(transform,info);
             }
 
             if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {

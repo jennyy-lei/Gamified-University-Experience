@@ -100,3 +100,14 @@ public class ShootCmd : Command{
         }
     }
 }
+
+public class MeleeCmd : Command{
+    public MeleeCmd() : base("Melee")
+    {
+        
+    }
+
+    public override void execute(Transform character, Unit2 info){
+        //..
+    }
+}
