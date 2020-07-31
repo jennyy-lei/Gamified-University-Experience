@@ -264,6 +264,13 @@ MonoBehaviour:
   <shootPos>k__BackingField: {fileID: 2080518996}
   <bullet>k__BackingField: {fileID: 2142384093052051580, guid: 46182e04b27e84461b009b40d53d49fe,
     type: 3}
+  <meleeDmg>k__BackingField: 2
+  <meleeRange>k__BackingField: 2
+  <meleeKnockback>k__BackingField: 2
+  <hitPos>k__BackingField: {fileID: 1054829682}
+  <enemyLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 16384
   <bulletText>k__BackingField: {fileID: 1886866046}
   <goldText>k__BackingField: {fileID: 1681819290}
 --- !u!50 &229907675
@@ -769,16 +776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 229907676}
     m_Modifications:
-    - target: {fileID: 1803717944055099584, guid: b2d8b865ef16743e79274544ccb7c614,
-        type: 3}
-      propertyPath: shootCD
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803717944055099584, guid: b2d8b865ef16743e79274544ccb7c614,
-        type: 3}
-      propertyPath: meleeCD
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -973,6 +970,12 @@ MonoBehaviour:
   nameText: {fileID: 1525235619}
   convoText: {fileID: 323968118}
   selectScreen: {fileID: 444356169}
+--- !u!4 &1054829682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1054829682, guid: b2d8b865ef16743e79274544ccb7c614,
+    type: 3}
+  m_PrefabInstance: {fileID: 911235975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1119569237
 GameObject:
   m_ObjectHideFlags: 0

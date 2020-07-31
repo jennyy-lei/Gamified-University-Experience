@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd68d42c66cfdeb48826ef5dc0afe140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   <totalHealth>k__BackingField: 3
   <MAX_WALK_SPEED>k__BackingField: 1
   <moveSpeed>k__BackingField: 0
@@ -62,7 +63,10 @@ MonoBehaviour:
   <dashDist>k__BackingField: 2
   <dashSpeed>k__BackingField: 2
   <meleeDmg>k__BackingField: 1
-  <knockbackForce>k__BackingField: 4
+  <meleeKnockback>k__BackingField: 4
+  <enemyLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &481846017
 MonoBehaviour:
   m_ObjectHideFlags: 0

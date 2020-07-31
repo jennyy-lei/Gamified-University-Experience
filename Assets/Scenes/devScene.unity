@@ -295,11 +295,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2526778744707031588}
     m_Modifications:
-    - target: {fileID: 1803717943650896571, guid: b2d8b865ef16743e79274544ccb7c614,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,17 +313,17 @@ PrefabInstance:
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1803717944055099585, guid: b2d8b865ef16743e79274544ccb7c614,
         type: 3}
@@ -359,11 +354,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BeginnerWeap
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803717944055099586, guid: b2d8b865ef16743e79274544ccb7c614,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d8b865ef16743e79274544ccb7c614, type: 3}

@@ -12,10 +12,15 @@ public class Goose : Enemy2,IDashable,IMelee
 
     //Melee Property
     [field: SerializeField]
-    public float meleeDmg{get;set;}
+    public int meleeDmg{get;set;}
     public float meleeRange{get;set;}
     [field: SerializeField]
-    public float knockbackForce{get;set;}
+    public float meleeKnockback{get;set;}
+    [field: SerializeField]
+    public LayerMask enemyLayers{get;set;}
+    public Transform hitPos{get;set;}
 
-    protected override void initSpawn(){}
+    protected override void initSpawn(){
+        hitPos = GetComponent<Transform>();
+    }
 }

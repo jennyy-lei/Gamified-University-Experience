@@ -8,7 +8,6 @@ public class InputController : MonoBehaviour
 
     private Command jumpCmd;
     private Command shootCmd;
-    private Command meleeCmd;
     private Command moveCmd;
 
     [SerializeField]
@@ -27,11 +26,13 @@ public class InputController : MonoBehaviour
         jumpCmd = new JumpCmd();
         shootCmd = new ShootCmd();
         moveCmd = new MoveCmd();
-        meleeCmd = new MeleeCmd();
     }
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonDown("MeleeAtk")){
+            weapon.MeleeAtk();
+        }
         if(info.animator.GetInteger("LoadState") == 1 && allowInput){
             info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
             if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
@@ -40,10 +41,6 @@ public class InputController : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && weapon.Shoot()) {
                 shootCmd.execute(transform,info);
             }
-            if(Input.GetButtonDown("MeleeAtk") && weapon.MeleeAtk()){
-                meleeCmd.execute(transform,info);
-            }
-
             if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {
                 jumpCmd.execute(transform,info);
                 ((IJumpable) info).jumpNum++;
@@ -59,7 +56,7 @@ public class InputController : MonoBehaviour
             Vector2 dir = hitInfo.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
             dir = -dir.normalized;
             info.rb2d.velocity = Vector2.zero;
-            info.rb2d.AddForce(dir*atkInfo.knockbackForce,ForceMode2D.Impulse);
+            info.rb2d.AddForce(dir*atkInfo.meleeKnockback,ForceMode2D.Impulse);
             allowInput = false;
             Invoke("resetCoolDown", bounceCooldown);
         }

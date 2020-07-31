@@ -29,7 +29,11 @@ interface IJumpable
 
 interface IMelee
 {
-    float meleeDmg {get;set;}
+    int meleeDmg {get;set;}
     float meleeRange {get;set;}
-    float knockbackForce {get;set;}
+    float meleeKnockback {get;set;}
+    Transform hitPos{set;get;}
+
+    LayerMask enemyLayers{set;get;}
+    
 }
