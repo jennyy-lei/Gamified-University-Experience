@@ -57,7 +57,7 @@ public class GooseController : EnemyController
         dashDist -= Mathf.Abs(info.moveSpeed)*Time.deltaTime;
         walkCmd.execute(transform,info);
     } 
-    void dmgKnockback(Transform source,float force, int dmg){
+    public override void dmgKnockback(Transform source,float force, int dmg){
         info.remainHealth -= dmg;
         force = source.position.x < transform.position.x ? force : -force;
         info.rb2d.velocity = Vector2.zero;
