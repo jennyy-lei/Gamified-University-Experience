@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Bullet
   - Enemy
+  - MeleeAtk
   layers:
   - Default
   - TransparentFX

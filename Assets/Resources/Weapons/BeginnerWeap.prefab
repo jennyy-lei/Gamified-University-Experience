@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1054829682}
-  m_Layer: 11
+  - component: {fileID: 927532583}
+  m_Layer: 9
   m_Name: melee point
-  m_TagString: Untagged
+  m_TagString: MeleeAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,12 +25,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054829681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26, y: 0.013, z: 0}
+  m_LocalPosition: {x: -0.255, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1803717944055099585}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &927532583
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054829681}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &1803717943650896571
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +197,7 @@ MonoBehaviour:
   shootCD: 0.5
   meleeCD: 1
   <meleeDmg>k__BackingField: 2
-  <meleeRange>k__BackingField: 0.3
+  <meleeRange>k__BackingField: 0.175
   <meleeKnockback>k__BackingField: 3.75
   <hitPos>k__BackingField: {fileID: 1054829682}
   <enemyLayers>k__BackingField:
