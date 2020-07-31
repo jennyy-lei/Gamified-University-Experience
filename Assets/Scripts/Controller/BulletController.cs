@@ -28,11 +28,6 @@ public class BulletController : MonoBehaviour
         }
 
         animator.SetBool("hit", true);
-        Enemy2 enemy = hitInfo.GetComponentInParent<Enemy2>();
-        if (enemy != null) {
-            enemy.remainHealth -= dmg;
-        }
-
         animator.Update(0);
         Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
         rb2d.velocity = new Vector2(0 ,0);

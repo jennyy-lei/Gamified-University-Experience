@@ -28,11 +28,16 @@ public class Weapon : MonoBehaviour,IMelee
     [field: SerializeField]
     public LayerMask enemyLayers{set;get;}
 
+    void Awake(){
+        hitPos.GetComponent<CircleCollider2D>().radius = meleeRange;
+    }
+    void Update(){
+        hitPos.GetComponent<CircleCollider2D>().radius = meleeRange;
+    }
     public bool Shoot()
     {
         if(canShoot) {            
             animator.SetTrigger("shoot");
-
             canShoot = false;
             Invoke("resetShootCD", shootCD);
 
@@ -46,28 +51,21 @@ public class Weapon : MonoBehaviour,IMelee
     {
         if(canMelee) {            
             animator.SetTrigger("melee");
+            hitPos.GetComponent<Collider2D>().enabled=true;
             canMelee = false;
             Invoke("resetMeleeCD", meleeCD);
-            Collider2D[] hits = Physics2D.OverlapCircleAll(hitPos.position, meleeRange,enemyLayers);
-            Debug.Log(hits.Length);
-            foreach(Collider2D hit in hits){
-                Enemy2 e = hit.GetComponentInParent<Enemy2>();
-                e.remainHealth -= meleeDmg;
-                Vector2 dir = hitPos.position - hit.transform.position;
-                dir = -dir.normalized;
-                hit.attachedRigidbody.AddForce(dir*meleeKnockback,ForceMode2D.Impulse);
-            }
             return true;
         }
 
         return false;
     }
-    void OnDrawGizmosSelected(){
-        if(hitPos==null) return;
-        Gizmos.DrawWireSphere(hitPos.position, meleeRange);
+    public void endAnimation(){
+        hitPos.GetComponent<Collider2D>().enabled=false;
     }
 
-    private void resetMeleeCD() => canMelee = true;
+    private void resetMeleeCD() {
+        canMelee = true;
+    }
     private void resetShootCD() => canShoot = true;
     void Start()
     {

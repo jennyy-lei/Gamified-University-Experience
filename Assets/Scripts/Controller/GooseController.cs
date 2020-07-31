@@ -57,8 +57,8 @@ public class GooseController : EnemyController
         dashDist -= Mathf.Abs(info.moveSpeed)*Time.deltaTime;
         walkCmd.execute(transform,info);
     } 
-    void dmgKnockback(Transform source){
-        float force = source.GetComponent<BulletController>().knockbackForce;
+    void dmgKnockback(Transform source,float force, int dmg){
+        info.remainHealth -= dmg;
         force = source.position.x < transform.position.x ? force : -force;
         info.rb2d.velocity = Vector2.zero;
         info.rb2d.AddForce(new Vector2(force,0),ForceMode2D.Impulse);
@@ -78,7 +78,12 @@ public class GooseController : EnemyController
     void OnTriggerEnter2D (Collider2D hitInfo){
         if(hitInfo.gameObject.CompareTag(StrConstant.bulletTag)){
             hitInfo.enabled = false;
-            dmgKnockback(hitInfo.transform);
+            BulletController bc = hitInfo.GetComponent<BulletController>();
+            dmgKnockback(hitInfo.transform,bc.knockbackForce,bc.dmg);
+        }
+        if(hitInfo.gameObject.CompareTag(StrConstant.meleeTag)){
+            Weapon w = hitInfo.GetComponentInParent<Weapon>();
+            dmgKnockback(hitInfo.transform,w.meleeKnockback,w.meleeDmg);
         }
     }
 

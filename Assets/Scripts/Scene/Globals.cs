@@ -38,4 +38,6 @@ public static class StrConstant
     public const string playerTag = "Player";
     public const string enemyTag = "Enemy";
     public const string bulletTag = "Bullet";
+    public const string meleeTag = "MeleeAtk";
+
 }
