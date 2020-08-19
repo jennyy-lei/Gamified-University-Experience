@@ -11,6 +11,8 @@ public enum PortalType
 }
 public class Portal : MonoBehaviour
 {
+    public static int maxNumTp = 2;
+    private static int curNumTp = 0;
     public float stayDuration;
     public float tpTime;
     public PortalType type;
@@ -36,8 +38,8 @@ public class Portal : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         playerScript = player.GetComponent<Player2>();
         if(type == PortalType.Null){
-            type = (PortalType) Random.Range((int)PortalType.Teleport,((int) PortalType.Exit) +1);
-            Debug.Log("Next portal:" + type);
+            if(curNumTp < maxNumTp) type = (PortalType) PortalType.Teleport;
+            else type = PortalType.Exit;
         }
 
     }
@@ -72,12 +74,14 @@ public class Portal : MonoBehaviour
     void switchScene(){
         switch(type){
             case PortalType.Start:
+                curNumTp=0;
                 LevelController.startLevel(playerScript.getPlayerState(false));
                 break;
             case PortalType.Exit:
                 LevelController.exitLevel(playerScript.getPlayerState(false));
                 break;
             case PortalType.Teleport:
+                curNumTp++;
                 LevelController.switchLevel(playerScript.getPlayerState(false));
                 break;
         }
