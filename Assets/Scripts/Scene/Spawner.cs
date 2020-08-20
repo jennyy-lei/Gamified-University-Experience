@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
         }
         List<EnemyState> list = new List<EnemyState>();
         int count = plats.childCount;
-        for(int i = 1; i < count; i++){
+        for(int i = 0; i < count; i++){
             Transform p = plats.GetChild(i);
             float xscale = p.localScale.x;
             int max = (int) (xscale + 0.5f);

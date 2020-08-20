@@ -81,7 +81,9 @@ public class Player2 : Unit2,IJumpable,IShootable
     }
 
     protected override void initSpawn(){
-        spawnPoint = GameObject.Find(StrConstant.playerSpawnAddr).transform;
+        Transform all = GameObject.Find(StrConstant.playerSpawnAddr).transform;
+        int rand = (int) Mathf.Floor(Random.Range(0,all.childCount));
+        spawnPoint = all.GetChild(rand);
     }
 
     private void changeWeapon() {
@@ -144,6 +146,6 @@ public class Player2 : Unit2,IJumpable,IShootable
         bulletLimit = state.bulletLimit;
         facingRight = state.facingRight;
         if(!facingRight) transform.Rotate(0f,180f,0f);
-        transform.position =  state.position == null ? spawnPoint.position : state.position.toVector3();
+        transform.position =  state.position == null ? spawnPoint.position + new Vector3(0,0.5f,0) : state.position.toVector3();
     }
 }
