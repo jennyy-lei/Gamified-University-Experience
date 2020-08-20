@@ -5,13 +5,24 @@ using UnityEngine;
 public class TraderNPC : Npc
 {
     [SerializeField]
-    private GameObject selectScreen;
+    private SelectScreen selectScreen;
+    private GameObject[] selling;
 
-        override public void Open() {
-        selectScreen.SetActive(true);
+    protected virtual void Awake(){
+        List<GameObject> temp = new List<GameObject>(Globals.getItemList());
+        temp.RemoveAt(1);
+        selling = temp.ToArray();
+        base.Awake();
+    }
+
+    override public void Open() {
+        base.Open();
+        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: (int i)=>{});
+        selectScreen.gameObject.SetActive(true);
     }
 
     override public void Close() {
-        selectScreen.SetActive(false);
+        base.Close();
+        selectScreen.gameObject.SetActive(false);
     }
 }
