@@ -107,7 +107,7 @@ public class Player2 : Unit2,IJumpable,IShootable
         if (transform.position.y < -10) {
             if(spawnPoint == null) initSpawn();
             rb2d.velocity = new Vector3(0, 0, 0);
-            transform.position = spawnPoint.position;
+            transform.position = spawnPoint.position  + new Vector3(0,0.5f,0);
             remainHealth -= 1;
             animator.SetInteger("LoadState",0);
         }
