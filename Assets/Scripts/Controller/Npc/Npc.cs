@@ -52,7 +52,6 @@ public class Npc : MonoBehaviour
 
                 if(isActive) {
                     Close();
-                    isActive = false;
                 }
             }
         } else {
@@ -73,11 +72,14 @@ public class Npc : MonoBehaviour
     private void OnInput()
     {
         if (Input.GetButtonDown("Submit") && !isActive) {
-            isActive = true;
             Open();
         }
     }
 
-    virtual public void Open() {}
-    virtual public void Close() {}
+    virtual public void Open() {
+        isActive = true;
+    }
+    virtual public void Close() {
+        isActive = false;
+    }
 }

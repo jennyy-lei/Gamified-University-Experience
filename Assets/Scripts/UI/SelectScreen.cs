@@ -8,11 +8,9 @@ using UnityEngine.EventSystems;
 public class SelectScreen : MonoBehaviour
 {
     public delegate void IntAction(int index);
-    public delegate void Action();
 
     public IntAction buyEffect;
     public IntAction selectEffect;
-    public Action disableEffect;
     public Button button;
     public TextMeshProUGUI priceText;
     private TextMeshProUGUI buttonText;
@@ -37,8 +35,7 @@ public class SelectScreen : MonoBehaviour
     void Start(){
         button.onClick.AddListener(() => Submit());
     }
-    public void initScreen(GameObject[] itemList, int index = 0, IntAction selectEffect = null, IntAction buyEffect = null, Action disableEffect = null){
-        this.disableEffect = disableEffect;
+    public void initScreen(GameObject[] itemList, IntAction selectEffect, IntAction buyEffect,int index = 0){
         this.itemList = itemList;
         this.buyEffect = buyEffect;
         this.selectedIndex = index;
@@ -54,7 +51,6 @@ public class SelectScreen : MonoBehaviour
         updatePrice(selectedIndex);
     }
     protected virtual void OnDisable(){
-        disableEffect();
         //reset panel
         gridAnims[selectedIndex].SetTrigger("trigger");
         contentRect.localPosition = contentDefaultPos;
@@ -136,7 +132,6 @@ public class SelectScreen : MonoBehaviour
             playerScript.gold -= selectedIndex; //temp price for each sprite
         }
         buyEffect(selectedIndex);
-        gameObject.SetActive(false);
     }
     void onSelect(int index){
         if(selectedIndex == index) return;
