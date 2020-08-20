@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     public float lerp_speed = 5f;
     public SpriteRenderer background;
 
@@ -30,12 +30,17 @@ public class CameraController : MonoBehaviour
         maxX = levelBounds.max.x - horzExtent;
         minY = levelBounds.min.y + vertExtent;
         maxY = levelBounds.max.y - vertExtent;
+        transform.position = new Vector3(
+            Mathf.Clamp(player.position.x + offset.x,minX,maxX),
+            Mathf.Clamp(player.position.y + offset.y,minY,maxY),
+            transform.position.z
+        );
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, player.transform.position  + offset, lerp_speed) + new Vector3(0, 0, -5);
+        transform.position = Vector3.Lerp(transform.position, player.position  + offset, lerp_speed);
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x,minX,maxX),
             Mathf.Clamp(transform.position.y,minY,maxY),
