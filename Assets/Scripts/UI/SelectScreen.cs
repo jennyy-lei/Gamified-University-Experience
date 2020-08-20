@@ -39,13 +39,18 @@ public class SelectScreen : MonoBehaviour
     void Start(){
         button.onClick.AddListener(() => Submit());
     }
-    public void initScreen(GameObject[] itemList, Action selectEffect, Action buyEffect, Warning buyWarning, int[] prices, int index = 0){
+    public void initScreen(GameObject[] itemList, int[] prices, int index = 0, Action selectEffect=null, Action buyEffect=null, Warning buyWarning=null){
+        Action noEffect = (int i) => {};
+        Warning noWarning = (int i) => "";
         this.prices = prices;
         this.itemList = itemList;
-        this.buyEffect = buyEffect;
-        this.buyWarning = buyWarning;
         this.selectedIndex = index;
-        this.selectEffect = selectEffect;
+        if(buyEffect == null) this.buyEffect = noEffect; 
+        else this.buyEffect = buyEffect;
+        if(buyWarning == null) this.buyWarning = noWarning;
+        else this.buyWarning = buyWarning;
+        if(selectEffect == null) this.selectEffect = noEffect;        
+        else this.selectEffect = selectEffect;
     }
     void OnEnable(){
         isMoving = false;

@@ -19,7 +19,7 @@ public class TraderNPC : Npc
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: buyEffect,buyWarning: buyWarning,prices: prices);
+        selectScreen.initScreen(selling, prices, buyEffect: buyEffect, buyWarning: buyWarning);
         selectScreen.gameObject.SetActive(true);
     }
     void buyEffect(int index){
