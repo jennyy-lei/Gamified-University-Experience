@@ -14,7 +14,7 @@ public class InputController : MonoBehaviour
     private Transform groundDetector;
     private Weapon weapon;
 
-    private bool allowInput;
+    private bool allowMovement;
     public float bounceCooldown;
 
     void Awake(){
@@ -22,7 +22,7 @@ public class InputController : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
 
         info = GetComponent<Player2>();
-        allowInput = true;
+        allowMovement = true;
         jumpCmd = new JumpCmd();
         shootCmd = new ShootCmd();
         moveCmd = new MoveCmd();
@@ -30,20 +30,21 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("MeleeAtk")){
-            weapon.MeleeAtk();
-        }
-        if(info.animator.GetInteger("LoadState") == 1 && allowInput){
-            info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
-            if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
-            moveCmd.execute(transform, info);
-
+        if(info.animator.GetInteger("LoadState") == 1){
+            if(Input.GetButtonDown("MeleeAtk")){
+                weapon.MeleeAtk();
+            }        
             if (Input.GetButtonDown("Fire1") && weapon.Shoot()) {
                 shootCmd.execute(transform,info);
             }
-            if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {
-                jumpCmd.execute(transform,info);
-                ((IJumpable) info).jumpNum++;
+            if(allowMovement){
+                info.moveSpeed = Input.GetAxis("Horizontal") * info.MAX_WALK_SPEED;
+                if(Mathf.Abs(info.moveSpeed) > 0.01) info.rb2d.velocity = new Vector2(0,info.rb2d.velocity.y);
+                moveCmd.execute(transform, info);
+                if (Input.GetButtonDown("Jump") && ((IJumpable) info).canJump) {
+                    jumpCmd.execute(transform,info);
+                    ((IJumpable) info).jumpNum++;
+                }
             }
         }
     }
@@ -57,10 +58,10 @@ public class InputController : MonoBehaviour
             dir = -dir.normalized;
             info.rb2d.velocity = Vector2.zero;
             info.rb2d.AddForce(dir*atkInfo.meleeKnockback,ForceMode2D.Impulse);
-            allowInput = false;
+            allowMovement = false;
             Invoke("resetCoolDown", bounceCooldown);
         }
     }
 
-    private void resetCoolDown() => allowInput = true;
+    private void resetCoolDown() => allowMovement = true;
 }
