@@ -7,16 +7,19 @@ using UnityEngine.EventSystems;
 
 public class SelectScreen : MonoBehaviour
 {
-    public delegate void IntAction(int index);
+    public delegate void Action(int index);
+    public delegate string Warning(int index);
 
-    public IntAction buyEffect;
-    public IntAction selectEffect;
+    public Action buyEffect;
+    public Action selectEffect;
+    public Warning buyWarning;
     public Button button;
     public TextMeshProUGUI priceText;
     private TextMeshProUGUI buttonText;
     public GameObject gridPrefab;
     public GameObject disabledGrid;
     private GameObject[] itemList;
+    private int[] prices;
     public Player2 playerScript;
     public SpriteController spriteScript;
 
@@ -27,6 +30,7 @@ public class SelectScreen : MonoBehaviour
     private RectTransform contentRect;
     private Vector3 contentDefaultPos;
     private bool isMoving;
+    private bool buyable;
     protected virtual void Awake()
     {
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
@@ -35,11 +39,18 @@ public class SelectScreen : MonoBehaviour
     void Start(){
         button.onClick.AddListener(() => Submit());
     }
-    public void initScreen(GameObject[] itemList, IntAction selectEffect, IntAction buyEffect,int index = 0){
+    public void initScreen(GameObject[] itemList, int[] prices, int index = 0, Action selectEffect=null, Action buyEffect=null, Warning buyWarning=null){
+        Action noEffect = (int i) => {};
+        Warning noWarning = (int i) => "";
+        this.prices = prices;
         this.itemList = itemList;
-        this.buyEffect = buyEffect;
         this.selectedIndex = index;
-        this.selectEffect = selectEffect;
+        if(buyEffect == null) this.buyEffect = noEffect; 
+        else this.buyEffect = buyEffect;
+        if(buyWarning == null) this.buyWarning = noWarning;
+        else this.buyWarning = buyWarning;
+        if(selectEffect == null) this.selectEffect = noEffect;        
+        else this.selectEffect = selectEffect;
     }
     void OnEnable(){
         isMoving = false;
@@ -109,14 +120,17 @@ public class SelectScreen : MonoBehaviour
     }
     public void updatePrice(int index)
     {
-        priceText.text = index + " gold";
-        if(index > playerScript.gold){
+        priceText.text = prices[index] + " gold";
+        string warning = prices[index] > playerScript.gold ? "Unaffordable" : buyWarning(index);
+        if(warning != ""){
+            buyable = false;
             button.interactable = false;
             priceText.color = Color.red;
-            buttonText.text = "Unaffordable";
+            buttonText.text = warning;
             buttonText.color = Color.red;
         }
         else{
+            buyable = true;
             button.interactable = true;
             priceText.color = Color.black;
             buttonText.text = "Buy";
@@ -125,11 +139,11 @@ public class SelectScreen : MonoBehaviour
     }
     public void Submit()
     {
-        if(playerScript.gold - selectedIndex < 0){
-            return;
+        if(buyable){
+            playerScript.gold -= prices[selectedIndex]; //temp price for each sprite
+            buyEffect(selectedIndex);
+            updatePrice(selectedIndex);
         }
-        playerScript.gold -= selectedIndex; //temp price for each sprite
-        buyEffect(selectedIndex);
     }
     void onSelect(int index){
         if(selectedIndex == index) return;
