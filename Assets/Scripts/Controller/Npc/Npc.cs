@@ -74,6 +74,9 @@ public class Npc : MonoBehaviour
         if (Input.GetButtonDown("Submit") && !isActive) {
             Open();
         }
+        if(isActive && Input.GetButtonDown("Cancel")){
+            Close();
+        }
     }
 
     virtual public void Open() {
