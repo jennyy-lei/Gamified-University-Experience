@@ -5,51 +5,59 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public abstract class SelectScreen : MonoBehaviour
+public class SelectScreen : MonoBehaviour
 {
+    public delegate void Action(int index);
+
+    public Action buyEffect;
+    public Action selectEffect;
     public Button button;
     public TextMeshProUGUI priceText;
     private TextMeshProUGUI buttonText;
     public GameObject gridPrefab;
     public GameObject disabledGrid;
-    protected GameObject[] itemList;
+    private GameObject[] itemList;
     public Player2 playerScript;
     public SpriteController spriteScript;
 
     [SerializeField]
-    protected int selectedIndex;
+    private int selectedIndex;
     private List<Animator> gridAnims;
     [SerializeField]
     private RectTransform contentRect;
+    private Vector3 contentDefaultPos;
     private bool isMoving;
-    private bool loaded;
     protected virtual void Awake()
     {
-        loaded = isMoving = false;
-        gridAnims = new List<Animator>();
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-        loadGrid();
+        contentDefaultPos = contentRect.localPosition;
     }
     void Start(){
         button.onClick.AddListener(() => Submit());
     }
-    protected virtual void OnEnabled(){
-        updatePrice(selectedIndex);
-        loadGridAnim();
-        updateLocation();
+    public void initScreen(GameObject[] itemList, int index = 0, Action selectEffect = null, Action buyEffect = null){
+        this.itemList = itemList;
+        this.buyEffect = buyEffect;
+        this.selectedIndex = index;
+        this.selectEffect = selectEffect;
     }
-    private void updateLocation(){
+    void OnEnable(){
+        isMoving = false;
+        gridAnims = new List<Animator>();
         contentRect.localPosition += new Vector3(-selectedIndex*75f,0,0);
+        loadGrid();
+        loadGridAnim();
         gridAnims[selectedIndex].Play("select",0,1);
+        updatePrice(selectedIndex);
     }
     protected virtual void OnDisable(){
         //reset panel
         gridAnims[selectedIndex].SetTrigger("trigger");
-        contentRect.localPosition -= new Vector3(-selectedIndex*75f,0,0);
+        contentRect.localPosition = contentDefaultPos;
+        unloadGrid();
     }
     private void loadGrid()
     {
-        Debug.Log(gridAnims);
         for(int i = 0; i < 3; i++){ //disabled grid
             GameObject disableObj = (GameObject)Instantiate(disabledGrid);
             disableObj.transform.SetParent(contentRect);
@@ -63,6 +71,7 @@ public abstract class SelectScreen : MonoBehaviour
             sprite.transform.localScale = new Vector3(70f,70f,70f);
             grid.name = i.ToString();
             Destroy(sprite.GetComponent<Collider>());
+            Destroy(sprite.GetComponent<Rigidbody2D>());
             int foo = i;
             grid.GetComponent<Button>().onClick.AddListener(() => onSelect(foo));
             gridAnims.Insert(foo,grid.GetComponent<Animator>());
@@ -72,7 +81,11 @@ public abstract class SelectScreen : MonoBehaviour
             disableObj.transform.SetParent(contentRect);
             disableObj.transform.localScale = new Vector3(1,1,1);
         }
-        updateLocation();
+    }
+    private void unloadGrid(){
+        foreach(RectTransform t in contentRect){
+            Destroy(t.gameObject);
+        }
     }
     private void loadGridAnim(){
         foreach(Animator a in gridAnims){
@@ -112,10 +125,12 @@ public abstract class SelectScreen : MonoBehaviour
     public void Submit()
     {
         if(Globals.getCharIndex() != selectedIndex){
-            if(playerScript.gold - selectedIndex < 0) return;
+            if(playerScript.gold - selectedIndex < 0){
+                return;
+            } 
             playerScript.gold -= selectedIndex; //temp price for each sprite
         }
-        Globals.setCharIndex(selectedIndex);
+        buyEffect(selectedIndex);
         gameObject.SetActive(false);
     }
     void onSelect(int index){
@@ -128,7 +143,6 @@ public abstract class SelectScreen : MonoBehaviour
             updatePrice(index);
         }
     }
-    public abstract void selectEffect(int index);
     public IEnumerator moveToIndex(int index){
         Vector3 startPos;
         Vector3 endPos;
@@ -154,5 +168,8 @@ public abstract class SelectScreen : MonoBehaviour
             contentRect.localPosition = endPos;
         }
         isMoving = false;
+    }
+    public int getSelectedIndex(){
+        return selectedIndex;
     }
 }

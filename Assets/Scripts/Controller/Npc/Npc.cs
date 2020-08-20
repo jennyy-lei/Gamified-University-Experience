@@ -31,7 +31,7 @@ public class Npc : MonoBehaviour
         isActive = false;
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
     }
@@ -72,7 +72,7 @@ public class Npc : MonoBehaviour
 
     private void OnInput()
     {
-        if (Input.GetButtonDown("Submit")) {
+        if (Input.GetButtonDown("Submit") && !isActive) {
             isActive = true;
             Open();
         }

@@ -5,13 +5,25 @@ using UnityEngine;
 public class CharSelectNPC : Npc
 {
     [SerializeField]
-    private GameObject selectScreen;
+    private SelectScreen selectScreen;
+    private GameObject[] selling;
+
+    protected virtual void Awake(){
+        selling = Globals.getCharList();
+        base.Awake();
+    }
 
     override public void Open() {
-        selectScreen.SetActive(true);
+        base.Open();
+        selectScreen.initScreen(selling,Globals.getCharIndex(),selectScreen.spriteScript.switchChar,Globals.setCharIndex);
+        selectScreen.gameObject.SetActive(true);
     }
 
     override public void Close() {
-        selectScreen.SetActive(false);
+        base.Close();
+        selectScreen.gameObject.SetActive(false);
+        if(Globals.getCharIndex() != selectScreen.getSelectedIndex()){
+            selectScreen.spriteScript.switchChar(Globals.getCharIndex());
+        }
     }
 }
