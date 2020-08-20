@@ -15,13 +15,19 @@ public class CharSelectNPC : Npc
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,selectEffect: selectScreen.spriteScript.switchChar,buyEffect: buyEffect,Globals.getCharIndex());
+        selectScreen.initScreen(selling,selectEffect: selectScreen.spriteScript.switchChar,buyEffect: buyEffect,buyWarning: buyWarning,Globals.getCharIndex());
         selectScreen.gameObject.SetActive(true);
     }
 
     void buyEffect(int index){
         Globals.setCharIndex(index);
         this.Close();
+    }
+    string buyWarning(int index){
+        if(Globals.getCharIndex() == index){
+            return "Using";
+        }
+        return "";
     }
 
     override public void Close() {

@@ -17,7 +17,7 @@ public class TraderNPC : Npc
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: buyEffect);
+        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: buyEffect,buyWarning: buyWarning);
         selectScreen.gameObject.SetActive(true);
     }
     void buyEffect(int index){
@@ -29,7 +29,17 @@ public class TraderNPC : Npc
                 ++selectScreen.playerScript.remainHealth;
                 break;
         }
-        //this.Close();
+    }
+    string buyWarning(int index){
+        switch(index){
+            case 0: //Bullet
+                if(selectScreen.playerScript.bulletCount == selectScreen.playerScript.bulletLimit) return "Full";
+                break;
+            case 1:
+                if(selectScreen.playerScript.remainHealth == selectScreen.playerScript.totalHealth) return "Full";
+                break;
+        }
+        return "";
     }
 
     override public void Close() {
