@@ -125,12 +125,10 @@ public class SelectScreen : MonoBehaviour
     }
     public void Submit()
     {
-        if(Globals.getCharIndex() != selectedIndex){
-            if(playerScript.gold - selectedIndex < 0){
-                return;
-            } 
-            playerScript.gold -= selectedIndex; //temp price for each sprite
+        if(playerScript.gold - selectedIndex < 0){
+            return;
         }
+        playerScript.gold -= selectedIndex; //temp price for each sprite
         buyEffect(selectedIndex);
     }
     void onSelect(int index){
