@@ -9,10 +9,10 @@ public class TraderNPC : Npc
     private GameObject[] selling;
 
     protected virtual void Awake(){
+        base.Awake();
         List<GameObject> temp = new List<GameObject>(Globals.getItemList());
         temp.RemoveAt(1);
         selling = temp.ToArray();
-        base.Awake();
     }
 
     override public void Open() {
@@ -21,6 +21,14 @@ public class TraderNPC : Npc
         selectScreen.gameObject.SetActive(true);
     }
     void buyEffect(int index){
+        switch(index){
+            case 0: //Bullet
+                ++selectScreen.playerScript.bulletCount;
+                break;
+            case 1: //Health
+                ++selectScreen.playerScript.remainHealth;
+                break;
+        }
         //this.Close();
     }
 
