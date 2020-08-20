@@ -19,6 +19,7 @@ public class SelectScreen : MonoBehaviour
     public GameObject gridPrefab;
     public GameObject disabledGrid;
     private GameObject[] itemList;
+    private int[] prices;
     public Player2 playerScript;
     public SpriteController spriteScript;
 
@@ -38,7 +39,8 @@ public class SelectScreen : MonoBehaviour
     void Start(){
         button.onClick.AddListener(() => Submit());
     }
-    public void initScreen(GameObject[] itemList, Action selectEffect, Action buyEffect, Warning buyWarning, int index = 0){
+    public void initScreen(GameObject[] itemList, Action selectEffect, Action buyEffect, Warning buyWarning, int[] prices, int index = 0){
+        this.prices = prices;
         this.itemList = itemList;
         this.buyEffect = buyEffect;
         this.buyWarning = buyWarning;
@@ -113,8 +115,8 @@ public class SelectScreen : MonoBehaviour
     }
     public void updatePrice(int index)
     {
-        priceText.text = index + " gold";
-        string warning = index > playerScript.gold ? "Unaffordable" : buyWarning(index);
+        priceText.text = prices[index] + " gold";
+        string warning = prices[index] > playerScript.gold ? "Unaffordable" : buyWarning(index);
         if(warning != ""){
             buyable = false;
             button.interactable = false;
@@ -133,7 +135,7 @@ public class SelectScreen : MonoBehaviour
     public void Submit()
     {
         if(buyable){
-            playerScript.gold -= selectedIndex; //temp price for each sprite
+            playerScript.gold -= prices[selectedIndex]; //temp price for each sprite
             buyEffect(selectedIndex);
             updatePrice(selectedIndex);
         }

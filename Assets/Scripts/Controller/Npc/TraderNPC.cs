@@ -7,9 +7,11 @@ public class TraderNPC : Npc
     [SerializeField]
     private SelectScreen selectScreen;
     private GameObject[] selling;
+    private int[] prices;
 
     protected virtual void Awake(){
         base.Awake();
+        prices = new int[]{2,4};
         List<GameObject> temp = new List<GameObject>(Globals.getItemList());
         temp.RemoveAt(1);
         selling = temp.ToArray();
@@ -17,7 +19,7 @@ public class TraderNPC : Npc
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: buyEffect,buyWarning: buyWarning);
+        selectScreen.initScreen(selling,selectEffect: (int i)=>{},buyEffect: buyEffect,buyWarning: buyWarning,prices: prices);
         selectScreen.gameObject.SetActive(true);
     }
     void buyEffect(int index){

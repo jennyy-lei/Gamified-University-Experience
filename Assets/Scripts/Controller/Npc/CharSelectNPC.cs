@@ -6,16 +6,18 @@ public class CharSelectNPC : Npc
 {
     [SerializeField]
     private SelectScreen selectScreen;
+    private int[] prices;
     private GameObject[] selling;
 
     protected virtual void Awake(){
+        prices = new int[]{0,5};
         selling = Globals.getCharList();
         base.Awake();
     }
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,selectEffect: selectScreen.spriteScript.switchChar,buyEffect: buyEffect,buyWarning: buyWarning,Globals.getCharIndex());
+        selectScreen.initScreen(selling,selectEffect: selectScreen.spriteScript.switchChar,buyEffect: buyEffect,buyWarning: buyWarning,prices: prices,Globals.getCharIndex());
         selectScreen.gameObject.SetActive(true);
     }
 
