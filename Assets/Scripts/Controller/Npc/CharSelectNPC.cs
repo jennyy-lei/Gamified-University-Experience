@@ -15,7 +15,7 @@ public class CharSelectNPC : Npc
 
     override public void Open() {
         base.Open();
-        selectScreen.initScreen(selling,Globals.getCharIndex(),selectScreen.spriteScript.switchChar,Globals.setCharIndex);
+        selectScreen.initScreen(selling,Globals.getCharIndex(),selectScreen.spriteScript.switchChar,Globals.setCharIndex,()=>this.isActive=false);
         selectScreen.gameObject.SetActive(true);
     }
 

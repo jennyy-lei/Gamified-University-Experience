@@ -17,7 +17,7 @@ public class Npc : MonoBehaviour
     private Vector2 textStartPosition;
 
     private bool isFacingRight;
-    private bool isActive;
+    public bool isActive;
     
     void Start()
     {
