@@ -70,6 +70,7 @@ public class SelectScreen : MonoBehaviour
         for (int i = 0; i < itemList.Length; i++) {
             GameObject grid = (GameObject)Instantiate(gridPrefab);
             GameObject sprite = (GameObject)Instantiate(itemList[i]);
+            sprite.transform.localPosition = Vector3.zero;
             sprite.transform.SetParent(grid.transform);
             grid.transform.SetParent(contentRect);
             sprite.transform.localScale = new Vector3(70f,70f,70f);
