@@ -16,3 +16,5 @@ A journey in Canada university CS lectures as first year students.
 * Different enemy animation
 
 ![alt text](Doc/goose_dash.JPG?raw=true)
+
+**Note: The main character and the wandering TA are asset found on the internet and are placeholders for now**
