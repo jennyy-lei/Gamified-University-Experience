@@ -1,3 +1,4 @@
+**Note: The main character and the wandering TA are asset found on the internet and are placeholders for now**
 # Racket
 A journey in Canada university CS lectures as first year students.
 
@@ -17,4 +18,3 @@ A journey in Canada university CS lectures as first year students.
 
 ![alt text](Doc/goose_dash.JPG?raw=true)
 
-**Note: The main character and the wandering TA are asset found on the internet and are placeholders for now**
